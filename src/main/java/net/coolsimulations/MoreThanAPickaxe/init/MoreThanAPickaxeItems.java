@@ -3,11 +3,12 @@ package net.coolsimulations.MoreThanAPickaxe.init;
 import net.coolsimulations.MoreThanAPickaxe.MoreThanAPickaxe;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class MoreThanAPickaxeItems {
 	
@@ -33,13 +34,13 @@ public class MoreThanAPickaxeItems {
 	public static void register()
 	{
 		
-		GameRegistry.register(wooden_adze);
-		GameRegistry.register(stone_adze);
-		GameRegistry.register(iron_adze);
-		GameRegistry.register(gold_adze);
-		GameRegistry.register(diamond_adze);
-		GameRegistry.register(bronze_adze);
-		GameRegistry.register(titanium_adze);
+		registerItem(wooden_adze);
+		registerItem(stone_adze);
+		registerItem(iron_adze);
+		registerItem(gold_adze);
+		registerItem(diamond_adze);
+		registerItem(bronze_adze);
+		registerItem(titanium_adze);
 	}
 	
 	public static void registerRenders()
@@ -53,8 +54,21 @@ public class MoreThanAPickaxeItems {
 		registerRender(titanium_adze);
 	}
 	
+	public static void registerItem(Item item) {
+		
+		MoreThanAPickaxe.ITEMS.add(item);
+	}
+	
+	public static void registerItems(IForgeRegistry<Item> registry) {
+		
+	for (Item item : MoreThanAPickaxe.ITEMS)
+    {
+        registry.register(item);
+    	}
+	}
+	
 	public static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 }

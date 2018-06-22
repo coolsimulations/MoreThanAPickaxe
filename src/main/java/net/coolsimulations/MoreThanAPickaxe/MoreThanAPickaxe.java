@@ -1,9 +1,13 @@
 package net.coolsimulations.MoreThanAPickaxe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
-import net.coolsimulations.MoreThanAPickaxe.recipes.MoreThanAPickaxeRecipes;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -22,10 +26,13 @@ public class MoreThanAPickaxe {
 	
 	public static final CreativeTabs tabMoreThanAPickaxe = new MoreThanAPickaxeTab();
 	
+	public static final List<Item> ITEMS = new ArrayList<Item>();
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		System.out.println("Pre Init");
+    		MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeEventHandler());
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
 	}
@@ -35,7 +42,6 @@ public class MoreThanAPickaxe {
 	{
 		System.out.println("Init");
 		proxy.init();
-		MoreThanAPickaxeRecipes.register();
 	}
 	
 	@EventHandler
