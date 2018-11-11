@@ -39,7 +39,7 @@ public class MoreThanAPickaxeRecipes {
 		if(SPCompatibilityManager.isGCPLoaded()) {
 			
 			addRecipe(new ItemStack(MoreThanAPickaxeItems.desh_adze), new Object[]{"DDD","DX "," X ", 'X', new ItemStack(MarsItems.marsItemBasic, 1, 1), 'D', "ingotDesh"});
-			addRecipe(new ItemStack(MoreThanAPickaxeItems.titanium_adze_gc), new Object[]{"TTT","TX "," X ", 'X', "stickWood", 'T', new ItemStack(AsteroidsItems.basicItem, 1, 9)});
+			addRecipe(new ItemStack(MoreThanAPickaxeItems.titanium_adze_gc), new Object[]{"TTT","TX "," X ", 'X', "ingotIron", 'T', "compressedTitanium"});
 		}
 	}
 
