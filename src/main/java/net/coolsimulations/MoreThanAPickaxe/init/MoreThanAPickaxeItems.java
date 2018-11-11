@@ -1,13 +1,19 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
+import micdoodle8.mods.galacticraft.core.GCItems;
+import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
+import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
 import net.coolsimulations.MoreThanAPickaxe.MoreThanAPickaxe;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class MoreThanAPickaxeItems {
 	
@@ -19,6 +25,12 @@ public class MoreThanAPickaxeItems {
 	public static Item bronze_adze;
 	public static Item titanium_adze;
 	
+	public static Item steel_adze;
+	public static Item desh_adze;
+	public static Item titanium_adze_gc;
+	
+    public static ToolMaterial steelToolMaterial = EnumHelper.addToolMaterial("steel_adze", 2, 500, 7, 2.5F, 9);
+	
 	public static void init() {
 		
 		wooden_adze = new ItemAdze(ToolMaterial.WOOD, 6.0F, -2.4F).setUnlocalizedName("wooden_adze").setRegistryName("wooden_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
@@ -28,6 +40,25 @@ public class MoreThanAPickaxeItems {
 		diamond_adze = new ItemAdze(ToolMaterial.DIAMOND, 5.0F, -2.4F).setUnlocalizedName("diamond_adze").setRegistryName("diamond_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
 		bronze_adze = new ItemAdze(SPItems.bronzeToolMaterial, 5.5F, -2.4F).setUnlocalizedName("bronze_adze").setRegistryName("bronze_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
 		titanium_adze = new ItemAdze(SPItems.titaniumToolMaterial, 5.5F, -2.4F).setUnlocalizedName("titanium_adze").setRegistryName("titanium_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+		
+		if(OreDictionary.getOres("ingotSteel").size() > 0) {
+			
+			if(!SPCompatibilityManager.isGCLoaded()) {
+				
+				steel_adze = new ItemAdze(steelToolMaterial, 5.5F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+			}
+		}
+		
+		if(SPCompatibilityManager.isGCLoaded()) {
+			
+			steel_adze = new ItemAdze(GCItems.TOOL_STEEL, 4.0F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+			
+			if(SPCompatibilityManager.isGCPLoaded()) {
+				
+				desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F).setUnlocalizedName("desh_adze").setRegistryName("desh_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+				titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F).setUnlocalizedName("titanium_adze_gc").setRegistryName("titanium_adze_gc").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+			}
+		}
 	}
 	
 	public static void register()
@@ -40,6 +71,25 @@ public class MoreThanAPickaxeItems {
 		GameRegistry.register(diamond_adze);
 		GameRegistry.register(bronze_adze);
 		GameRegistry.register(titanium_adze);
+		
+		if(OreDictionary.getOres("ingotSteel").size() > 0) {
+			
+			if(!SPCompatibilityManager.isGCLoaded()) {
+				
+				GameRegistry.register(steel_adze);
+			}
+		}
+		
+		if(SPCompatibilityManager.isGCLoaded()) {
+			
+			GameRegistry.register(steel_adze);
+			
+			if(SPCompatibilityManager.isGCPLoaded()) {
+				
+				GameRegistry.register(desh_adze);
+				GameRegistry.register(titanium_adze_gc);
+			}
+		}
 	}
 	
 	public static void registerRenders()
@@ -51,6 +101,25 @@ public class MoreThanAPickaxeItems {
 		registerRender(diamond_adze);
 		registerRender(bronze_adze);
 		registerRender(titanium_adze);
+		
+		if(OreDictionary.getOres("ingotSteel").size() > 0) {
+			
+			if(!SPCompatibilityManager.isGCLoaded()) {
+				
+				registerRender(steel_adze);
+			}
+		}
+		
+		if(SPCompatibilityManager.isGCLoaded()) {
+			
+			registerRender(steel_adze);
+			
+			if(SPCompatibilityManager.isGCPLoaded()) {
+				
+				registerRender(desh_adze);
+				registerRender(titanium_adze_gc);
+			}
+		}
 	}
 	
 	public static void registerRender(Item item)
