@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "XXX",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "galacticraftplanets:item_basic_mars",
+      "data": 1
+    },
+    "X": {
+      "type": "forge:ore_dict",
+      "ore": "ingotDesh"
+    }
+  },
+  "result": {
+    "item": "morethanapickaxe:desh_adze"
+  }
+}
