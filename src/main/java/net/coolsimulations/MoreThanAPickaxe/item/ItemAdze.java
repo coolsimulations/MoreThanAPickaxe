@@ -54,7 +54,7 @@ public class ItemAdze extends ItemTool{
         }
         else {
         	Material material = state.getMaterial();
-        	return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE && material != Material.CORAL && material != Material.LEAVES && material != Material.GOURD && material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
+        	return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE && material != Material.CORAL && material != Material.LEAVES && material != Material.GOURD && material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getDestroySpeed(stack, state) : this.efficiency;
         }
     }
 	
@@ -214,9 +214,9 @@ public class ItemAdze extends ItemTool{
 	/**
      * Returns the amount of damage this item will deal. One heart of damage is equal to 2 damage points.
      */
-    public float getDamageVsEntity()
+    public float getAttackDamage()
     {
-        return this.material.getDamageVsEntity();
+    	return this.material.getAttackDamage();
     }
     
     /**
@@ -286,7 +286,7 @@ public class ItemAdze extends ItemTool{
 
         if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
         {
-        	multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.damageVsEntity, 0));
+        	multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", (double)this.attackDamage, 0));
             multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", (double)this.attackSpeed, 0));
         }
 
