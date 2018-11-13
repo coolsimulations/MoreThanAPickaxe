@@ -4,6 +4,7 @@ import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
 import net.coolsimulations.MoreThanAPickaxe.recipes.MoreThanAPickaxeRecipes;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, dependencies = Reference.DEPENDENCIES)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, dependencies = Reference.DEPENDENCIES, updateJSON = "http://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json")
 public class MoreThanAPickaxe {
 	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
@@ -26,6 +27,8 @@ public class MoreThanAPickaxe {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		System.out.println("Pre Init");
+		MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeEventHandler());
+		MoreThanAPickaxeUpdateHandler.init();
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
 	}
