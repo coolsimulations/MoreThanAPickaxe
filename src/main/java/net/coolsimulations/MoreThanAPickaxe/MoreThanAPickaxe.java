@@ -32,7 +32,8 @@ public class MoreThanAPickaxe {
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		System.out.println("Pre Init");
-    		MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeEventHandler());
+    	MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeEventHandler());
+		MoreThanAPickaxeUpdateHandler.init();
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
 	}
