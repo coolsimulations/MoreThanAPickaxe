@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
-import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTab;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,8 +25,6 @@ public class MoreThanAPickaxe {
 	
 	@Mod.Instance(Reference.MOD_ID)
 	public static MoreThanAPickaxe instance;
-	
-	public static final CreativeTabs tabMoreThanAPickaxe = new MoreThanAPickaxeTab();
 	
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 	
