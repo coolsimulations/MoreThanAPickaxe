@@ -11,3 +11,9 @@ item.titanium_adze.name=Titanium Adze
 item.steel_adze.name=Steel Adze
 item.desh_adze.name=Desh Adze
 item.titanium_adze_gc.name=Titanium Adze
+
+achievement.morethanapickaxe.install=More Than A Pickaxe Installation
+achievement.morethanapickaxe.install.desc=Download and Install More Than A Pickaxe
+achievement.morethanapickaxe.install.display1=coolsim thanks you for downloading More Than A Pickaxe!
+achievement.morethanapickaxe.adze=Universal
+achievement.morethanapickaxe.adze.desc=Craft An Adze

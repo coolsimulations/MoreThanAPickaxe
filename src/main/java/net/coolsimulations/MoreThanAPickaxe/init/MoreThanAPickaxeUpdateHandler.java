@@ -1,8 +1,9 @@
-package net.coolsimulations.MoreThanAPickaxe;
+package net.coolsimulations.MoreThanAPickaxe.init;
 
 import java.net.URL;
 import java.util.Scanner;
 
+import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
