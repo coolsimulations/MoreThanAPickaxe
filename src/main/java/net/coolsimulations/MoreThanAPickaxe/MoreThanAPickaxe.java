@@ -1,9 +1,17 @@
 package net.coolsimulations.MoreThanAPickaxe;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeAchievements;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTab;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
 import net.coolsimulations.MoreThanAPickaxe.recipes.MoreThanAPickaxeRecipes;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -23,6 +31,8 @@ public class MoreThanAPickaxe {
 	
 	public static final CreativeTabs tabMoreThanAPickaxe = new MoreThanAPickaxeTab();
 	
+	public static List<Achievement> achievements = new ArrayList<Achievement>();
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -31,6 +41,8 @@ public class MoreThanAPickaxe {
 		MoreThanAPickaxeUpdateHandler.init();
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
+		MoreThanAPickaxeAchievements.regsiterAchievements();
+		MoreThanAPickaxeAchievements.registerPage();
 	}
 	
 	@EventHandler

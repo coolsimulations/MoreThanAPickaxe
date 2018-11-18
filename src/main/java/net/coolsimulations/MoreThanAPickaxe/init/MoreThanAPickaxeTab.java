@@ -1,6 +1,5 @@
-package net.coolsimulations.MoreThanAPickaxe;
+package net.coolsimulations.MoreThanAPickaxe.init;
 
-import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
