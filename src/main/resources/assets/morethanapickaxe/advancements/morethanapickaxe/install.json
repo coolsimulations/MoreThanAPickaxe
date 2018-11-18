@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "morethanapickaxe:bronze_adze"
+        },
+        "title": {
+            "translate": "advancements.morethanapickaxe.install"
+        },
+        "description": {
+            "translate": "advancements.morethanapickaxe.install.desc"
+        }
+    },
+    "parent": "morethanapickaxe:morethanapickaxe/root",
+    "criteria": {
+        "tick": {
+            "trigger": "minecraft:tick"
+        }
+    },
+    "requirements": [["tick"]]
+}

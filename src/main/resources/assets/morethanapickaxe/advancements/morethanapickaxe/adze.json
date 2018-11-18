@@ -1,0 +1,117 @@
+{
+    "display": {
+        "icon": {
+            "item": "morethanapickaxe:gold_adze"
+        },
+        "title": {
+            "translate": "advancements.morethanapickaxe.adze"
+        },
+        "description": {
+            "translate": "advancements.morethanapickaxe.adze.desc"
+        }
+    },
+    "parent": "morethanapickaxe:morethanapickaxe/install",
+    "criteria": {
+        "wooden_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:wooden_adze"
+                    }
+                ]
+            }
+        },
+        "stone_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:stone_adze"
+                    }
+                ]
+            }
+        },
+        "iron_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:iron_adze"
+                    }
+                ]
+            }
+        },
+        "gold_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:gold_adze"
+                    }
+                ]
+            }
+        },
+        "diamond_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:diamond_adze"
+                    }
+                ]
+            }
+        },
+        "bronze_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:bronze_adze"
+                    }
+                ]
+            }
+        },
+        "titanium_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:titanium_adze"
+                    }
+                ]
+            }
+        },
+        "steel_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:steel_adze"
+                    }
+                ]
+            }
+        },
+        "desh_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:desh_adze"
+                    }
+                ]
+            }
+        },
+        "titanium_adze_gc": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:titanium_adze_gc"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [["wooden_adze", "stone_adze", "iron_adze", "gold_adze", "diamond_adze", "bronze_adze", "titanium_adze", "steel_adze", "desh_adze", "titanium_adze_gc"]]
+}

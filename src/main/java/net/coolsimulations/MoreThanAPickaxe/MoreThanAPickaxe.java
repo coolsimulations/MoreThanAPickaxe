@@ -3,7 +3,10 @@ package net.coolsimulations.MoreThanAPickaxe;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTab;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

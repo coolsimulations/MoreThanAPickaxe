@@ -1,12 +1,18 @@
-package net.coolsimulations.MoreThanAPickaxe;
+package net.coolsimulations.MoreThanAPickaxe.init;
 
-import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
+import net.coolsimulations.MoreThanAPickaxe.MoreThanAPickaxe;
+import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -19,6 +25,20 @@ public class MoreThanAPickaxeEventHandler {
 	public void onplayerLogin(PlayerLoggedInEvent event)
     {
 		EntityPlayer player = (EntityPlayer) event.player;
+		NBTTagCompound entityData = player.getEntityData();
+		
+		if(!entityData.getBoolean("morethanapickaxe.firstJoin")) {
+			
+			entityData.setBoolean("morethanapickaxe.firstJoin", true);
+		
+			if(!player.world.isRemote) {
+        		
+        		TextComponentTranslation installInfo = new TextComponentTranslation("advancements.morethanapickaxe.install.display1");
+        		installInfo.getStyle().setColor(TextFormatting.GOLD);
+				player.sendMessage(installInfo);
+        		
+        	}
+		}
         
         if(MoreThanAPickaxeUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
         	player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo);
