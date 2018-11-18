@@ -33,30 +33,30 @@ public class MoreThanAPickaxeItems {
 	
 	public static void init() {
 		
-		wooden_adze = new ItemAdze(ToolMaterial.WOOD, 6.0F, -2.4F).setUnlocalizedName("wooden_adze").setRegistryName("wooden_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
-		stone_adze = new ItemAdze(ToolMaterial.STONE, 7.0F, -2.4F).setUnlocalizedName("stone_adze").setRegistryName("stone_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
-		iron_adze = new ItemAdze(ToolMaterial.IRON, 6.0F, -2.4F).setUnlocalizedName("iron_adze").setRegistryName("iron_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
-		gold_adze = new ItemAdze(ToolMaterial.GOLD, 6.0F, -2.4F).setUnlocalizedName("gold_adze").setRegistryName("gold_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
-		diamond_adze = new ItemAdze(ToolMaterial.DIAMOND, 5.0F, -2.4F).setUnlocalizedName("diamond_adze").setRegistryName("diamond_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
-		bronze_adze = new ItemAdze(SPItems.bronzeToolMaterial, 5.5F, -2.4F).setUnlocalizedName("bronze_adze").setRegistryName("bronze_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
-		titanium_adze = new ItemAdze(SPItems.titaniumToolMaterial, 5.5F, -2.4F).setUnlocalizedName("titanium_adze").setRegistryName("titanium_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+		wooden_adze = new ItemAdze(ToolMaterial.WOOD, 6.0F, -2.4F).setUnlocalizedName("wooden_adze").setRegistryName("wooden_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
+		stone_adze = new ItemAdze(ToolMaterial.STONE, 7.0F, -2.4F).setUnlocalizedName("stone_adze").setRegistryName("stone_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
+		iron_adze = new ItemAdze(ToolMaterial.IRON, 6.0F, -2.4F).setUnlocalizedName("iron_adze").setRegistryName("iron_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
+		gold_adze = new ItemAdze(ToolMaterial.GOLD, 6.0F, -2.4F).setUnlocalizedName("gold_adze").setRegistryName("gold_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
+		diamond_adze = new ItemAdze(ToolMaterial.DIAMOND, 5.0F, -2.4F).setUnlocalizedName("diamond_adze").setRegistryName("diamond_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
+		bronze_adze = new ItemAdze(SPItems.bronzeToolMaterial, 5.5F, -2.4F).setUnlocalizedName("bronze_adze").setRegistryName("bronze_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
+		titanium_adze = new ItemAdze(SPItems.titaniumToolMaterial, 5.5F, -2.4F).setUnlocalizedName("titanium_adze").setRegistryName("titanium_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
 		
 		if(OreDictionary.getOres("ingotSteel").size() > 0) {
 			
 			if(!SPCompatibilityManager.isGCLoaded()) {
 				
-				steel_adze = new ItemAdze(steelToolMaterial, 5.5F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+				steel_adze = new ItemAdze(steelToolMaterial, 5.5F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
 			}
 		}
 		
 		if(SPCompatibilityManager.isGCLoaded()) {
 			
-			steel_adze = new ItemAdze(GCItems.TOOL_STEEL, 4.0F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+			steel_adze = new ItemAdze(GCItems.TOOL_STEEL, 4.0F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
 			
 			if(SPCompatibilityManager.isGCPLoaded()) {
 				
-				desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F).setUnlocalizedName("desh_adze").setRegistryName("desh_adze").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
-				titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F).setUnlocalizedName("titanium_adze_gc").setRegistryName("titanium_adze_gc").setCreativeTab(MoreThanAPickaxe.tabMoreThanAPickaxe);
+				desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F).setUnlocalizedName("desh_adze").setRegistryName("desh_adze").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
+				titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F).setUnlocalizedName("titanium_adze_gc").setRegistryName("titanium_adze_gc").setCreativeTab(SPItems.bronze_pickaxe.getCreativeTab());
 			}
 		}
 	}
