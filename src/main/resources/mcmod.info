@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["coolsim"],
   "credits": "Inspired by a couple of other mods such as Paxel and Multitools.",
-  "logoFile": "",
+  "logoFile": "assets/morethanapickaxe/textures/gui/logo.png",
   "screenshots": [],
   "dependencies": []
 }
