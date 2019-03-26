@@ -38,7 +38,6 @@ public class MoreThanAPickaxe {
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
 		MoreThanAPickaxeAchievements.regsiterAchievements();
-		MoreThanAPickaxeAchievements.registerPage();
 	}
 	
 	@EventHandler
