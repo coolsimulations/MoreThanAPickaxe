@@ -10,7 +10,7 @@
             "translate": "advancements.morethanapickaxe.install.desc"
         }
     },
-    "parent": "morethanapickaxe:morethanapickaxe/root",
+        "parent": "survivalplus:survivalplus/root",
     "criteria": {
         "tick": {
             "trigger": "minecraft:tick"

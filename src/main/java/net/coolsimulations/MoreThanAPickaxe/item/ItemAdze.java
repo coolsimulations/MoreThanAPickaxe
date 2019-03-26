@@ -40,8 +40,6 @@ public class ItemAdze extends ItemTool{
 		this.maxStackSize = 1;
 		this.attackSpeed = speed;
 		this.attackDamage = damage;
-		//this.attackSpeed = 1.6F;
-		//this.attackDamage = 3.0F + material.getDamageVsEntity();
 	}
 	
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
