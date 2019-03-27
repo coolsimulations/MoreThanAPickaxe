@@ -5,7 +5,6 @@
 -----------------
 
 **Note:** For developers, More Than A Pickaxe has a Dev release which is available on the [CurseForge](https://minecraft.curseforge.com/projects/more-than-a-pickaxe) page.
-More Than A Pickaxe as an addon to [SurvivalPlus](https://github.com/coolsimulations/SurvivalPlus) requires SurvivalPlus
+More Than A Pickaxe as an addon to [SurvivalPlus](https://github.com/coolsimulations/SurvivalPlus) requires SurvivalPlus. Also, feel free to check out another SurvivalPlus addon. Links to both:
  * [SurvivalPlus](https://minecraft.curseforge.com/projects/survivalplus)
-Also, feel free to check out another SurvivalPlus addon:
  * [SurvivalPlus Lightsabers](https://minecraft.curseforge.com/projects/survivalplus-lightsabers)
