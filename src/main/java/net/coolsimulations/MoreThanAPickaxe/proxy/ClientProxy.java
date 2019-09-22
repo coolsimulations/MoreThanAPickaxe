@@ -1,11 +1,8 @@
 package net.coolsimulations.MoreThanAPickaxe.proxy;
 
-import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
-
-public class ClientProxy implements CommonProxy{
+public class ClientProxy extends CommonProxy{
 	@Override
 	public void init(){
-		MoreThanAPickaxeItems.registerRenders();
 	}
 
 }

@@ -81,37 +81,7 @@
                     }
                 ]
             }
-        },
-        "steel_adze": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "morethanapickaxe:steel_adze"
-                    }
-                ]
-            }
-        },
-        "desh_adze": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "morethanapickaxe:desh_adze"
-                    }
-                ]
-            }
-        },
-        "titanium_adze_gc": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "morethanapickaxe:titanium_adze_gc"
-                    }
-                ]
-            }
         }
     },
-    "requirements": [["wooden_adze", "stone_adze", "iron_adze", "gold_adze", "diamond_adze", "bronze_adze", "titanium_adze", "steel_adze", "desh_adze", "titanium_adze_gc"]]
+    "requirements": [["wooden_adze", "stone_adze", "iron_adze", "gold_adze", "diamond_adze", "bronze_adze", "titanium_adze"]]
 }

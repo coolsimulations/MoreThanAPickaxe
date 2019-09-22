@@ -2,17 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morethanapickaxe:bronze_adze"
+      "morethanapickaxe:wooden_adze"
     ]
   },
   "criteria": {
-    "has_bronze": {
+    "has_wood": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "type": "forge:ore_dict",
-            "ore": "ingotBronze"
+            "tag": "minecraft:planks"
           }
         ]
       }
@@ -20,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morethanapickaxe:bronze_adze"
+        "recipe": "morethanapickaxe:wooden_adze"
       }
     }
   },
   "requirements": [
     [
-      "has_bronze",
+      "has_wood",
       "has_the_recipe"
     ]
   ]

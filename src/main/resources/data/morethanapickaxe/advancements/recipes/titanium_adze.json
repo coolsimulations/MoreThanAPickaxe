@@ -11,8 +11,7 @@
       "conditions": {
         "items": [
           {
-            "type": "forge:ore_dict",
-            "ore": "ingotTitanium"
+            "tag": "forge:ingots/titanium"
           }
         ]
       }

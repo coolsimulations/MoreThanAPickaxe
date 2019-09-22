@@ -2,17 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morethanapickaxe:gold_adze"
+      "morethanapickaxe:stone_adze"
     ]
   },
   "criteria": {
-    "has_gold": {
+    "has_stone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "type": "forge:ore_dict",
-            "ore": "ingotGold"
+            "tag": "forge:cobblestone"
           }
         ]
       }
@@ -20,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morethanapickaxe:gold_adze"
+        "recipe": "morethanapickaxe:stone_adze"
       }
     }
   },
   "requirements": [
     [
-      "has_gold",
+      "has_stone",
       "has_the_recipe"
     ]
   ]

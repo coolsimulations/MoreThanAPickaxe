@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[25,]"
+issueTrackerURL="http://github.com/coolsimulations/morethanapickaxe/issues/"
+logoFile="logo.png"
+
+[[mods]]
+    modId="morethanapickaxe"
+    version="${version}"
+    updateJSONURL="https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"
+    displayName="More Than A Pickaxe"
+    credits="Inspired by a couple of other mods such as Paxel and Multitools."
+    authors="coolsim"
+    description='''
+    This mod is an add-on to SurvivalPlus that adds a multitool which is a pickaxe, axe, sword, hoe, and shovel.
+    '''
+[[dependencies.morethanapickaxe]]
+    modId="forge"
+    mandatory=true
+    versionRange="[25,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.morethanapickaxe]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.13.2]"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.morethanapickaxe]]
+    modId="survivalplus"
+    mandatory=true
+    versionRange="[0.1.0]"
+    ordering="BEFORE"
+    side="BOTH"

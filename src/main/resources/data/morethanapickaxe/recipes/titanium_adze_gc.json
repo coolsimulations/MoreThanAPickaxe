@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "XXX",
     "X# ",
@@ -7,12 +7,10 @@
   ],
   "key": {
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "ingotIron"
+      "tag": "forge:ingots/iron"
     },
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "compressedTitanium"
+      "tag": "forge:compressed/titanium"
     }
   },
   "result": {

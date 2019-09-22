@@ -2,17 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morethanapickaxe:iron_adze"
+      "morethanapickaxe:diamond_adze"
     ]
   },
   "criteria": {
-    "has_iron": {
+    "has_diamond": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "type": "forge:ore_dict",
-            "ore": "ingotIron"
+            "tag": "forge:gems/diamond"
           }
         ]
       }
@@ -20,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morethanapickaxe:iron_adze"
+        "recipe": "morethanapickaxe:diamond_adze"
       }
     }
   },
   "requirements": [
     [
-      "has_iron",
+      "has_diamond",
       "has_the_recipe"
     ]
   ]
