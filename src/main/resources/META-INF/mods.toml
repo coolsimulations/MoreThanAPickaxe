@@ -5,7 +5,7 @@ logoFile="logo.png"
 
 [[mods]]
     modId="morethanapickaxe"
-    version="${version}"
+    version="0.1.0"
     updateJSONURL="https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"
     displayName="More Than A Pickaxe"
