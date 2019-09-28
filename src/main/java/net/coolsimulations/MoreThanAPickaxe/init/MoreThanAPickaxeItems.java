@@ -8,7 +8,6 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.IRegistry;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 import net.minecraftforge.registries.ForgeRegistries;

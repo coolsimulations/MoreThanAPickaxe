@@ -1,28 +1,28 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 public class MoreThanAPickaxeEventHandler {
 	
 	@SubscribeEvent
-	public void onplayerLogin(PlayerLoggedInEvent event)
+	public void onplayerLogin(PlayerEvent.PlayerLoggedInEvent event)
     {
-		EntityPlayer player = (EntityPlayer) event.getPlayer();
-		NBTTagCompound entityData = player.getEntityData();
+		PlayerEntity player = (PlayerEntity) event.getPlayer();
+		CompoundNBT entityData = player.getPersistentData();
 		
 		if(!entityData.getBoolean("morethanapickaxe.firstJoin")) {
 			
-			entityData.setBoolean("morethanapickaxe.firstJoin", true);
+			entityData.putBoolean("morethanapickaxe.firstJoin", true);
 		
 			if(!player.world.isRemote) {
         		
-        		TextComponentTranslation installInfo = new TextComponentTranslation("advancements.morethanapickaxe.install.display1");
+        		TranslationTextComponent installInfo = new TranslationTextComponent("advancements.morethanapickaxe.install.display1");
         		installInfo.getStyle().setColor(TextFormatting.GOLD);
 				player.sendMessage(installInfo);
         		
