@@ -280,7 +280,8 @@ public class ItemAdze extends ToolItem{
     		SHOVEL_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.GRASS_PATH.getDefaultState()));
     		
     		HOE_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.FARMLAND.getDefaultState(),
-    				Blocks.GRASS_PATH, Blocks.FARMLAND.getDefaultState()));
+    				Blocks.GRASS_PATH, Blocks.FARMLAND.getDefaultState(), Blocks.DIRT, Blocks.FARMLAND.getDefaultState(),
+    				Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState()));
     }
 
 }
