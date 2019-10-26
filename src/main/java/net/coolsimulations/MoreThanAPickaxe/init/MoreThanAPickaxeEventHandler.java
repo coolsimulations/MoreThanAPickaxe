@@ -1,10 +1,14 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
+import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -13,10 +17,19 @@ public class MoreThanAPickaxeEventHandler {
 	@SubscribeEvent
 	public void onplayerLogin(PlayerEvent.PlayerLoggedInEvent event)
     {
-		PlayerEntity player = (PlayerEntity) event.getPlayer();
+		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 		CompoundNBT entityData = player.getPersistentData();
 		
-		if(!entityData.getBoolean("morethanapickaxe.firstJoin")) {
+		AdvancementManager manager = player.getServer().getAdvancementManager();
+		Advancement install = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/install"));
+		
+		boolean isDone = false;
+		
+		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
+			isDone = true;
+		}
+		
+		if(!entityData.getBoolean("morethanapickaxe.firstJoin") && !isDone) {
 			
 			entityData.putBoolean("morethanapickaxe.firstJoin", true);
 		
@@ -31,6 +44,7 @@ public class MoreThanAPickaxeEventHandler {
         
         if(MoreThanAPickaxeUpdateHandler.isOld == true && SPConfig.disableUpdateCheck.get() == false) {
         	player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo);
+        	player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo);
         }
     }
 	

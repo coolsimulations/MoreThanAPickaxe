@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 
 def mcVersion = "1.14.4"
-def modVersion = "0.1.0"
+def modVersion = "0.1.1"
 version = "${mcVersion}-${modVersion}"
 group = "net.coolsimulations.MoreThanAPickaxe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MoreThanAPickaxe"
@@ -74,7 +74,7 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.14.4-28.1.20'
 
-    compile files('libs/SurvivalPlus-API-1.14.4-0.1.0.jar')
+    compile files('libs/SurvivalPlus-API-1.14.4-0.1.1.jar')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

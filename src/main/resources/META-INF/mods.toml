@@ -5,7 +5,7 @@ logoFile="logo.png"
 
 [[mods]]
     modId="morethanapickaxe"
-    version="0.1.0"
+    version="0.1.1"
     updateJSONURL="https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"
     displayName="More Than A Pickaxe"
@@ -29,6 +29,6 @@ logoFile="logo.png"
 [[dependencies.morethanapickaxe]]
     modId="survivalplus"
     mandatory=true
-    versionRange="[0.1.0]"
+    versionRange="[0.1.1]"
     ordering="BEFORE"
     side="BOTH"
