@@ -1,0 +1,19 @@
+{
+  "item.morethanapickaxe.wooden_adze": "Adze de Madera",
+  "item.morethanapickaxe.stone_adze": "Adze de Piedra",
+  "item.morethanapickaxe.iron_adze": "Adze de Hierro",
+  "item.morethanapickaxe.gold_adze": "Adze de Oro",
+  "item.morethanapickaxe.diamond_adze": "Adze de Diamante",
+  "item.morethanapickaxe.bronze_adze": "Adze de Bronce",
+  "item.morethanapickaxe.titanium_adze": "Adze de Titanio",
+  
+  "item.morethanapickaxe.steel_adze": "Adze de Acero",
+  "item.morethanapickaxe.desh_adze": "Adze de Desh",
+  "item.morethanapickaxe.titanium_adze_gc": "Adze de Titanio",
+  
+  "advancements.morethanapickaxe.install": "More Than A Pickaxe Instalación",
+  "advancements.morethanapickaxe.install.desc": "Descargue e Instale More Than A Pickaxe",
+  "advancements.morethanapickaxe.install.display1": "¡coolsim te agradece por descargar More Than A Pickaxe!",
+  "advancements.morethanapickaxe.adze": "Universal",
+  "advancements.morethanapickaxe.adze.desc": "Fabricados un Adze"
+}
