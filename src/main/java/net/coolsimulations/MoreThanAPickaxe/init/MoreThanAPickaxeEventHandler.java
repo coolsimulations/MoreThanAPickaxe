@@ -4,15 +4,15 @@ import net.coolsimulations.MoreThanAPickaxe.MoreThanAPickaxe;
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -24,10 +24,19 @@ public class MoreThanAPickaxeEventHandler {
 	@SubscribeEvent
 	public void onplayerLogin(PlayerLoggedInEvent event)
     {
-		EntityPlayer player = (EntityPlayer) event.player;
+		EntityPlayerMP player = (EntityPlayerMP) event.player;
 		NBTTagCompound entityData = player.getEntityData();
 		
-		if(!entityData.getBoolean("morethanapickaxe.firstJoin")) {
+		AdvancementManager manager = player.getServer().getAdvancementManager();
+		Advancement install = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/install"));
+		
+		boolean isDone = false;
+		
+		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
+			isDone = true;
+		}
+		
+		if(!entityData.getBoolean("morethanapickaxe.firstJoin") && !isDone) {
 			
 			entityData.setBoolean("morethanapickaxe.firstJoin", true);
 		
@@ -42,6 +51,7 @@ public class MoreThanAPickaxeEventHandler {
         
         if(MoreThanAPickaxeUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
         	player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo);
+        	player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo);
         }
     }
 	

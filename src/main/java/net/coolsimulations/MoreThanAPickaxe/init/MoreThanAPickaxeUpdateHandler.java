@@ -14,8 +14,10 @@ import net.minecraftforge.common.MinecraftForge;
 public class MoreThanAPickaxeUpdateHandler {
 	
 	private static String latestVersion;
+	private static String latestVersionInfo;
 	public static boolean isOld = false;
 	public static TextComponentTranslation updateInfo = null;
+	public static TextComponentString updateVersionInfo = null;
 	
 	public static void init() {
 		
@@ -23,6 +25,15 @@ public class MoreThanAPickaxeUpdateHandler {
             URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker112.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
+            s.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		
+		try {
+            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe/updateinfo112.txt");
+            Scanner s = new Scanner(url.openStream());
+            latestVersionInfo = s.nextLine();
             s.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -63,6 +74,17 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("sp.update.display2")));
 				updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));
+				
+				if(latestVersionInfo != null) {
+					
+					updateVersionInfo = new TextComponentString(latestVersionInfo);
+					updateVersionInfo.getStyle().setColor(TextFormatting.DARK_AQUA);
+					updateVersionInfo.getStyle().setBold(true);
+					
+					updateVersionInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("sp.update.display2")));
+					updateVersionInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));
+					
+				}
 				
 			}
 			

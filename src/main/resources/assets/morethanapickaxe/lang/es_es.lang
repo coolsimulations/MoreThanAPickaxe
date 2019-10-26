@@ -1,0 +1,17 @@
+item.wooden_adze.name=Adze de Madera
+item.stone_adze.name=Adze de Piedra
+item.iron_adze.name=Adze de Hierro
+item.gold_adze.name=Adze de Oro
+item.diamond_adze.name=Adze de Diamante
+item.bronze_adze.name=Adze de Bronce
+item.titanium_adze.name=Adze de Titanio
+
+item.steel_adze.name=Adze de Acero
+item.desh_adze.name=Adze de Desh
+item.titanium_adze_gc.name=Adze de Titanio
+
+advancements.morethanapickaxe.install=More Than A Pickaxe Instalación
+advancements.morethanapickaxe.install.desc=Descargue e Instale More Than A Pickaxe
+advancements.morethanapickaxe.install.display1=¡coolsim te agradece por descargar More Than A Pickaxe!
+advancements.morethanapickaxe.adze=Universal
+advancements.morethanapickaxe.adze.desc=Fabricados un Adze
