@@ -1,4 +1,6 @@
 {
+  "morethanapickaxe.name": "More Than A Pickaxe",
+  
   "item.morethanapickaxe.wooden_adze": "Wooden Adze",
   "item.morethanapickaxe.stone_adze": "Stone Adze",
   "item.morethanapickaxe.iron_adze": "Iron Adze",
@@ -10,6 +12,14 @@
   "item.morethanapickaxe.steel_adze": "Steel Adze",
   "item.morethanapickaxe.desh_adze": "Desh Adze",
   "item.morethanapickaxe.titanium_adze_gc": "Titanium Adze",
+  
+  "item.hammertime.itemdenseadzewood": "Wooden Dense Adze",
+  "item.hammertime.itemdenseadzestone": "Stone Dense Adze",
+  "item.hammertime.itemdenseadzeiron": "Iron Dense Adze",
+  "item.hammertime.itemdenseadzegold": "Gold Dense Adze",
+  "item.hammertime.itemdenseadzediamond": "Diamond Dense Adze",
+  "item.hammertime.itemdenseadzebronze": "Bronze Dense Adze",
+  "item.hammertime.itemdenseadzetitanium": "Titanium Dense Adze",
   
   "advancements.morethanapickaxe.install": "More Than A Pickaxe Installation",
   "advancements.morethanapickaxe.install.desc": "Download and Install More Than A Pickaxe",

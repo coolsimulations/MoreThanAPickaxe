@@ -45,7 +45,7 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TextComponentString morethanapickaxe = new TextComponentString(Reference.MOD_NAME);
+				TextComponentTranslation morethanapickaxe = new TextComponentTranslation("morethanapickaxe.name");
 				morethanapickaxe.getStyle().setColor(TextFormatting.BLUE);
 				
 				TextComponentString MCVersion = new TextComponentString(MCPVersion.getMCVersion());
@@ -63,13 +63,13 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TextComponentString sp = new TextComponentString(Reference.MOD_NAME);
-				sp.getStyle().setColor(TextFormatting.BLUE);
+				TextComponentTranslation morethanapickaxe = new TextComponentTranslation("morethanapickaxe.name");
+				morethanapickaxe.getStyle().setColor(TextFormatting.BLUE);
 				
 				TextComponentString version = new TextComponentString(latestVersion);
 				version.getStyle().setColor(TextFormatting.BLUE);
 				
-				updateInfo = new TextComponentTranslation("sp.update.display1", new Object[] {sp, version});
+				updateInfo = new TextComponentTranslation("sp.update.display1", new Object[] {morethanapickaxe, version});
 				updateInfo.getStyle().setColor(TextFormatting.YELLOW);
 				
 				updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("sp.update.display2")));
