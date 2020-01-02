@@ -1,0 +1,27 @@
+morethanapickaxe.name=Больше чем кирка
+
+item.wooden_adze.name=Деревянная Адзе
+item.stone_adze.name=Каменная Адзе
+item.iron_adze.name=Железные Адзе
+item.gold_adze.name=Золотые Адзе
+item.diamond_adze.name=Алмазные Адзе
+item.bronze_adze.name=Бронзовый Адзе
+item.titanium_adze.name=Титановый Адзе
+
+item.steel_adze.name=Стальной Адзе
+item.desh_adze.name=Деш Адзе
+item.titanium_adze_gc.name=Титановый Адзе
+
+item.hammertime.itemdenseadzewood.name=Деревянная Плотная Aдзе
+item.hammertime.itemdenseadzestone.name=Каменная Плотная Aдзе
+item.hammertime.itemdenseadzeiron.name=Железные Плотная Aдзе
+item.hammertime.itemdenseadzegold.name=Золотые Плотная Aдзе
+item.hammertime.itemdenseadzediamond.name=Алмазные Плотная Aдзе
+item.hammertime.itemdenseadzebronze.name=Бронзовый Плотная Aдзе
+item.hammertime.itemdenseadzetitanium.name=Титановый Плотная Aдзе
+
+advancements.morethanapickaxe.install=Больше чем кирка Установка
+advancements.morethanapickaxe.install.desc=Загрузить и установить Больше чем кирка
+advancements.morethanapickaxe.install.display1=coolsim спасибо за загрузку Больше чем кирка!
+advancements.morethanapickaxe.adze=универсальный
+advancements.morethanapickaxe.adze.desc=Сделайте Адзе

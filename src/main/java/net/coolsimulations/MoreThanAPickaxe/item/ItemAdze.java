@@ -123,7 +123,6 @@ public class ItemAdze extends ItemTool{
     /**
      * Called when a Block is right-clicked with this Item
      */
-    @SuppressWarnings("incomplete-switch")
     @Override
     public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
@@ -159,6 +158,9 @@ public class ItemAdze extends ItemTool{
                             	this.setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
                             	return EnumActionResult.SUCCESS;
                         	case COARSE_DIRT:
+                            	this.setBlock(stack, playerIn, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+                            	return EnumActionResult.SUCCESS;
+                        	case PODZOL:
                             	this.setBlock(stack, playerIn, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
                             	return EnumActionResult.SUCCESS;
                     	}

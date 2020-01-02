@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:itemdenseadzebronze"
+    ]
+  },
+  "criteria": {
+    "has_bronze": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "ingotBronze"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:itemdenseadzebronze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bronze",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,3 +1,5 @@
+morethanapickaxe.name=Más Que un Pico
+
 item.wooden_adze.name=Adze de Madera
 item.stone_adze.name=Adze de Piedra
 item.iron_adze.name=Adze de Hierro
@@ -10,8 +12,16 @@ item.steel_adze.name=Adze de Acero
 item.desh_adze.name=Adze de Desh
 item.titanium_adze_gc.name=Adze de Titanio
 
-advancements.morethanapickaxe.install=More Than A Pickaxe Instalación
-advancements.morethanapickaxe.install.desc=Descargue e Instale More Than A Pickaxe
-advancements.morethanapickaxe.install.display1=¡coolsim te agradece por descargar More Than A Pickaxe!
+item.hammertime.itemdenseadzewood.name=Adze Densa de Madera
+item.hammertime.itemdenseadzestone.name=Adze Densa de Piedra
+item.hammertime.itemdenseadzeiron.name=Adze Densa de Hierro
+item.hammertime.itemdenseadzegold.name=Adze Densa de Oro
+item.hammertime.itemdenseadzediamond.name=Adze Densa de Diamante
+item.hammertime.itemdenseadzebronze.name=Adze Densa de Bronce
+item.hammertime.itemdenseadzetitanium.name=Adze Densa de Titanio
+
+advancements.morethanapickaxe.install=Más Que un Pico Instalación
+advancements.morethanapickaxe.install.desc=Descargue e Instale Más Que un Pico
+advancements.morethanapickaxe.install.display1=¡coolsim te agradece por descargar Más Que un Pico!
 advancements.morethanapickaxe.adze=Universal
 advancements.morethanapickaxe.adze.desc=Fabricados un Adze
