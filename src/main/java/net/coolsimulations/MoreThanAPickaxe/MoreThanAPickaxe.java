@@ -1,10 +1,13 @@
 package net.coolsimulations.MoreThanAPickaxe;
 
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeHammerTime;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeLumberjack;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.proxy.ClientProxy;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +31,15 @@ public class MoreThanAPickaxe {
 		MoreThanAPickaxeUpdateHandler.init();
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
+		
+		if(SPCompatibilityManager.isHammerTimeLoaded()) {
+			MoreThanAPickaxeHammerTime.init();
+		}
+		
+		if(SPCompatibilityManager.isLumberjackLoaded()) {
+			MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeLumberjack());
+		}
+
 	}
 	
 }

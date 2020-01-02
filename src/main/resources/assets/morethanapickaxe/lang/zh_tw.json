@@ -1,0 +1,29 @@
+{
+  "morethanapickaxe.name": "\u4e0d\u53ea\u662f\u93ac",
+  
+  "item.morethanapickaxe.wooden_adze": "\u6728\u963f\u6fa4",
+  "item.morethanapickaxe.stone_adze": "\u77f3\u963f\u6fa4",
+  "item.morethanapickaxe.iron_adze": "\u9435\u963f\u6fa4",
+  "item.morethanapickaxe.gold_adze": "\u91d1\u963f\u6fa4",
+  "item.morethanapickaxe.diamond_adze": "\u947d\u77f3\u963f\u6fa4",
+  "item.morethanapickaxe.bronze_adze": "\u9752\u9285\u963f\u6fa4",
+  "item.morethanapickaxe.titanium_adze": "\u949b\u963f\u6fa4",
+  
+  "item.morethanapickaxe.steel_adze": "\u92fc\u963f\u6fa4",
+  "item.morethanapickaxe.desh_adze": "\u6234\u65af\u963f\u6fa4",
+  "item.morethanapickaxe.titanium_adze_gc": "\u949b\u963f\u6fa4",
+  
+  "item.hammertime.itemdenseadzewood": "\u81f4\u5bc6\u6728\u963f\u6fa4",
+  "item.hammertime.itemdenseadzestone": "\u81f4\u5bc6\u77f3\u963f\u6fa4",
+  "item.hammertime.itemdenseadzeiron": "\u81f4\u5bc6\u9435\u963f\u6fa4",
+  "item.hammertime.itemdenseadzegold": "\u81f4\u5bc6\u91d1\u963f\u6fa4",
+  "item.hammertime.itemdenseadzediamond": "\u81f4\u5bc6\u947d\u77f3\u963f\u6fa4",
+  "item.hammertime.itemdenseadzebronze": "\u81f4\u5bc6\u9752\u9285\u963f\u6fa4",
+  "item.hammertime.itemdenseadzetitanium": "\u81f4\u5bc6\u949b\u963f\u6fa4",
+  
+  "advancements.morethanapickaxe.install": "\u4e0d\u53ea\u662f\u93ac\u5b89\u88dd",
+  "advancements.morethanapickaxe.install.desc": "\u4e0b\u8f09\u4e26\u5b89\u88dd\u4e0d\u53ea\u662f\u93ac",
+  "advancements.morethanapickaxe.install.display1": "coolsim\u8b1d\u8b1d\u60a8\u7684\u4e0b\u8f09\u4e0d\u53ea\u662f\u93ac\uff01",
+  "advancements.morethanapickaxe.adze": "\u666e\u904d",
+  "advancements.morethanapickaxe.adze.desc": "\u5408\u6210\u963f\u6fa4"
+}

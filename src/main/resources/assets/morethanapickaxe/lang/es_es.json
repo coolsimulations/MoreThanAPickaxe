@@ -1,4 +1,6 @@
 {
+  "morethanapickaxe.name": "M\u00e1s Que un Pico",
+
   "item.morethanapickaxe.wooden_adze": "Adze de Madera",
   "item.morethanapickaxe.stone_adze": "Adze de Piedra",
   "item.morethanapickaxe.iron_adze": "Adze de Hierro",
@@ -11,9 +13,17 @@
   "item.morethanapickaxe.desh_adze": "Adze de Desh",
   "item.morethanapickaxe.titanium_adze_gc": "Adze de Titanio",
   
-  "advancements.morethanapickaxe.install": "More Than A Pickaxe Instalaci\u00f3n",
-  "advancements.morethanapickaxe.install.desc": "Descargue e Instale More Than A Pickaxe",
-  "advancements.morethanapickaxe.install.display1": "¡coolsim te agradece por descargar More Than A Pickaxe!",
+  "item.hammertime.itemdenseadzewood": "Adze Densa de Madera",
+  "item.hammertime.itemdenseadzestone": "Adze Densa de Piedra",
+  "item.hammertime.itemdenseadzeiron": "Adze Densa de Hierro",
+  "item.hammertime.itemdenseadzegold": "Adze Densa de Oro",
+  "item.hammertime.itemdenseadzediamond": "Adze Densa de Diamante",
+  "item.hammertime.itemdenseadzebronze": "Adze Densa de Bronce",
+  "item.hammertime.itemdenseadzetitanium": "Adze Densa de Titanio",
+  
+  "advancements.morethanapickaxe.install": "M\u00e1s Que un Pico Instalaci\u00f3n",
+  "advancements.morethanapickaxe.install.desc": "Descargue e Instale M\u00e1s Que un Pico",
+  "advancements.morethanapickaxe.install.display1": "¡coolsim te agradece por descargar M\u00e1s Que un Pico!",
   "advancements.morethanapickaxe.adze": "Universal",
   "advancements.morethanapickaxe.adze.desc": "Fabricados un Adze"
 }
