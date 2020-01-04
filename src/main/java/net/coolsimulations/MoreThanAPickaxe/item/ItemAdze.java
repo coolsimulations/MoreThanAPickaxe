@@ -108,7 +108,7 @@ public class ItemAdze extends ToolItem{
 	      return ActionResultType.SUCCESS;
 	   }
 	   
-	   if(!context.isPlacerSneaking()) {
+	   if(!context.getPlayer().isCrouching()) {
 		   
 		   int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(context);
 		      if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;

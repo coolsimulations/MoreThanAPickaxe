@@ -68,7 +68,7 @@ public class MoreThanAPickaxeLumberjack {
 
         // Only interact if  the item matches
         ItemStack itemStack = player.getHeldItemMainhand();
-        if (itemStack == ItemStack.EMPTY || !(itemStack.getItem() instanceof ItemAdze && !player.isSneaking())) return;
+        if (itemStack == ItemStack.EMPTY || !(itemStack.getItem() instanceof ItemAdze && !player.isCrouching())) return;
 
         // We are chopping the current block, so save that info
         pointMap.put(uuid, event.getPos());
