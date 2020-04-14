@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class MoreThanAPickaxeItems {
-	
+
 	public static Item wooden_adze;
 	public static Item stone_adze;
 	public static Item iron_adze;
@@ -27,15 +27,15 @@ public class MoreThanAPickaxeItems {
 	public static Item diamond_adze;
 	public static Item bronze_adze;
 	public static Item titanium_adze;
-	
+
 	public static Item steel_adze;
 	public static Item desh_adze;
 	public static Item titanium_adze_gc;
-	
-    public static ToolMaterial steelToolMaterial = EnumHelper.addToolMaterial("steel_adze", 2, 500, 7, 2.5F, 9);
-	
+
+	public static ToolMaterial steelToolMaterial = EnumHelper.addToolMaterial("steel_adze", 2, 500, 7, 2.5F, 9);
+
 	public static void init() {
-		
+
 		wooden_adze = new ItemAdze(ToolMaterial.WOOD, 6.0F, -2.4F).setUnlocalizedName("wooden_adze").setRegistryName("wooden_adze").setCreativeTab(SPTabs.tabTools);
 		stone_adze = new ItemAdze(ToolMaterial.STONE, 7.0F, -2.4F).setUnlocalizedName("stone_adze").setRegistryName("stone_adze").setCreativeTab(SPTabs.tabTools);
 		iron_adze = new ItemAdze(ToolMaterial.IRON, 6.0F, -2.4F).setUnlocalizedName("iron_adze").setRegistryName("iron_adze").setCreativeTab(SPTabs.tabTools);
@@ -43,30 +43,25 @@ public class MoreThanAPickaxeItems {
 		diamond_adze = new ItemAdze(ToolMaterial.DIAMOND, 5.0F, -2.4F).setUnlocalizedName("diamond_adze").setRegistryName("diamond_adze").setCreativeTab(SPTabs.tabTools);
 		bronze_adze = new ItemAdze(SPItems.bronzeToolMaterial, 5.5F, -2.4F).setUnlocalizedName("bronze_adze").setRegistryName("bronze_adze").setCreativeTab(SPTabs.tabTools);
 		titanium_adze = new ItemAdze(SPItems.titaniumToolMaterial, 5.5F, -2.4F).setUnlocalizedName("titanium_adze").setRegistryName("titanium_adze").setCreativeTab(SPTabs.tabTools);
-		
-		if(OreDictionary.getOres("ingotSteel").size() > 0) {
-			
-			if(!SPCompatibilityManager.isGCLoaded()) {
-				
-				steel_adze = new ItemAdze(steelToolMaterial, 5.5F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(SPTabs.tabTools);
-			}
-		}
-		
-		if(SPCompatibilityManager.isGCLoaded()) {
-			
+
+		if(!SPCompatibilityManager.isGCLoaded()) {
+
+			steel_adze = new ItemAdze(steelToolMaterial, 5.5F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(SPTabs.tabTools);
+		} else {
+
 			steel_adze = new ItemAdze(GCItems.TOOL_STEEL, 4.0F, -2.4F).setUnlocalizedName("steel_adze").setRegistryName("steel_adze").setCreativeTab(SPTabs.tabTools);
-			
+
 			if(SPCompatibilityManager.isGCPLoaded()) {
-				
+
 				desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F).setUnlocalizedName("desh_adze").setRegistryName("desh_adze").setCreativeTab(SPTabs.tabTools);
 				titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F).setUnlocalizedName("titanium_adze_gc").setRegistryName("titanium_adze_gc").setCreativeTab(SPTabs.tabTools);
 			}
 		}
 	}
-	
+
 	public static void register()
 	{
-		
+
 		registerItem(wooden_adze);
 		registerItem(stone_adze);
 		registerItem(iron_adze);
@@ -74,27 +69,16 @@ public class MoreThanAPickaxeItems {
 		registerItem(diamond_adze);
 		registerItem(bronze_adze);
 		registerItem(titanium_adze);
-		
-		if(OreDictionary.getOres("ingotSteel").size() > 0) {
-			
-			if(!SPCompatibilityManager.isGCLoaded()) {
-				
-				registerItem(steel_adze);
-			}
-		}
-		
-		if(SPCompatibilityManager.isGCLoaded()) {
-			
-			registerItem(steel_adze);
-			
-			if(SPCompatibilityManager.isGCPLoaded()) {
-				
-				registerItem(desh_adze);
-				registerItem(titanium_adze_gc);
-			}
+
+		registerItem(steel_adze);
+
+		if(SPCompatibilityManager.isGCLoaded() && SPCompatibilityManager.isGCPLoaded()) {
+
+			registerItem(desh_adze);
+			registerItem(titanium_adze_gc);
 		}
 	}
-	
+
 	public static void registerRenders()
 	{
 		registerRender(wooden_adze);
@@ -104,40 +88,29 @@ public class MoreThanAPickaxeItems {
 		registerRender(diamond_adze);
 		registerRender(bronze_adze);
 		registerRender(titanium_adze);
-		
-		if(OreDictionary.getOres("ingotSteel").size() > 0) {
-			
-			if(!SPCompatibilityManager.isGCLoaded()) {
-				
-				registerRender(steel_adze);
-			}
-		}
-		
-		if(SPCompatibilityManager.isGCLoaded()) {
-			
-			registerRender(steel_adze);
-			
-			if(SPCompatibilityManager.isGCPLoaded()) {
-				
-				registerRender(desh_adze);
-				registerRender(titanium_adze_gc);
-			}
+
+		registerRender(steel_adze);
+
+		if(SPCompatibilityManager.isGCLoaded() && SPCompatibilityManager.isGCPLoaded()) {
+
+			registerRender(desh_adze);
+			registerRender(titanium_adze_gc);
 		}
 	}
-	
+
 	public static void registerItem(Item item) {
-		
+
 		MoreThanAPickaxe.ITEMS.add(item);
 	}
-	
+
 	public static void registerItems(IForgeRegistry<Item> registry) {
-		
-	for (Item item : MoreThanAPickaxe.ITEMS)
-    {
-        registry.register(item);
-    	}
+
+		for (Item item : MoreThanAPickaxe.ITEMS)
+		{
+			registry.register(item);
+		}
 	}
-	
+
 	public static void registerRender(Item item)
 	{
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
