@@ -29,7 +29,7 @@ public class MoreThanAPickaxeEventHandler {
 			isDone = true;
 		}
 		
-		if(!entityData.getBoolean("morethanapickaxe.firstJoin") && !isDone) {
+		if(!entityData.getBoolean("morethanapickaxe.firstJoin") && !isDone && !SPConfig.disableThanks.get()) {
 			
 			entityData.putBoolean("morethanapickaxe.firstJoin", true);
 		
