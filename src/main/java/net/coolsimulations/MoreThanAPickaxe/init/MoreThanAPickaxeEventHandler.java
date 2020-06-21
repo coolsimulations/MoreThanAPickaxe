@@ -1,5 +1,8 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import net.coolsimulations.MoreThanAPickaxe.MoreThanAPickaxe;
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
@@ -20,63 +23,71 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 public class MoreThanAPickaxeEventHandler {
-	
+
 	@SubscribeEvent
 	public void onplayerLogin(PlayerLoggedInEvent event)
-    {
+	{
 		EntityPlayerMP player = (EntityPlayerMP) event.player;
 		NBTTagCompound entityData = player.getEntityData();
-		
+
 		AdvancementManager manager = player.getServer().getAdvancementManager();
 		Advancement install = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/install"));
-		
+
 		boolean isDone = false;
 		
+		Timer timer = new Timer();
+
 		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
 			isDone = true;
 		}
-		
+
 		if(!entityData.getBoolean("morethanapickaxe.firstJoin") && !isDone && !SPConfig.disableThanks) {
-			
+
 			entityData.setBoolean("morethanapickaxe.firstJoin", true);
-		
+
 			if(!player.world.isRemote) {
-        		
-        		TextComponentTranslation installInfo = new TextComponentTranslation("advancements.morethanapickaxe.install.display1");
-        		installInfo.getStyle().setColor(TextFormatting.GOLD);
+
+				TextComponentTranslation installInfo = new TextComponentTranslation("advancements.morethanapickaxe.install.display1");
+				installInfo.getStyle().setColor(TextFormatting.GOLD);
 				player.sendMessage(installInfo);
-        		
-        	}
+
+			}
 		}
-        
-        if(MoreThanAPickaxeUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
-        	player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo);
-        	player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo);
-        }
-    }
-	
+
+		if(MoreThanAPickaxeUpdateHandler.isOld == true && SPConfig.disableUpdateCheck == false) {
+			timer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo);
+					player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo);
+				}
+			}, 16000);
+
+		}
+	}
+
 	@SubscribeEvent
 	public void registerItems(RegistryEvent.Register<Item> event)
-    {
+	{
 		MoreThanAPickaxeItems.registerItems(event.getRegistry());
-    }
+	}
 
 	@SubscribeEvent
 	public void onModelRegistry(ModelRegistryEvent event)
-    {
-        for(Item item : MoreThanAPickaxe.ITEMS) {
-        	MoreThanAPickaxeItems.registerRenders();
-        }
-    }
-	
+	{
+		for(Item item : MoreThanAPickaxe.ITEMS) {
+			MoreThanAPickaxeItems.registerRenders();
+		}
+	}
+
 	@SubscribeEvent
-    public void registerRecipes(RegistryEvent.Register<IRecipe> event)
-    {
+	public void registerRecipes(RegistryEvent.Register<IRecipe> event)
+	{
 		IForgeRegistryModifiable modRegistry = (IForgeRegistryModifiable) event.getRegistry();
-		
+
 		if(SPCompatibilityManager.isGCLoaded()) {
 			modRegistry.remove(new ResourceLocation(Reference.MOD_ID + ":" + "steel_adze"));	
 		}
-    }
+	}
 
 }
