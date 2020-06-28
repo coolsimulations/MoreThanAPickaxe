@@ -10,8 +10,12 @@ import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -41,8 +45,8 @@ public class MoreThanAPickaxeEventHandler {
 			if(!player.world.isRemote) {
 
 				TranslationTextComponent installInfo = new TranslationTextComponent("advancements.morethanapickaxe.install.display1");
-				installInfo.getStyle().setColor(TextFormatting.GOLD);
-				player.sendMessage(installInfo);
+				installInfo.func_240699_a_(TextFormatting.GOLD);
+				player.func_241151_a_(installInfo, ChatType.SYSTEM, Util.field_240973_b_);
 
 			}
 		}
@@ -51,8 +55,8 @@ public class MoreThanAPickaxeEventHandler {
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo);
-					player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo);
+					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.field_240973_b_);
+					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateVersionInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.field_240973_b_);
 				}
 			}, 16000);
 		}

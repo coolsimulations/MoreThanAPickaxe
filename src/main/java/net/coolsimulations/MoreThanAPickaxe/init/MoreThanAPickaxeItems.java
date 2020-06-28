@@ -33,17 +33,17 @@ public class MoreThanAPickaxeItems {
 	public static void init() {
 
 		wooden_adze = new ItemAdze(ItemTier.WOOD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("wooden_adze");
-		stone_adze = new ItemAdze(ItemTier.STONE, 7.0F, -2.40F, new Item.Properties()).setRegistryName("stone_adze");
-		iron_adze = new ItemAdze(ItemTier.IRON, 6.0F, -2.40F, new Item.Properties()).setRegistryName("iron_adze");
+		stone_adze = new ItemAdze(ItemTier.STONE, 8.0F, -2.40F, new Item.Properties()).setRegistryName("stone_adze");
+		iron_adze = new ItemAdze(ItemTier.IRON, 8.0F, -2.40F, new Item.Properties()).setRegistryName("iron_adze");
 		gold_adze = new ItemAdze(ItemTier.GOLD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("gold_adze");
-		diamond_adze = new ItemAdze(ItemTier.DIAMOND, 5.0F, -2.40F, new Item.Properties()).setRegistryName("diamond_adze");
-		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 5.5F, -2.40F, new Item.Properties()).setRegistryName("bronze_adze");
-		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 5.5F, -2.40F, new Item.Properties()).setRegistryName("titanium_adze");
+		diamond_adze = new ItemAdze(ItemTier.DIAMOND, 8.0F, -2.40F, new Item.Properties()).setRegistryName("diamond_adze");
+		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 7.0F, -2.40F, new Item.Properties()).setRegistryName("bronze_adze");
+		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 8.0F, -2.40F, new Item.Properties()).setRegistryName("titanium_adze");
 
 
 		if(!SPCompatibilityManager.isGCLoaded()) {
 
-			steel_adze = new ItemAdze(AdzeItemTier.steelToolMaterial, 5.5F, -2.40F, new Item.Properties()).setRegistryName("steel_adze");
+			steel_adze = new ItemAdze(AdzeItemTier.steelToolMaterial, 8.0F, -2.40F, new Item.Properties()).setRegistryName("steel_adze");
 		}
 
 		if(SPCompatibilityManager.isGCLoaded()) {

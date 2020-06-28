@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public enum AdzeItemTier implements IItemTier {
     steelToolMaterial(2, 500, 7.0F, 2.5F, 9, () -> {
-    	return Ingredient.fromTag(new ItemTags.Wrapper(new ResourceLocation(ForgeMod.getInstance().getModId(), "ingots/steel")));
+    	return Ingredient.fromTag(ItemTags.makeWrapperTag("forge:" + "ingots/steel"));
     });
 
     private final int harvestLevel;
