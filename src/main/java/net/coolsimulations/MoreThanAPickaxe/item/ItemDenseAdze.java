@@ -9,10 +9,13 @@ import java.util.Stack;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockOre;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -101,6 +104,10 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 
 	public ItemDenseAdze(ToolMaterial toolMaterial) {
 		super(toolMaterial, EFFECTIVE_ON);
+		this.setHarvestLevel("pickaxe", toolMaterial.getHarvestLevel());
+		this.setHarvestLevel("axe", toolMaterial.getHarvestLevel());
+		this.setHarvestLevel("shovel", toolMaterial.getHarvestLevel());
+		this.setHarvestLevel("mattock", toolMaterial.getHarvestLevel());
 	}
 	
 	public boolean onBlockDestroyed(ItemStack stack, World world,
@@ -246,64 +253,158 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 		}
 	}
 	
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn,
-			BlockPos pos, EnumHand hand, EnumFacing facing, float hitX,
-			float hitY, float hitZ) {
-		ItemStack itemstack = player.getHeldItem(hand);
-		if(!player.isSneaking()){
-			if (!player.canPlayerEdit(pos.offset(facing), facing, itemstack)) {
-		         return EnumActionResult.FAIL;
-		      } else {
-		         IBlockState iblockstate = worldIn.getBlockState(pos);
-		         Block block = iblockstate.getBlock();
-		         if (facing != EnumFacing.DOWN && worldIn.isAirBlock(pos.up())) {
-		            if (block == Blocks.GRASS || block == Blocks.GRASS_PATH) {
-		               this.setBlock(itemstack, player, worldIn, pos, Blocks.FARMLAND.getDefaultState());
-		               return EnumActionResult.SUCCESS;
-		            }
-		            
-		            if(iblockstate.getBlock() instanceof BlockDirt) {
-		            	switch ((BlockDirt.DirtType)iblockstate.getValue(BlockDirt.VARIANT))
-		            	{
-		            	case DIRT:
-		            		this.setBlock(itemstack, player, worldIn, pos, Blocks.FARMLAND.getDefaultState());
-		            		return EnumActionResult.SUCCESS;
-		            	case COARSE_DIRT:
-		            		this.setBlock(itemstack, player, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
-		            		return EnumActionResult.SUCCESS;
-		            	case PODZOL:
-		            		this.setBlock(itemstack, player, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
-		            		return EnumActionResult.SUCCESS;
-		            	}
-		            }
-		         }
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
 
-		         return EnumActionResult.PASS;
-		      }
-		} else {
-			if (!player.canPlayerEdit(pos.offset(facing), facing, itemstack)) {
+		ItemStack stack = playerIn.getHeldItem(hand);
+
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		Block block = iblockstate.getBlock();
+
+		BlockPos blockBelowBlockPos = new BlockPos(pos.getX(), pos.getY() - 1, pos.getZ());
+		IBlockState blockStateBelow = worldIn.getBlockState(blockBelowBlockPos);
+		Block blockBelow = blockStateBelow.getBlock();
+
+		BlockPos blockAboveBlockPos = pos.up();
+		IBlockState blockStateAbove = worldIn.getBlockState(blockAboveBlockPos);
+		Block blockAbove = blockStateAbove.getBlock();
+
+		BlockPos blockTwiceBelowBlockPos = pos.down(2);
+		IBlockState blockStateTwiceBelow = worldIn.getBlockState(blockTwiceBelowBlockPos);
+		Block blockTwiceBelow = blockStateTwiceBelow.getBlock();
+
+		BlockPos blockTwiceAboveBlockPos = pos.up(2);
+
+		if(!playerIn.isSneaking()){
+			if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack))
+			{
 				return EnumActionResult.FAIL;
-			} else {
-				IBlockState iblockstate = worldIn.getBlockState(pos);
-				Block block = iblockstate.getBlock();
-				if (facing != EnumFacing.DOWN
-						&& worldIn.getBlockState(pos.up())
-						.getMaterial() == Material.AIR
-						&& block == Blocks.GRASS) {
-					IBlockState blockState = Blocks.GRASS_PATH.getDefaultState();
-					worldIn.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN,
-							SoundCategory.BLOCKS, 1.0F, 1.0F);
-					if (!worldIn.isRemote) {
-						worldIn.setBlockState(pos, blockState, 11);
-						itemstack.damageItem(1, player);
+			}
+			else
+			{
+				int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(stack, playerIn, worldIn, pos);
+				if (hook != 0) return hook > 0 ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+
+				if (facing != EnumFacing.DOWN)
+				{
+					if(worldIn.isAirBlock(blockAboveBlockPos))
+						setBlockToFarmland(iblockstate, block, pos, stack, worldIn, playerIn);
+
+					if(block instanceof BlockBush) {
+
+						if(blockBelow == Blocks.GRASS || blockBelow == Blocks.GRASS_PATH || blockBelow instanceof BlockDirt && worldIn.isAirBlock(blockAboveBlockPos)) {
+							setBlockToFarmland(blockStateBelow, blockBelow, blockBelowBlockPos, stack, worldIn, playerIn);
+							if(!playerIn.isCreative())
+								block.harvestBlock(worldIn, playerIn, pos, iblockstate, null, stack);
+							this.setBlock(stack, playerIn, worldIn, pos, Blocks.AIR.getDefaultState());
+							return EnumActionResult.SUCCESS;
+						}
 					}
 
-					return EnumActionResult.SUCCESS;
-				} else {
+					if(block instanceof BlockDoublePlant) {
+						if(iblockstate.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.LOWER && blockBelow == Blocks.GRASS || blockBelow == Blocks.GRASS_PATH || blockBelow instanceof BlockDirt && worldIn.isAirBlock(blockTwiceAboveBlockPos)) {
+							setBlockToFarmland(blockStateBelow, blockBelow, blockBelowBlockPos, stack, worldIn, playerIn);
+							block.onBlockHarvested(worldIn, pos, iblockstate, playerIn);
+							return EnumActionResult.SUCCESS;
+						} else if(iblockstate.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.UPPER && blockTwiceBelow == Blocks.GRASS || blockTwiceBelow == Blocks.GRASS_PATH || blockTwiceBelow instanceof BlockDirt && worldIn.isAirBlock(blockAboveBlockPos)) {
+							setBlockToFarmland(blockStateTwiceBelow, blockTwiceBelow, blockTwiceBelowBlockPos, stack, worldIn, playerIn);
+							block.onBlockHarvested(worldIn, pos, iblockstate, playerIn);
+							return EnumActionResult.SUCCESS;
+						}
+					}
+				}
+
+				return EnumActionResult.PASS;
+			}
+		}else {
+			if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack))
+			{
+				return EnumActionResult.FAIL;
+			}
+			else
+			{
+
+				if (facing != EnumFacing.DOWN)
+				{
+					if(worldIn.isAirBlock(blockAboveBlockPos))
+						setBlockToPath(iblockstate, block, pos, stack, worldIn, playerIn);
+					
+					if(block instanceof BlockBush) {
+
+						if(blockBelow == Blocks.GRASS || blockBelow == Blocks.GRASS_PATH || blockBelow instanceof BlockDirt && worldIn.isAirBlock(blockAboveBlockPos)) {
+							setBlockToPath(blockStateBelow, blockBelow, blockBelowBlockPos, stack, worldIn, playerIn);
+							if(!playerIn.isCreative())
+								block.harvestBlock(worldIn, playerIn, pos, iblockstate, null, stack);
+							this.setBlock(stack, playerIn, worldIn, pos, Blocks.AIR.getDefaultState());
+							return EnumActionResult.SUCCESS;
+						}
+					}
+
+					if(block instanceof BlockDoublePlant) {
+						if(iblockstate.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.LOWER && blockBelow == Blocks.GRASS || blockBelow == Blocks.GRASS_PATH || blockBelow instanceof BlockDirt && worldIn.isAirBlock(blockTwiceAboveBlockPos)) {
+							setBlockToPath(blockStateBelow, blockBelow, blockBelowBlockPos, stack, worldIn, playerIn);
+							block.onBlockHarvested(worldIn, pos, iblockstate, playerIn);
+							return EnumActionResult.SUCCESS;
+						} else if(iblockstate.getValue(BlockDoublePlant.HALF) == BlockDoublePlant.EnumBlockHalf.UPPER && blockTwiceBelow == Blocks.GRASS || blockTwiceBelow == Blocks.GRASS_PATH || blockTwiceBelow instanceof BlockDirt && worldIn.isAirBlock(blockAboveBlockPos)) {
+							setBlockToPath(blockStateTwiceBelow, blockTwiceBelow, blockTwiceBelowBlockPos, stack, worldIn, playerIn);
+							block.onBlockHarvested(worldIn, pos, iblockstate, playerIn);
+							return EnumActionResult.SUCCESS;
+						}
+					}
+				}
+				else
+				{
 					return EnumActionResult.PASS;
 				}
 			}
 		}
+
+		return EnumActionResult.PASS;
+	}
+
+	protected EnumActionResult setBlockToFarmland(IBlockState iblockstate, Block block, BlockPos pos, ItemStack stack, World worldIn, EntityPlayer playerIn) {
+
+
+		if (block == Blocks.GRASS || block == Blocks.GRASS_PATH)
+		{
+			this.setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
+			return EnumActionResult.SUCCESS;
+		}
+
+		if (block instanceof BlockDirt)
+		{
+			switch ((BlockDirt.DirtType)iblockstate.getValue(BlockDirt.VARIANT))
+			{
+			case DIRT:
+				this.setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
+				return EnumActionResult.SUCCESS;
+			case COARSE_DIRT:
+				this.setBlock(stack, playerIn, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+				return EnumActionResult.SUCCESS;
+			case PODZOL:
+				this.setBlock(stack, playerIn, worldIn, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+				return EnumActionResult.SUCCESS;
+			}
+		}
+
+		return EnumActionResult.PASS;
+	}
+
+	protected EnumActionResult setBlockToPath(IBlockState iblockstate, Block block, BlockPos pos, ItemStack stack, World worldIn, EntityPlayer playerIn) {
+
+		if(block == Blocks.GRASS) {
+			IBlockState iblockstate1 = Blocks.GRASS_PATH.getDefaultState();
+			worldIn.playSound(playerIn, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+			if (!worldIn.isRemote)
+			{
+				worldIn.setBlockState(pos, iblockstate1, 11);
+				stack.damageItem(1, playerIn);
+			}
+		}
+
+		return EnumActionResult.SUCCESS;
 	}
 
 	private void setBlock(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos, IBlockState state) {
@@ -314,6 +415,14 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 	      }
 
 	   }
+	
+	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
+	{
+		if(enchantment.type == EnumEnchantmentType.BREAKABLE || enchantment.type == EnumEnchantmentType.DIGGER)
+			return true;
+		else
+			return false;
+	}
 
 	static {
 		EFFECTIVE_ON = Sets.newHashSet(new Block[]{Blocks.LOG,

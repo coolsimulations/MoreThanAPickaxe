@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:vulcanite_adze"
+    ]
+  },
+  "criteria": {
+    "has_titanium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "vulcanite:vulcanite_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:vulcanite_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_vulcanite",
+      "has_the_recipe"
+    ]
+  ]
+}

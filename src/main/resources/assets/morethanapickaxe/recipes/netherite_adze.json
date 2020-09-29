@@ -1,0 +1,19 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": 
+  [
+    
+  {
+      "item": "morethanapickaxe:diamond_adze"
+  },
+   
+  {
+      "type": "forge:ore_dict",
+      "ore": "ingotNetherite"
+  }
+  
+  ],
+  "result": {
+    "item": "morethanapickaxe:netherite_adze"
+  }
+}

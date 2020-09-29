@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:skyroot_adze"
+    ]
+  },
+  "criteria": {
+    "has_skyroot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "aether_legacy:skyroot_plank"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:skyroot_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_skyroot",
+      "has_the_recipe"
+    ]
+  ]
+}

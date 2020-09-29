@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:amethyst_adze"
+    ]
+  },
+  "criteria": {
+    "has_amethyst": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemAmethyst"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:amethyst_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_amethyst",
+      "has_the_recipe"
+    ]
+  ]
+}

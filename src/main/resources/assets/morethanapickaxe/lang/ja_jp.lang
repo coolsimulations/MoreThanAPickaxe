@@ -10,7 +10,27 @@ item.titanium_adze.name=チタンのアズ
 
 item.steel_adze.name=鋼のアズ
 item.desh_adze.name=デッシュのアズ
+item.sticky_desh_adze.name=粘着デッシュのアズ
 item.titanium_adze_gc.name=チタンのアズ
+
+item.emerald_adze.name=エメラルドのアズ
+item.obsidian_adze.name=黒曜石のアズ
+
+item.vulcanite_adze.name=バルカナイトのアズ
+item.carbonado_adze.name=カルボナードのアズ
+item.galaxite_adze.name=ギャラクサイトのアズ
+
+item.amethyst_adze.name=アメジストのアズ
+item.ruby_adze.name=ルビーのアズ
+item.sapphire_adze.name=サファイアのアズ
+item.topaz_adze.name=トパーズのアズ
+item.quartz_adze.name=クォーツのアズ
+
+item.gravitite_adze.name=グラビタイトのアズ
+item.holystone_adze.name=ホーリーストーンのアズ
+item.skyroot_adze.name=スカイルートのアズ
+item.valkyrie_adze.name=ヴァルキリーのアズ
+item.zanite_adze.name=ザナイトのアズ
 
 item.hammertime.itemdenseadzewood.name=木のアズ（高密化）
 item.hammertime.itemdenseadzestone.name=石のアズ（高密化）

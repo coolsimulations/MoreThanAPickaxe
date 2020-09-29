@@ -10,7 +10,27 @@ item.titanium_adze.name=钛阿泽
 
 item.steel_adze.name=钢阿泽
 item.desh_adze.name=戴斯阿泽
+item.sticky_desh_adze.name=黏滑戴斯阿泽
 item.titanium_adze_gc.name=钛阿泽
+
+item.emerald_adze.name=绿宝石阿泽
+item.obsidian_adze.name=黑曜石阿泽
+
+item.vulcanite_adze.name=ul石阿泽
+item.carbonado_adze.name=卡波纳多阿泽
+item.galaxite_adze.name=银河石阿泽
+
+item.amethyst_adze.name=紫晶阿泽
+item.ruby_adze.name=红宝石阿泽
+item.sapphire_adze.name=蓝宝石阿泽
+item.topaz_adze.name=黄玉阿泽
+item.quartz_adze.name=石英阿泽
+
+item.gravitite_adze.name=重力晶阿泽
+item.holystone_adze.name=圣石阿泽
+item.skyroot_adze.name=天根木阿泽
+item.valkyrie_adze.name=女武神阿泽
+item.zanite_adze.name=紫晶阿泽
 
 item.hammertime.itemdenseadzewood.name=致密木阿泽
 item.hammertime.itemdenseadzestone.name=致密石阿泽

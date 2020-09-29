@@ -3,10 +3,13 @@ package net.coolsimulations.MoreThanAPickaxe;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPicakxeAetherLegacyRecipes;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeHammerTime;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeLumberjack;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeSkills;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeToolMaterials;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeVillagerTrade;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
@@ -50,6 +53,13 @@ public class MoreThanAPickaxe {
 		if(SPCompatibilityManager.isLumberjackLoaded()) {
 			MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeLumberjack());
 		}
+		
+		if(SPCompatibilityManager.isReskillableLoaded()) {
+			MoreThanAPickaxeSkills.initReskillable(event);
+		}
+		
+		if(SPCompatibilityManager.isAetherLegacyLoaded())
+			MinecraftForge.EVENT_BUS.register(new MoreThanAPicakxeAetherLegacyRecipes());
 	}
 
 	@EventHandler
@@ -57,6 +67,7 @@ public class MoreThanAPickaxe {
 	{
 		System.out.println("Init");
 		proxy.init();
+		MoreThanAPickaxeToolMaterials.init();
 	}
 
 	@EventHandler

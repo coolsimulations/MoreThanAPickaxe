@@ -10,7 +10,28 @@ item.titanium_adze.name=Titanium Adze
 
 item.steel_adze.name=Steel Adze
 item.desh_adze.name=Desh Adze
+item.sticky_desh_adze.name=Sticky Desh Adze
 item.titanium_adze_gc.name=Titanium Adze
+
+item.emerald_adze.name=Emerald Adze
+item.obsidian_adze.name=Obsidian Adze
+item.netherite_adze.name=Netherite Adze
+
+item.vulcanite_adze.name=Vulcanite Adze
+item.carbonado_adze.name=Carbonado Adze
+item.galaxite_adze.name=Galaxite Adze
+
+item.amethyst_adze.name=Amethyst Adze
+item.ruby_adze.name=Ruby Adze
+item.sapphire_adze.name=Sapphire Adze
+item.topaz_adze.name=Topaz Adze
+item.quartz_adze.name=Quartz Adze
+
+item.gravitite_adze.name=Gravitite Adze
+item.holystone_adze.name=Holystone Adze
+item.skyroot_adze.name=Skyroot Adze
+item.valkyrie_adze.name=Valkyrie Adze
+item.zanite_adze.name=Zanite Adze
 
 item.hammertime.itemdenseadzewood.name=Wooden Dense Adze
 item.hammertime.itemdenseadzestone.name=Stone Dense Adze

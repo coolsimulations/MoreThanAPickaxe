@@ -10,7 +10,27 @@ item.titanium_adze.name=Титановый Адзе
 
 item.steel_adze.name=Стальной Адзе
 item.desh_adze.name=Деш Адзе
+item.sticky_desh_adze.name=Липкая Деш Адзе
 item.titanium_adze_gc.name=Титановый Адзе
+
+item.emerald_adze.name=Изумруд Адзе
+item.obsidian_adze.name=Обсидиан Адзе
+
+item.vulcanite_adze.name=Вулканит Адзе
+item.carbonado_adze.name=Карбонадо Адзе
+item.galaxite_adze.name=Галаксит Адзе
+
+item.amethyst_adze.name=Аметист Адзе
+item.ruby_adze.name=Рубин Адзе
+item.sapphire_adze.name=Сапфир Адзе
+item.topaz_adze.name=Топаз Адзе
+item.quartz_adze.name=Кварц Адзе
+
+item.gravitite_adze.name=Гравититовый Адзе
+item.holystone_adze.name=Святого Камня Адзе
+item.skyroot_adze.name=Небесный Корень Адзе
+item.valkyrie_adze.name=Валькирия Адзе
+item.zanite_adze.name=Занит Адзе
 
 item.hammertime.itemdenseadzewood.name=Деревянная Плотная Aдзе
 item.hammertime.itemdenseadzestone.name=Каменная Плотная Aдзе

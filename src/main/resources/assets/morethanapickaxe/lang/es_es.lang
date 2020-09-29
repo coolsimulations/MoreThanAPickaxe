@@ -10,7 +10,27 @@ item.titanium_adze.name=Adze de Titanio
 
 item.steel_adze.name=Adze de Acero
 item.desh_adze.name=Adze de Desh
+item.sticky_desh_adze.name=Adze de Desh Pegajoso
 item.titanium_adze_gc.name=Adze de Titanio
+
+item.emerald_adze.name=Adze de Esmeralda
+item.obsidian_adze.name=Adze de Obsidiana
+
+item.vulcanite_adze.name=Adze de Vulcanita
+item.carbonado_adze.name=Adze de Carbonado
+item.galaxite_adze.name=Adze de Galaxita
+
+item.amethyst_adze.name=Adze de Amatista
+item.ruby_adze.name=Adze de Rubí
+item.sapphire_adze.name=Adze de Zafiro
+item.topaz_adze.name=Adze de Topacio
+item.quartz_adze.name=Adze de Cuarzo
+
+item.gravitite_adze.name=Adze de Gravitita
+item.holystone_adze.name=Adze de Piedra Sacra
+item.skyroot_adze.name=Adze de Raízcelestial
+item.valkyrie_adze.name=Adze de Valquiria
+item.zanite_adze.name=Adze de Zanite
 
 item.hammertime.itemdenseadzewood.name=Adze Densa de Madera
 item.hammertime.itemdenseadzestone.name=Adze Densa de Piedra

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:galaxite_adze"
+    ]
+  },
+  "criteria": {
+    "has_titanium": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "galaxite:galaxite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:galaxite_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_galaxite",
+      "has_the_recipe"
+    ]
+  ]
+}

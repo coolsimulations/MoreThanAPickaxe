@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:emerald_adze"
+    ]
+  },
+  "criteria": {
+    "has_emerald": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemEmerald"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:emerald_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_emerald",
+      "has_the_recipe"
+    ]
+  ]
+}
