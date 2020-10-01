@@ -159,7 +159,6 @@ public class MoreThanAPickaxeSkills {
 			if(edited.length() == 2) {
 				int first = Character.getNumericValue((edited.charAt(0)));
 				int second = Character.getNumericValue((edited.charAt(1)));
-				System.out.print("ASDF: First: " + first + " Second: " + second);
 				if(first == second)
 					return first;
 				else
