@@ -241,7 +241,37 @@
                     }
                 ]
             }
+        },
+        "vulcanite_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:vulcanite_adze"
+                    }
+                ]
+            }
+        },
+        "carbonado_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:carbonado_adze"
+                    }
+                ]
+            }
+        },
+        "galaxite_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:galaxite_adze"
+                    }
+                ]
+            }
         }
     },
-    "requirements": [["wooden_adze", "stone_adze", "iron_adze", "gold_adze", "diamond_adze", "bronze_adze", "titanium_adze", "steel_adze", "desh_adze", "titanium_adze_gc", "emerald_adze", "obsidian_adze", "netherite_adze", "amethyst_adze", "ruby_adze", "topaz_adze", "sapphire_adze", "quartz_adze", "gravitite_adze", "holystone_adze", "skyroot_adze", "valkyrie_adze", "zanite_adze"]]
+    "requirements": [["wooden_adze", "stone_adze", "iron_adze", "gold_adze", "diamond_adze", "bronze_adze", "titanium_adze", "steel_adze", "desh_adze", "titanium_adze_gc", "emerald_adze", "obsidian_adze", "netherite_adze", "amethyst_adze", "ruby_adze", "topaz_adze", "sapphire_adze", "quartz_adze", "gravitite_adze", "holystone_adze", "skyroot_adze", "valkyrie_adze", "zanite_adze", "vulcanite_adze", "carbonado_adze", "galaxite_adze"]]
 }
