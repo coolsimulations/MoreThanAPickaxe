@@ -1,5 +1,6 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
+import com.ToMe.trigems.ConfigHandler;
 import com.ToMe.trigems.TriGemsMod;
 import com.xmods.tools.api.material.OTA_ToolMaterial;
 
@@ -92,7 +93,7 @@ public class MoreThanAPickaxeItems {
 				emerald_adze = new ItemAdze(EmeraldMaterial.TOOL, 4.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isFancyToolsLoaded()) {
 				emerald_adze = new ItemAdze(MaterialHandler.emerald, 5.25F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
-			} else if(SPCompatibilityManager.isTriGemsLoaded()) {
+			} else if(SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
 				emerald_adze = new ItemAdze(TriGemsMod.Emerald, 4.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isEAOLoaded()) {
 				emerald_adze = new ItemAdze(ModItems.emerald, 5.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
@@ -132,8 +133,11 @@ public class MoreThanAPickaxeItems {
 			MoreThanAPickaxeGalaxiteOre.init();
 		
 		if(SPCompatibilityManager.isTriGemsLoaded()) {
-			ruby_adze = new ItemAdze(TriGemsMod.Ruby, 5.0F, -2.4F).setUnlocalizedName("ruby_adze").setRegistryName("ruby_adze").setCreativeTab(SPTabs.tabTools);
+			if(ConfigHandler.enableRuby)
+				ruby_adze = new ItemAdze(TriGemsMod.Ruby, 5.0F, -2.4F).setUnlocalizedName("ruby_adze").setRegistryName("ruby_adze").setCreativeTab(SPTabs.tabTools);
+			if(ConfigHandler.enableSapphire)
 			sapphire_adze = new ItemAdze(TriGemsMod.Sapphire, 4.5F, -2.4F).setUnlocalizedName("sapphire_adze").setRegistryName("sapphire_adze").setCreativeTab(SPTabs.tabTools);
+			if(ConfigHandler.enableTopaz)
 			topaz_adze = new ItemAdze(TriGemsMod.Topaz, 5.5F, -2.4F).setUnlocalizedName("topaz_adze").setRegistryName("topaz_adze").setCreativeTab(SPTabs.tabTools);
 		} else if(SPCompatibilityManager.isGACLoaded()) {
 			ToolMaterial RUBY = EnumHelper.addToolMaterial("material_ruby", 3, 900, 9.0F, 4.0F, 12);
@@ -189,6 +193,16 @@ public class MoreThanAPickaxeItems {
 			registerItem(emerald_adze);
 		}
 		
+		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableEmeraldMaterial) {
+			registerItem(emerald_adze);
+		} else if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+			if(!SPCompatibilityManager.isPI3xLoaded() && !SPCompatibilityManager.isFancyToolsLoaded() && SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
+				registerItem(emerald_adze);
+			} else {
+				registerItem(emerald_adze);
+			}
+		}
+		
 		if(SPCompatibilityManager.isObsidianMatieralModsLoaded() || SPConfig.enableObsidianMaterial) {
 			registerItem(obsidian_adze);
 		}
@@ -208,7 +222,14 @@ public class MoreThanAPickaxeItems {
 		if(SPCompatibilityManager.isGalaxiteOreLoaded())
 			MoreThanAPickaxeGalaxiteOre.register();
 		
-		if(SPCompatibilityManager.isTriGemsLoaded() || SPCompatibilityManager.isGACLoaded()) {
+		if(SPCompatibilityManager.isTriGemsLoaded() ){
+			if(ConfigHandler.enableRuby)
+				registerItem(ruby_adze);
+			if(ConfigHandler.enableSapphire)
+				registerItem(sapphire_adze);
+			if(ConfigHandler.enableTopaz)
+				registerItem(topaz_adze);
+		} else if(SPCompatibilityManager.isGACLoaded()) {
 			registerItem(ruby_adze);
 			registerItem(sapphire_adze);
 			registerItem(topaz_adze);
@@ -247,8 +268,14 @@ public class MoreThanAPickaxeItems {
 			registerRender(titanium_adze_gc);
 		}
 		
-		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded() || SPConfig.enableEmeraldMaterial) {
+		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableEmeraldMaterial) {
 			registerRender(emerald_adze);
+		} else if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+			if(!SPCompatibilityManager.isPI3xLoaded() && !SPCompatibilityManager.isFancyToolsLoaded() && SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
+				registerRender(emerald_adze);
+			} else {
+				registerRender(emerald_adze);
+			}
 		}
 		
 		if(SPCompatibilityManager.isObsidianMatieralModsLoaded() || SPConfig.enableObsidianMaterial) {
@@ -270,7 +297,14 @@ public class MoreThanAPickaxeItems {
 		if(SPCompatibilityManager.isGalaxiteOreLoaded())
 			MoreThanAPickaxeGalaxiteOre.registerRenders();
 		
-		if(SPCompatibilityManager.isTriGemsLoaded() || SPCompatibilityManager.isGACLoaded()) {
+		if(SPCompatibilityManager.isTriGemsLoaded() ){
+			if(ConfigHandler.enableRuby)
+				registerRender(ruby_adze);
+			if(ConfigHandler.enableSapphire)
+				registerRender(sapphire_adze);
+			if(ConfigHandler.enableTopaz)
+				registerRender(topaz_adze);
+		} else if(SPCompatibilityManager.isGACLoaded()) {
 			registerRender(ruby_adze);
 			registerRender(sapphire_adze);
 			registerRender(topaz_adze);
