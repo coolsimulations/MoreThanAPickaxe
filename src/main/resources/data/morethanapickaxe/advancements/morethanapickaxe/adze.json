@@ -81,7 +81,18 @@
                     }
                 ]
             }
+        },
+        "steel_adze": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "morethanapickaxe:steel_adze"
+                    }
+                ]
+            }
         }
     },
-    "requirements": [["wooden_adze", "stone_adze", "iron_adze", "gold_adze", "diamond_adze", "bronze_adze", "titanium_adze"]]
+    "requirements": [["wooden_adze", "stone_adze", "iron_adze", "gold_adze", "diamond_adze", "bronze_adze", "titanium_adze", "steel_adze"]]
+
 }

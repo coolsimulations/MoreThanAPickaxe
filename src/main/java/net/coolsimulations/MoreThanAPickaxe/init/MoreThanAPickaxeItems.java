@@ -1,5 +1,10 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
+import com.ToMe.trigems.ConfigHandler;
+import com.ToMe.trigems.ToolTiers;
+import com.coliwogg.gemsandcrystals.init.ItemInit.ModItemTier;
+
+import mod.gttiqwt.emeraldobsidian.lists.ToolMaterialList;
 import net.coolsimulations.MoreThanAPickaxe.item.AdzeItemTier;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
@@ -25,6 +30,15 @@ public class MoreThanAPickaxeItems {
 	//public static ToolMaterial steelToolMaterial = EnumHelper.addToolMaterial("steel_adze", 2, 500, 7, 2.5F, 9);
 
 	//public static final Tag<Item> STEEL_INGOT = new ItemTags.Wrapper(new ResourceLocation("forge", "ingots/steel"));
+	
+	public static Item emerald_adze;
+	public static Item obsidian_adze;
+
+	public static Item amethyst_adze;
+	public static Item ruby_adze;
+	public static Item sapphire_adze;
+	public static Item topaz_adze;
+	public static Item quartz_adze;
 
 	public static void init() {
 
@@ -52,6 +66,49 @@ public class MoreThanAPickaxeItems {
 				//titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F).setUnlocalizedName("titanium_adze_gc").setRegistryName("titanium_adze_gc").setCreativeTab(SPTabs.tabTools);
 			}
 		}
+		
+		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+			if(SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
+				emerald_adze = new ItemAdze(ToolTiers.EMERALD, 5.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+			} else if(SPCompatibilityManager.isEAOLoaded()) {
+				emerald_adze = new ItemAdze(ToolMaterialList.emerald, 0.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+			} else if(SPCompatibilityManager.isGACLoaded()) {
+				emerald_adze = new ItemAdze(ModItemTier.EMERALD, 5.5F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+			}
+		}
+		
+		if(SPCompatibilityManager.isObsidianMatieralModsLoaded()) {
+			if(SPCompatibilityManager.isEAOLoaded()) {
+				obsidian_adze = new ItemAdze(ToolMaterialList.obsidian, 0.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
+			} else if(SPCompatibilityManager.isOAATLoaded()) {
+				obsidian_adze = new ItemAdze(xmods.ota.api.ToolMaterialList.obsidian, 8.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
+			}
+		}
+		
+		if(SPCompatibilityManager.isTriGemsLoaded()) {
+			if(ConfigHandler.enableRuby)
+				ruby_adze = new ItemAdze(ToolTiers.RUBY, 5.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
+			if(ConfigHandler.enableSapphire)
+				sapphire_adze = new ItemAdze(ToolTiers.SAPPHIRE, 4.0F, -2.4F, new Item.Properties()).setRegistryName("sapphire_adze");
+			if(ConfigHandler.enableTopaz)
+				topaz_adze = new ItemAdze(ToolTiers.TOPAZ, 5.0F, -2.4F, new Item.Properties()).setRegistryName("topaz_adze");
+		} else if(SPCompatibilityManager.isGACLoaded()) {
+			ruby_adze = new ItemAdze(ModItemTier.RUBY, 5.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
+			sapphire_adze = new ItemAdze(ModItemTier.SAPPHIRE, 5.0F, -2.4F, new Item.Properties()).setRegistryName("sapphire_adze");
+			topaz_adze = new ItemAdze(ModItemTier.TOPAZ, 5.3F, -2.4F, new Item.Properties()).setRegistryName("topaz_adze");
+		}
+		
+		if(SPCompatibilityManager.isGACLoaded()) {
+			amethyst_adze = new ItemAdze(ModItemTier.AMETHYST, 5.7F, -2.4F, new Item.Properties()).setRegistryName("amethyst_adze");
+			quartz_adze = new ItemAdze(ModItemTier.QUARTZ, 6.5F, -2.4F, new Item.Properties()).setRegistryName("quartz_adze");
+		}
+		
+		if(SPCompatibilityManager.isVulcaniteLoaded())
+			MoreThanAPickaxeVulcanite.init();
+		
+		if(SPCompatibilityManager.isCarbonadoLoaded())
+			MoreThanAPickaxeCarbonado.init();
+
 	}
 
 	public static void register()
@@ -81,6 +138,39 @@ public class MoreThanAPickaxeItems {
 				//registerItem(titanium_adze_gc);
 			}
 		}
+		
+		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+			registerItem(emerald_adze);
+		}
+		
+		if(SPCompatibilityManager.isObsidianMatieralModsLoaded()) {
+			registerItem(obsidian_adze);
+		}
+		
+		if(SPCompatibilityManager.isTriGemsLoaded() ){
+			if(ConfigHandler.enableRuby)
+				registerItem(ruby_adze);
+			if(ConfigHandler.enableSapphire)
+				registerItem(sapphire_adze);
+			if(ConfigHandler.enableTopaz)
+				registerItem(topaz_adze);
+		} else if(SPCompatibilityManager.isGACLoaded()) {
+			registerItem(ruby_adze);
+			registerItem(sapphire_adze);
+			registerItem(topaz_adze);
+		}
+
+		
+		if(SPCompatibilityManager.isGACLoaded()) {
+			registerItem(amethyst_adze);
+			registerItem(quartz_adze);
+		}
+		
+		if(SPCompatibilityManager.isVulcaniteLoaded())
+			MoreThanAPickaxeVulcanite.register();
+		
+		if(SPCompatibilityManager.isCarbonadoLoaded())
+			MoreThanAPickaxeCarbonado.register();
 	}
 
 	public static void registerItem(Item item) {
