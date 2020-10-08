@@ -86,9 +86,9 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableEmeraldMaterial) {
+		if(!SPCompatibilityManager.isEmeraldMaterialModsLoaded() && SPConfig.enableEmeraldMaterial) {
 			emerald_adze = new ItemAdze(SPItems.emeraldToolMaterial, 4.5F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
-		} else if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+		} else if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isPI3xLoaded()) {
 				emerald_adze = new ItemAdze(EmeraldMaterial.TOOL, 4.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isFancyToolsLoaded()) {
@@ -102,9 +102,9 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableObsidianMaterial) {
+		if(!SPCompatibilityManager.isEmeraldMaterialModsLoaded() && SPConfig.enableObsidianMaterial) {
 			obsidian_adze = new ItemAdze(SPItems.obsidianToolMaterial, 1.5F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
-		} else if(SPCompatibilityManager.isObsidianMatieralModsLoaded()) {
+		} else if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isFancyToolsLoaded()) {
 				obsidian_adze = new ItemAdze(MaterialHandler.obsidian, 5.25F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isEAOLoaded()) {
@@ -189,13 +189,13 @@ public class MoreThanAPickaxeItems {
 			registerItem(titanium_adze_gc);
 		}
 		
-		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded() || SPConfig.enableEmeraldMaterial) {
+		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded() || SPConfig.enableEmeraldMaterial) {
 			registerItem(emerald_adze);
 		}
 		
-		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableEmeraldMaterial) {
+		if(!SPCompatibilityManager.isEmeraldMaterialModsLoaded() && SPConfig.enableEmeraldMaterial) {
 			registerItem(emerald_adze);
-		} else if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+		} else if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			if(!SPCompatibilityManager.isPI3xLoaded() && !SPCompatibilityManager.isFancyToolsLoaded() && SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
 				registerItem(emerald_adze);
 			} else {
@@ -203,7 +203,7 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(SPCompatibilityManager.isObsidianMatieralModsLoaded() || SPConfig.enableObsidianMaterial) {
+		if(SPCompatibilityManager.isObsidianMaterialModsLoaded() || SPConfig.enableObsidianMaterial) {
 			registerItem(obsidian_adze);
 		}
 		
@@ -268,9 +268,9 @@ public class MoreThanAPickaxeItems {
 			registerRender(titanium_adze_gc);
 		}
 		
-		if(!SPCompatibilityManager.isEmeraldMatieralModsLoaded() && SPConfig.enableEmeraldMaterial) {
+		if(!SPCompatibilityManager.isEmeraldMaterialModsLoaded() && SPConfig.enableEmeraldMaterial) {
 			registerRender(emerald_adze);
-		} else if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+		} else if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			if(!SPCompatibilityManager.isPI3xLoaded() && !SPCompatibilityManager.isFancyToolsLoaded() && SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
 				registerRender(emerald_adze);
 			} else {
@@ -278,7 +278,7 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(SPCompatibilityManager.isObsidianMatieralModsLoaded() || SPConfig.enableObsidianMaterial) {
+		if(SPCompatibilityManager.isObsidianMaterialModsLoaded() || SPConfig.enableObsidianMaterial) {
 			registerRender(obsidian_adze);
 		}
 		

@@ -87,10 +87,10 @@ public class MoreThanAPicakxeAetherLegacyRecipes {
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.titanium_adze_gc, 2750));
 		}
 
-		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded() || SPConfig.enableEmeraldMaterial)
+		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded() || SPConfig.enableEmeraldMaterial)
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.emerald_adze, 3250));
 
-		if(SPCompatibilityManager.isObsidianMatieralModsLoaded() || SPConfig.enableObsidianMaterial)
+		if(SPCompatibilityManager.isObsidianMaterialModsLoaded() || SPConfig.enableObsidianMaterial)
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.obsidian_adze, 4250));
 
 		if((SPCompatibilityManager.isFutureMCLoaded() && FConfig.INSTANCE.getNetherUpdate().netherite) || SPCompatibilityManager.isNetheriteModLoaded())

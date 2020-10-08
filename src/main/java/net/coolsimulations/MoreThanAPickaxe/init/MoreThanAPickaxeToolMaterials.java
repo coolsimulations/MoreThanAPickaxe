@@ -20,9 +20,9 @@ public class MoreThanAPickaxeToolMaterials {
 	
 	public static void init() {
 		
-		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded() || SPConfig.enableEmeraldMaterial)
+		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded() || SPConfig.enableEmeraldMaterial)
 			setMaterial(MoreThanAPickaxeItems.emerald_adze, Items.EMERALD);
-		if(SPCompatibilityManager.isObsidianMatieralModsLoaded() || SPConfig.enableObsidianMaterial)
+		if(SPCompatibilityManager.isObsidianMaterialModsLoaded() || SPConfig.enableObsidianMaterial)
 			setMaterial(MoreThanAPickaxeItems.obsidian_adze, Blocks.OBSIDIAN);
 		if(SPCompatibilityManager.isFutureMCLoaded() && FConfig.INSTANCE.getNetherUpdate().netherite)
 			setMaterial(MoreThanAPickaxeItems.netherite_adze, Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FUTURE_MC_MODID, "netherite_ingot")));
