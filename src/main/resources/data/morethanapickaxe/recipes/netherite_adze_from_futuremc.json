@@ -1,0 +1,13 @@
+{
+    "type": "futuremc:smithing",
+    "input": {
+        "item": "morethanapickaxe:diamond_adze"
+    },
+    "material": {
+        "tag": "forge:ingots/netherite"
+    },
+    "material_cost": 1,
+    "result": {
+        "item": "morethanapickaxe:netherite_adze"
+    }
+}

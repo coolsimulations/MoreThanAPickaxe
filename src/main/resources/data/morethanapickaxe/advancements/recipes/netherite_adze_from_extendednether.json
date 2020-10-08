@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:netherite_adze_from_extendednether"
+    ]
+  },
+  "criteria": {
+    "has_netherite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "extendednether:netherite_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:netherite_adze_from_extendednether"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_netherite",
+      "has_the_recipe"
+    ]
+  ]
+}

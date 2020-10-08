@@ -11,7 +11,21 @@
   
   "item.morethanapickaxe.steel_adze": "Adze de Acero",
   "item.morethanapickaxe.desh_adze": "Adze de Desh",
+  "item.morethanapickaxe.sticky_desh_adze": "Adze de Desh Pegajoso",
   "item.morethanapickaxe.titanium_adze_gc": "Adze de Titanio",
+    
+  "item.morethanapickaxe.emerald_adze": "Adze de Esmeralda",
+  "item.morethanapickaxe.obsidian_adze": "Adze de Obsidiana",
+  "item.morethanapickaxe.netherite_adze": "Adze de Netherita",
+  
+  "item.morethanapickaxe.vulcanite_adze": "Adze de Vulcanita",
+  "item.morethanapickaxe.carbonado_adze": "Adze de Carbonado",
+  
+  "item.morethanapickaxe.amethyst_adze": "Adze de Amatista",
+  "item.morethanapickaxe.ruby_adze": "Adze de Rub\u00ed",
+  "item.morethanapickaxe.sapphire_adze": "Adze de Zafiro",
+  "item.morethanapickaxe.topaz_adze": "Adze de Topacio",
+  "item.morethanapickaxe.quartz_adze": "Adze de Cuarzo",
   
   "item.hammertime.itemdenseadzewood": "Adze Densa de Madera",
   "item.hammertime.itemdenseadzestone": "Adze Densa de Piedra",

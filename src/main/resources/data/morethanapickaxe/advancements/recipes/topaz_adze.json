@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:topaz_adze"
+    ]
+  },
+  "criteria": {
+    "has_topaz": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/topaz"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:topaz_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_topaz",
+      "has_the_recipe"
+    ]
+  ]
+}

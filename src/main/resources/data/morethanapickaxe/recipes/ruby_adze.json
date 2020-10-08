@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "stone_adze",
   "pattern": [
     "XXX",
     "X# ",
@@ -11,10 +10,10 @@
       "tag": "forge:rods/wooden"
     },
     "X": {
-      "tag": "forge:cobblestone"
+      "tag": "forge:gems/ruby"
     }
   },
   "result": {
-    "item": "morethanapickaxe:stone_adze"
+    "item": "morethanapickaxe:ruby_adze"
   }
 }

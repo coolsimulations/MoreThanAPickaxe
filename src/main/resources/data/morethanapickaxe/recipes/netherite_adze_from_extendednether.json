@@ -1,0 +1,12 @@
+{
+	"type": "extendednether:smithing",
+	"base": {
+		"item": "morethanapickaxe:diamond_adze"
+	},
+	"addition": {
+		"item": "extendednether:netherite_ingot"
+	},
+	"result": {
+		"item": "morethanapickaxe:netherite_adze"
+	}
+}
