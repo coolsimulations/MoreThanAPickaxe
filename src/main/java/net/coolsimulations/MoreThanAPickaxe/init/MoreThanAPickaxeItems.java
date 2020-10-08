@@ -67,7 +67,7 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
 				emerald_adze = new ItemAdze(ToolTiers.EMERALD, 5.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			} else if(SPCompatibilityManager.isEAOLoaded()) {
@@ -77,7 +77,7 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(SPCompatibilityManager.isObsidianMatieralModsLoaded()) {
+		if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isEAOLoaded()) {
 				obsidian_adze = new ItemAdze(ToolMaterialList.obsidian, 0.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			} else if(SPCompatibilityManager.isOAATLoaded()) {
@@ -139,11 +139,11 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(SPCompatibilityManager.isEmeraldMatieralModsLoaded()) {
+		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			registerItem(emerald_adze);
 		}
 		
-		if(SPCompatibilityManager.isObsidianMatieralModsLoaded()) {
+		if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			registerItem(obsidian_adze);
 		}
 		
