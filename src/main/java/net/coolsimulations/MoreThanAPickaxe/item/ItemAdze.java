@@ -338,6 +338,12 @@ public class ItemAdze extends ToolItem{
 
 		return multimap;
 	}
+	
+	@Override
+	public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker)
+    {
+        return stack.getItem() instanceof ItemAdze;
+    }
 
 	static {
 
