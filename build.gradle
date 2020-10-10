@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 
 def mcVersion = "1.16.3"
-def modVersion = "0.1.3b"
+def modVersion = "0.1.4"
 version = "${mcVersion}-${modVersion}"
 group = "net.coolsimulations.MoreThanAPickaxe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MoreThanAPickaxe"
@@ -74,8 +74,13 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.16.3-34.0.9'
 
-    compile files('libs/SurvivalPlus-API-1.16.3-0.1.3b.jar')
+    compile files('libs/SurvivalPlus-API-1.16.3-0.1.4.jar')
     compile files('libs/lumberjack-API-2.0.0.jar')
+    compile files('libs/Gems+and+Crystals-API-1.16.3-1.2.9.jar')
+    compile files('libs/sm-API-1.16.3-1.2.4.jar')
+    compile files('libs/OTA-API-2.02.jar')
+    compile files('libs/SimpleEmeraldMod-API-1.16.2.jar')
+    compile files('libs/EasyEmerald-API-1.16.3-1.0.9.jar')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"

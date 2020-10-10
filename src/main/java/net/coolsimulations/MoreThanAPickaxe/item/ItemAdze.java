@@ -14,8 +14,12 @@ import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.BushBlock;
+import net.minecraft.block.CampfireBlock;
+import net.minecraft.block.DoublePlantBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.material.Material;
+import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -27,6 +31,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.ToolItem;
+import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
@@ -100,12 +105,26 @@ public class ItemAdze extends ToolItem{
 		World world = context.getWorld();
 		BlockPos blockpos = context.getPos();
 		BlockState blockstate = world.getBlockState(blockpos);
-		Block block = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
-		if (block != null) {
+		Block blockStrip = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
+
+		BlockState iblockstate = world.getBlockState(blockpos);
+		Block block = iblockstate.getBlock();
+		BlockPos blockBelowBlockPos = new BlockPos(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ());
+
+		BlockState blockStateBelow = world.getBlockState(blockBelowBlockPos);
+		Block blockBelow = blockStateBelow.getBlock();
+		BlockPos blockAboveBlockPos = blockpos.up();
+
+		BlockPos blockTwiceBelowBlockPos = blockpos.down(2);
+
+		BlockPos blockTwiceAboveBlockPos = blockpos.up(2);
+
+
+		if (blockStrip != null) {
 			PlayerEntity playerentity = context.getPlayer();
 			world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			if (!world.isRemote) {
-				world.setBlockState(blockpos, (BlockState) block.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
+				world.setBlockState(blockpos, (BlockState) blockStrip.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
 				if (playerentity != null) {
 					context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
 				}
@@ -114,41 +133,122 @@ public class ItemAdze extends ToolItem{
 			return ActionResultType.SUCCESS;
 		}
 
-		if(!context.getPlayer().isCrouching()) {
+		if (blockstate.getBlock() instanceof CampfireBlock && blockstate.get(CampfireBlock.LIT)) {
+			world.playEvent((PlayerEntity)null, 1009, blockpos, 0);
+			world.setBlockState(blockpos, blockstate.with(CampfireBlock.LIT, Boolean.valueOf(false)), 11);
+		}
+
+		if(!context.getPlayer().isSneaking()) {
 
 			int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(context);
+			PlayerEntity playerentity = context.getPlayer();
 			if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
-			if (context.getFace() != Direction.DOWN && world.isAirBlock(blockpos.up())) {
-				BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockpos).getBlock());
-				if (iblockstate2 != null) {
-					PlayerEntity playerentity = context.getPlayer();
-					world.playSound(playerentity, blockpos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					if (!world.isRemote) {
-						world.setBlockState(blockpos, iblockstate2, 11);
-						if (playerentity != null) {
-							context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
-						}
-					}
+			if(context.getFace() != Direction.DOWN) {
+				if (world.isAirBlock(blockpos.up())) {
+					setBlockToFarmland(context, blockpos, world);
+				}
 
-					return ActionResultType.SUCCESS;
+				if(block instanceof BushBlock) {
+					BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
+
+					if(iblockstate2 != null && world.isAirBlock(blockAboveBlockPos)) {
+						setBlockToFarmland(context, blockBelowBlockPos, world);
+						if(!playerentity.isCreative())
+							block.harvestBlock(world, playerentity, blockpos, iblockstate, null, context.getItem());
+						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
+						return ActionResultType.SUCCESS;
+					}
+				}
+
+				if(block instanceof DoublePlantBlock) {
+					BlockState iblockstate2_below = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
+					BlockState iblockstate2_twice_below = HOE_LOOKUP.get(world.getBlockState(blockTwiceBelowBlockPos).getBlock());
+
+					if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAirBlock(blockTwiceAboveBlockPos)) {
+						setBlockToFarmland(context, blockBelowBlockPos, world);
+						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
+						return ActionResultType.SUCCESS;
+					} else if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAirBlock(blockAboveBlockPos)) {
+						setBlockToFarmland(context, blockTwiceBelowBlockPos, world);
+						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
+						return ActionResultType.SUCCESS;
+					}
 				}
 			}
 		} else {
-			if (context.getFace() != Direction.DOWN && world.getBlockState(blockpos.up()).isAir()) {
-				BlockState iblockstate1 = SHOVEL_LOOKUP.get(world.getBlockState(blockpos).getBlock());
-				if (iblockstate1 != null) {
-					PlayerEntity playerentity = context.getPlayer();
-					world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					if (!world.isRemote) {
-						world.setBlockState(blockpos, iblockstate1, 11);
-						if (playerentity != null) {
-							context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
-						}
-					}
+			if(context.getFace() != Direction.DOWN) {
+				PlayerEntity playerentity = context.getPlayer();
 
-					return ActionResultType.SUCCESS;
+				if (world.getBlockState(blockpos.up()).isAir()) {
+					setBlockToPath(context, blockpos, world);
+				}
+
+				if(block instanceof BushBlock) {
+					BlockState iblockstate2 = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
+
+					if(blockBelow == Blocks.GRASS || iblockstate2 != null && world.isAirBlock(blockAboveBlockPos)) {
+						setBlockToPath(context, blockBelowBlockPos, world);
+						if(!playerentity.isCreative())
+							block.harvestBlock(world, playerentity, blockpos, iblockstate, null, context.getItem());
+						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
+						return ActionResultType.SUCCESS;
+					}
+				}
+
+				if(block instanceof DoublePlantBlock) {
+					BlockState iblockstate2_below = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
+					BlockState iblockstate2_twice_below = SHOVEL_LOOKUP.get(world.getBlockState(blockTwiceBelowBlockPos).getBlock());
+
+					if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAirBlock(blockTwiceAboveBlockPos)) {
+						setBlockToPath(context, blockBelowBlockPos, world);
+						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
+						return ActionResultType.SUCCESS;
+					} else if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAirBlock(blockAboveBlockPos)) {
+						setBlockToPath(context, blockTwiceBelowBlockPos, world);
+						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
+						return ActionResultType.SUCCESS;
+					}
+				}
+
+			}
+		}
+
+		return ActionResultType.PASS;
+	}
+
+	protected ActionResultType setBlockToFarmland(ItemUseContext context, BlockPos blockpos, World world) {
+
+		BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockpos).getBlock());
+		if (iblockstate2 != null) {
+			PlayerEntity playerentity = context.getPlayer();
+			world.playSound(playerentity, blockpos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			if (!world.isRemote) {
+				world.setBlockState(blockpos, iblockstate2, 11);
+				if (playerentity != null) {
+					context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
 				}
 			}
+
+			return ActionResultType.SUCCESS;
+		}
+
+		return ActionResultType.PASS;
+	}
+
+	protected ActionResultType setBlockToPath(ItemUseContext context, BlockPos blockpos, World world) {
+
+		BlockState iblockstate1 = SHOVEL_LOOKUP.get(world.getBlockState(blockpos).getBlock());
+		if (iblockstate1 != null) {
+			PlayerEntity playerentity = context.getPlayer();
+			world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			if (!world.isRemote) {
+				world.setBlockState(blockpos, iblockstate1, 11);
+				if (playerentity != null) {
+					context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
+				}
+			}
+
+			return ActionResultType.SUCCESS;
 		}
 
 		return ActionResultType.PASS;
@@ -192,6 +292,14 @@ public class ItemAdze extends ToolItem{
 	{
 		return this.material.getEnchantability();
 	}
+	
+	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
+	{
+		if(enchantment.type == EnchantmentType.BREAKABLE || enchantment.type == EnchantmentType.WEAPON || enchantment.type == EnchantmentType.DIGGER)
+			return true;
+		else
+			return false;
+	}
 
 	/**
 	 * Return the name for this tool's material.
@@ -230,6 +338,12 @@ public class ItemAdze extends ToolItem{
 		return multimap;**/
 		return equipmentSlot == EquipmentSlotType.MAINHAND ? this.attribute : super.getAttributeModifiers(equipmentSlot);
 	}
+	
+	@Override
+	public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker)
+    {
+        return stack.getItem() instanceof ItemAdze;
+    }
 
 	static {
 

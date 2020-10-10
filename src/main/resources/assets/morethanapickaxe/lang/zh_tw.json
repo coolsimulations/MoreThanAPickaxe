@@ -11,7 +11,21 @@
   
   "item.morethanapickaxe.steel_adze": "\u92fc\u963f\u6fa4",
   "item.morethanapickaxe.desh_adze": "\u6234\u65af\u963f\u6fa4",
+  "item.morethanapickaxe.sticky_desh_adze": "\u9ecf\u6ed1\u6234\u65af\u963f\u6fa4",
   "item.morethanapickaxe.titanium_adze_gc": "\u949b\u963f\u6fa4",
+  
+  "item.morethanapickaxe.emerald_adze": "\u7da0\u5bf6\u77f3\u963f\u6fa4",
+  "item.morethanapickaxe.obsidian_adze": "\u9ed1\u66dc\u77f3\u963f\u6fa4",
+  "item.morethanapickaxe.netherite_adze": "\u4e0b\u754c\u5408\u91d1\u963f\u6fa4",
+  
+  "item.morethanapickaxe.vulcanite_adze": "\u0075\u006c\u77f3\u963f\u6fa4",
+  "item.morethanapickaxe.carbonado_adze": "\u5361\u6ce2\u7d0d\u591a\u963f\u6fa4",
+  
+  "item.morethanapickaxe.amethyst_adze": "\u7d2b\u6676\u963f\u6fa4",
+  "item.morethanapickaxe.ruby_adze": "\u7d05\u5bf6\u77f3\u963f\u6fa4",
+  "item.morethanapickaxe.sapphire_adze": "\u85cd\u5bf6\u77f3\u963f\u6fa4",
+  "item.morethanapickaxe.topaz_adze": "\u9ec3\u7389\u963f\u6fa4",
+  "item.morethanapickaxe.quartz_adze": "\u77f3\u82f1\u963f\u6fa4",
   
   "item.hammertime.itemdenseadzewood": "\u81f4\u5bc6\u6728\u963f\u6fa4",
   "item.hammertime.itemdenseadzestone": "\u81f4\u5bc6\u77f3\u963f\u6fa4",
