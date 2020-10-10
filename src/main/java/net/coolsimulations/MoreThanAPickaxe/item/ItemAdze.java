@@ -10,6 +10,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
+import net.coolsimulations.SurvivalPlus.api.item.SPItemAxe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -326,6 +327,12 @@ public class ItemAdze extends ToolItem{
 
 		return multimap;
 	}
+	
+	@Override
+	public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker)
+    {
+        return stack.getItem() instanceof ItemAdze;
+    }
 
 	static {
 
