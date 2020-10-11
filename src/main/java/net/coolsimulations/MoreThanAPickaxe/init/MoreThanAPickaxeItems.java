@@ -102,7 +102,7 @@ public class MoreThanAPickaxeItems {
 			}
 		}
 		
-		if(!SPCompatibilityManager.isEmeraldMaterialModsLoaded() && SPConfig.enableObsidianMaterial) {
+		if(!SPCompatibilityManager.isObsidianMaterialModsLoaded() && SPConfig.enableObsidianMaterial) {
 			obsidian_adze = new ItemAdze(SPItems.obsidianToolMaterial, 1.5F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
 		} else if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isFancyToolsLoaded()) {
