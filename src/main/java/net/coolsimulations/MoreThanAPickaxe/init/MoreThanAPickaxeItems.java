@@ -46,7 +46,7 @@ public class MoreThanAPickaxeItems {
 		iron_adze = new ItemAdze(ItemTier.IRON, 8.0F, -2.40F, new Item.Properties()).setRegistryName("iron_adze");
 		gold_adze = new ItemAdze(ItemTier.GOLD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("gold_adze");
 		diamond_adze = new ItemAdze(ItemTier.DIAMOND, 8.0F, -2.40F, new Item.Properties()).setRegistryName("diamond_adze");
-		netherite_adze = new ItemAdze(ItemTier.NETHERITE, 9.0F, -2.40F, new Item.Properties().func_234689_a_()).setRegistryName("netherite_adze");
+		netherite_adze = new ItemAdze(ItemTier.NETHERITE, 9.0F, -2.40F, new Item.Properties().isImmuneToFire()).setRegistryName("netherite_adze");
 		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 7.0F, -2.40F, new Item.Properties()).setRegistryName("bronze_adze");
 		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 8.0F, -2.40F, new Item.Properties()).setRegistryName("titanium_adze");
 

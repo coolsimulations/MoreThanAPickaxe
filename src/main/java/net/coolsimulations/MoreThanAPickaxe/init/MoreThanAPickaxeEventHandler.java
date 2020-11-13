@@ -45,8 +45,8 @@ public class MoreThanAPickaxeEventHandler {
 			if(!player.world.isRemote) {
 
 				TranslationTextComponent installInfo = new TranslationTextComponent("advancements.morethanapickaxe.install.display1");
-				installInfo.func_240699_a_(TextFormatting.GOLD);
-				player.func_241151_a_(installInfo, ChatType.SYSTEM, Util.field_240973_b_);
+				installInfo.mergeStyle(TextFormatting.GOLD);
+				player.func_241151_a_(installInfo, ChatType.SYSTEM, Util.DUMMY_UUID);
 
 			}
 		}
@@ -55,8 +55,8 @@ public class MoreThanAPickaxeEventHandler {
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.field_240973_b_);
-					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateVersionInfo.func_240700_a_((style) -> {return style.func_240716_a_(new HoverEvent(HoverEvent.Action.field_230550_a_, new TranslationTextComponent("sp.update.display2"))).func_240715_a_(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.field_240973_b_);
+					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
+					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateVersionInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
 				}
 			}, 16000);
 		}
