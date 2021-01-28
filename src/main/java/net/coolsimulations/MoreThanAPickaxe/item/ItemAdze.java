@@ -10,52 +10,52 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
-import net.coolsimulations.SurvivalPlus.api.item.SPItemAxe;
+import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.BushBlock;
-import net.minecraft.block.DoublePlantBlock;
-import net.minecraft.block.RotatedPillarBlock;
-import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.block.Material;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.block.PlantBlock;
+import net.minecraft.block.TallPlantBlock;
+import net.minecraft.block.enums.DoubleBlockHalf;
+import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifier.Operation;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributeModifier.Operation;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.ToolItem;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.MiningToolItem;
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
-public class ItemAdze extends ToolItem{
+public class ItemAdze extends MiningToolItem implements ItemAccessor {
 
 	protected final float attackDamage;
 	protected final float attackSpeed;
-	protected final IItemTier material;
+	protected final ToolMaterial material;
 	protected static final Set<Block> EFFECTIVE_ON;
 	protected static final Map<Block, Block> BLOCK_STRIPPING_MAP;
 	protected static final Map<Block, BlockState> SHOVEL_LOOKUP;
 	protected static final Map<Block, BlockState> HOE_LOOKUP;
 
-	public ItemAdze(IItemTier material, float damage, float speed, Item.Properties builder) {
-		super(damage, speed, material, EFFECTIVE_ON, builder.addToolType(net.minecraftforge.common.ToolType.AXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.PICKAXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.SHOVEL, material.getHarvestLevel()).group(SPTabs.tabTools).maxStackSize(1));
+	public ItemAdze(ToolMaterial material, float damage, float speed, FabricItemSettings builder) {
+		super(damage, speed, material, EFFECTIVE_ON, builder/**.addToolType(net.minecraftforge.common.ToolType.AXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.PICKAXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.SHOVEL, material.getHarvestLevel())**/.group(SPTabs.tabTools).maxCount(1));
 		this.material = material;
 		this.attackSpeed = speed;
 		this.attackDamage = damage;
 	}
 
-	public float getDestroySpeed(ItemStack stack, BlockState state)
+	public float getMiningSpeed(ItemStack stack, BlockState state)
 	{
 		Block block = state.getBlock();
 
@@ -65,39 +65,34 @@ public class ItemAdze extends ToolItem{
 		}
 		else {
 			Material material = state.getMaterial();
-			return material != Material.WOOD && material != Material.PLANTS && material != Material.TALL_PLANTS && material != Material.BAMBOO && material != Material.CORAL && material != Material.LEAVES && material != Material.GOURD && material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getDestroySpeed(stack, state) : this.efficiency;
+			return material != Material.WOOD && material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.BAMBOO && material != material.UNDERWATER_PLANT && material != Material.LEAVES && material != Material.PUMPKIN && material != Material.METAL && material != Material.ANVIL && material != material.STONE ? super.getMiningSpeed(stack, state) : this.miningSpeed;
 		}
 	}
-
-	/**
-	 * Check whether this Item can harvest the given Block
-	 */
-	public boolean canHarvestBlock(BlockState blockIn) {
-		Block block = blockIn.getBlock();
-		int i = this.getTier().getHarvestLevel();
-		if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.PICKAXE) {
-			return i >= blockIn.getHarvestLevel();
-		}
-
-		if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.AXE) {
-			return i >= blockIn.getHarvestLevel();
-		}
-
-		if (blockIn.getHarvestTool() == net.minecraftforge.common.ToolType.SHOVEL) {
-			return i >= blockIn.getHarvestLevel();
-		}
-
-		Material material = blockIn.getMaterial();
-		return material == Material.ROCK || material == Material.IRON || material == Material.ANVIL || block == Blocks.SNOW || block == Blocks.SNOW_BLOCK || block == Blocks.COBWEB;
-	}
+	
+	public boolean isEffectiveOn(BlockState state) {
+	      Block block = state.getBlock();
+	      int i = this.getMaterial().getMiningLevel();
+	      if (block == Blocks.OBSIDIAN) {
+	         return i == 3;
+	      } else if (block != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE && block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK && block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE && block != Blocks.REDSTONE_ORE) {
+	         if (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE && block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE) {
+	            Material material = state.getMaterial();
+	            return material == Material.STONE || material == Material.METAL || material == Material.ANVIL || block == Blocks.SNOW || block == Blocks.SNOW_BLOCK;
+	         } else {
+	            return i >= 1;
+	         }
+	      } else {
+	         return i >= 2;
+	      }
+	   }
 
 	/**
 	 * Called when this item is used when targetting a Block
 	 */
 	@Override
-	public ActionResultType onItemUse(ItemUseContext context) {
+	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
-		BlockPos blockpos = context.getPos();
+		BlockPos blockpos = context.getBlockPos();
 		BlockState blockstate = world.getBlockState(blockpos);
 		Block blockStrip = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
 
@@ -117,130 +112,128 @@ public class ItemAdze extends ToolItem{
 		if (blockStrip != null) {
 			PlayerEntity playerentity = context.getPlayer();
 			world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (!world.isRemote) {
-				world.setBlockState(blockpos, (BlockState) blockStrip.getDefaultState().with(RotatedPillarBlock.AXIS, blockstate.get(RotatedPillarBlock.AXIS)), 11);
+			if (!world.isClient) {
+				world.setBlockState(blockpos, (BlockState) blockStrip.getDefaultState().with(PillarBlock.AXIS, blockstate.get(PillarBlock.AXIS)), 11);
 				if (playerentity != null) {
-					context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
+					context.getStack().damage(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendToolBreakStatus(context.getHand());});
 				}
 			}
 
-			return ActionResultType.SUCCESS;
+			return ActionResult.SUCCESS;
 		}
 
-		if(!context.isPlacerSneaking()) {
+		if(!context.shouldCancelInteraction()) {
 
-			int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(context);
 			PlayerEntity playerentity = context.getPlayer();
-			if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
-			if(context.getFace() != Direction.DOWN) {
-				if (world.isAirBlock(blockpos.up())) {
+			if(context.getPlayerFacing() != Direction.DOWN) {
+				if (world.isAir(blockpos.up())) {
 					setBlockToFarmland(context, blockpos, world);
 				}
 				
-				if(block instanceof BushBlock) {
+				if(block instanceof PlantBlock) {
 					BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					
-					if(iblockstate2 != null && world.isAirBlock(blockAboveBlockPos)) {
+					if(iblockstate2 != null && world.isAir(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
 						if(!playerentity.isCreative())
-							block.harvestBlock(world, playerentity, blockpos, iblockstate, null, context.getItem());
+							block.afterBreak(world, playerentity, blockpos, iblockstate, null, context.getStack());
 						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
-						return ActionResultType.SUCCESS;
+						return ActionResult.SUCCESS;
 					}
 				}
 
-				if(block instanceof DoublePlantBlock) {
+				if(block instanceof TallPlantBlock) {
 					BlockState iblockstate2_below = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					BlockState iblockstate2_twice_below = HOE_LOOKUP.get(world.getBlockState(blockTwiceBelowBlockPos).getBlock());
 
-					if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAirBlock(blockTwiceAboveBlockPos)) {
+					if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAir(blockTwiceAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
-						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
-						return ActionResultType.SUCCESS;
-					} else if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAirBlock(blockAboveBlockPos)) {
+						block.onBreak(world, blockpos, iblockstate, playerentity);
+						return ActionResult.SUCCESS;
+					} else if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAir(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockTwiceBelowBlockPos, world);
-						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
-						return ActionResultType.SUCCESS;
+						block.onBreak(world, blockpos, iblockstate, playerentity);
+						return ActionResult.SUCCESS;
 					}
 				}
 			}
 		} else {
-			if(context.getFace() != Direction.DOWN) {
+			if(context.getPlayerFacing() != Direction.DOWN) {
 				PlayerEntity playerentity = context.getPlayer();
 				
 				if (world.getBlockState(blockpos.up()).isAir()) {
 					setBlockToPath(context, blockpos, world);
 				}
 				
-				if(block instanceof BushBlock) {
+				if(block instanceof PlantBlock) {
 					BlockState iblockstate2 = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 
-					if(blockBelow == Blocks.GRASS || iblockstate2 != null && world.isAirBlock(blockAboveBlockPos)) {
+					if(blockBelow == Blocks.GRASS || iblockstate2 != null && world.isAir(blockAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
 						if(!playerentity.isCreative())
-							block.harvestBlock(world, playerentity, blockpos, iblockstate, null, context.getItem());
+							block.afterBreak(world, playerentity, blockpos, iblockstate, null, context.getStack());
 						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
-						return ActionResultType.SUCCESS;
+						return ActionResult.SUCCESS;
 					}
 				}
 
-				if(block instanceof DoublePlantBlock) {
+				if(block instanceof TallPlantBlock) {
 					BlockState iblockstate2_below = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					BlockState iblockstate2_twice_below = SHOVEL_LOOKUP.get(world.getBlockState(blockTwiceBelowBlockPos).getBlock());
 					
-					if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAirBlock(blockTwiceAboveBlockPos)) {
+					if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAir(blockTwiceAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
-						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
-						return ActionResultType.SUCCESS;
-					} else if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAirBlock(blockAboveBlockPos)) {
+						block.onBreak(world, blockpos, iblockstate, playerentity);
+						return ActionResult.SUCCESS;
+					} else if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAir(blockAboveBlockPos)) {
 						setBlockToPath(context, blockTwiceBelowBlockPos, world);
-						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
-						return ActionResultType.SUCCESS;
+						block.onBreak(world, blockpos, iblockstate, playerentity);
+						return ActionResult.SUCCESS;
 					}
 				}
 
 			}
 		}
 
-		return ActionResultType.PASS;
+		return ActionResult.PASS;
 	}
 
-	protected ActionResultType setBlockToFarmland(ItemUseContext context, BlockPos blockpos, World world) {
+	protected ActionResult setBlockToFarmland(ItemUsageContext context, BlockPos blockpos, World world) {
 
 		BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockpos).getBlock());
 		if (iblockstate2 != null) {
 			PlayerEntity playerentity = context.getPlayer();
 			world.playSound(playerentity, blockpos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (!world.isRemote) {
+			if (!world.isClient) {
 				world.setBlockState(blockpos, iblockstate2, 11);
 				if (playerentity != null) {
-					context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
+					context.getStack().damage(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendToolBreakStatus(context.getHand());});
 				}
 			}
 
-			return ActionResultType.SUCCESS;
+			return ActionResult.SUCCESS;
 		}
 
-		return ActionResultType.PASS;
+		return ActionResult.PASS;
 	}
 
-	protected ActionResultType setBlockToPath(ItemUseContext context, BlockPos blockpos, World world) {
+	protected ActionResult setBlockToPath(ItemUsageContext context, BlockPos blockpos, World world) {
 
 		BlockState iblockstate1 = SHOVEL_LOOKUP.get(world.getBlockState(blockpos).getBlock());
 		if (iblockstate1 != null) {
 			PlayerEntity playerentity = context.getPlayer();
 			world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (!world.isRemote) {
+			if (!world.isClient) {
 				world.setBlockState(blockpos, iblockstate1, 11);
 				if (playerentity != null) {
-					context.getItem().damageItem(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendBreakAnimation(context.getHand());});
+					context.getStack().damage(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendToolBreakStatus(context.getHand());});
 				}
 			}
 
-			return ActionResultType.SUCCESS;
+			return ActionResult.SUCCESS;
 		}
 
-		return ActionResultType.PASS;
+		return ActionResult.PASS;
 	}
 
 	/**
@@ -255,20 +248,20 @@ public class ItemAdze extends ToolItem{
 	 * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
 	 * the damage on the stack.
 	 */
-	public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
+	public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker)
 	{
-		stack.damageItem(1, attacker, (player) -> {player.sendBreakAnimation(EquipmentSlotType.MAINHAND);});
+		stack.damage(1, attacker, (player) -> {player.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);});
 		return true;
 	}
 
 	/**
 	 * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
 	 */
-	public boolean onBlockDestroyed(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving)
+	public boolean postMine(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving)
 	{
-		if ((double)state.getBlockHardness(worldIn, pos) != 0.0D)
+		if ((double)state.getHardness(worldIn, pos) != 0.0D)
 		{
-			stack.damageItem(2, entityLiving, (player) -> {player.sendBreakAnimation(EquipmentSlotType.MAINHAND);});
+			stack.damage(2, entityLiving, (player) -> {player.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);});
 		}
 
 		return true;
@@ -277,14 +270,15 @@ public class ItemAdze extends ToolItem{
 	/**
 	 * Return the enchantability factor of the item, most of the time is based on material.
 	 */
-	public int getItemEnchantability()
+	public int getEnchantability()
 	{
 		return this.material.getEnchantability();
 	}
 	
+	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
 	{
-		if(enchantment.type == EnchantmentType.BREAKABLE || enchantment.type == EnchantmentType.WEAPON || enchantment.type == EnchantmentType.DIGGER)
+		if(enchantment.type == EnchantmentTarget.BREAKABLE || enchantment.type == EnchantmentTarget.WEAPON || enchantment.type == EnchantmentTarget.DIGGER)
 			return true;
 		else
 			return false;
@@ -302,10 +296,10 @@ public class ItemAdze extends ToolItem{
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
-	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
+	public boolean canRepair(ItemStack toRepair, ItemStack repair)
 	{
 
-		return this.material.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+		return this.material.getRepairIngredient().test(repair) || super.canRepair(toRepair, repair);
 
 		/**ItemStack mat = this.material.getRepairItemStack();
         if (mat != null && net.minecraftforge.oredict.OreDictionary.itemMatches(mat, repair, false)) return true;
@@ -315,14 +309,14 @@ public class ItemAdze extends ToolItem{
 	/**
 	 * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
 	 */
-	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EquipmentSlotType equipmentSlot)
+	public Multimap<String, EntityAttributeModifier> getModifiers(EquipmentSlot equipmentSlot)
 	{
-		Multimap<String, AttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
+		Multimap<String, EntityAttributeModifier> multimap = super.getModifiers(equipmentSlot);
 
-		if (equipmentSlot == EquipmentSlotType.MAINHAND)
+		if (equipmentSlot == EquipmentSlot.MAINHAND)
 		{
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double)this.attackDamage, Operation.ADDITION));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.4000000953674316D, Operation.ADDITION));
+			multimap.put(EntityAttributes.ATTACK_DAMAGE.getId(), new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_UUID, "Weapon modifier", (double)this.attackDamage, Operation.ADDITION));
+			multimap.put(EntityAttributes.ATTACK_SPEED.getId(), new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Weapon modifier", -2.4000000953674316D, Operation.ADDITION));
 		}
 
 		return multimap;

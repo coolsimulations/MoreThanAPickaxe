@@ -7,5 +7,4 @@ public class Reference {
 	public static final String ACCEPTED_VERSIONS = "[1.14, 1.14.4]";
 	public static final String CLIENT_PROXY_CLASS = "net.coolsimulations.MoreThanAPickaxe.proxy.ClientProxy";
 	public static final String SERVER_PROXY_CLASS = "net.coolsimulations.MoreThanAPickaxe.proxy.ServerProxy";
-	public static final String DEPENDENCIES = "required-after:forge@[28.1.20,);required-after:survivalplus@[0.1.4,);";
 }

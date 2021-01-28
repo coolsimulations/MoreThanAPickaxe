@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "tag": "forge:rods/wooden"
+      "tag": "c:wood_sticks"
     },
     "X": {
-      "tag": "forge:ingots/steel"
+      "tag": "c:steel_ingots"
     }
   },
   "result": {

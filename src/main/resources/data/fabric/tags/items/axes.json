@@ -1,0 +1,14 @@
+
+{
+	"replace": false,
+	"values": [
+		"morethanapickaxe:wooden_adze",
+		"morethanapickaxe:stone_adze",
+		"morethanapickaxe:iron_adze",
+		"morethanapickaxe:gold_adze",
+		"morethanapickaxe:diamond_adze",
+		"morethanapickaxe:bronze_adze",
+		"morethanapickaxe:titanium_adze",
+		"morethanapickaxe:steel_adze"
+	]
+}

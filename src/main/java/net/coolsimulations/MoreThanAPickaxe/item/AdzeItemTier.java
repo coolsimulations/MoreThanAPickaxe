@@ -1,17 +1,16 @@
 package net.coolsimulations.MoreThanAPickaxe.item;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.LazyLoadBase;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeMod;
-
 import java.util.function.Supplier;
 
-public enum AdzeItemTier implements IItemTier {
+import net.minecraft.item.ToolMaterial;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.tag.ItemTags;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Lazy;
+
+public enum AdzeItemTier implements ToolMaterial {
     steelToolMaterial(2, 500, 7.0F, 2.5F, 9, () -> {
-    	return Ingredient.fromTag(new ItemTags.Wrapper(new ResourceLocation(ForgeMod.getInstance().getModId(), "ingots/steel")));
+    	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "steel_ingots")));
     });
 
     private final int harvestLevel;
@@ -19,7 +18,7 @@ public enum AdzeItemTier implements IItemTier {
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final LazyLoadBase<Ingredient> repairMaterial;
+    private final Lazy<Ingredient> repairMaterial;
 
     AdzeItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
         this.harvestLevel = harvestLevelIn;
@@ -27,14 +26,14 @@ public enum AdzeItemTier implements IItemTier {
         this.efficiency = efficiencyIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
-        this.repairMaterial = new LazyLoadBase(repairMaterialIn);
+        this.repairMaterial = new Lazy(repairMaterialIn);
     }
 
-    public int getMaxUses() {
+    public int getDurability() {
         return this.maxUses;
     }
 
-    public float getEfficiency() {
+    public float getMiningSpeed() {
         return this.efficiency;
     }
 
@@ -42,7 +41,7 @@ public enum AdzeItemTier implements IItemTier {
         return this.attackDamage;
     }
 
-    public int getHarvestLevel() {
+    public int getMiningLevel() {
         return this.harvestLevel;
     }
 
@@ -50,7 +49,7 @@ public enum AdzeItemTier implements IItemTier {
         return this.enchantability;
     }
 
-    public Ingredient getRepairMaterial() {
-        return this.repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+        return this.repairMaterial.get();
     }
 }

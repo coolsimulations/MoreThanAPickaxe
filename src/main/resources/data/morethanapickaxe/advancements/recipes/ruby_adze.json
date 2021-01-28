@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:gems/ruby"
+            "tag": "c:rubies"
           }
         ]
       }

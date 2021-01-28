@@ -7,12 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "galacticraftplanets:item_basic_mars",
-      "data": 1
+      "item": "galacticraft-rewoven:desh_stick"
     },
     "X": {
-      "type": "forge:ore_dict",
-      "ore": "ingotDesh"
+      "item": "galacticraft-rewoven:desh_ingot"
     }
   },
   "result": {

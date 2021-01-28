@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "morethanapickaxe",
+  "version": "${version}",
+
+  "name": "MoreThanAPickaxe",
+  "description": "This mod is an add-on to SurvivalPlus that adds a multitool which is a pickaxe, axe, sword, hoe, and shovel.",
+  "authors": [
+    "coolsim"
+  ],
+  "contact": {
+    "homepage": "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric",
+    "sources": "http://github.com/coolsimulations/morethanapickaxe/",
+    "issues": "http://github.com/coolsimulations/morethanapickaxe/issues/"
+  },
+
+  "license": "All Rights Reserved",
+  "icon": "logo.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.coolsimulations.MoreThanAPickaxe.MoreThanAPickaxe"
+    ]
+  },
+  
+  "depends": {
+    "fabricloader": ">=0.10.8",
+    "fabric": "*",
+    "minecraft": "1.14.4",
+    "survivalplus": "*"
+  }
+}

@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "tag": "forge:ingots/iron"
+      "tag": "c:wood_sticks"
     },
     "X": {
-      "tag": "forge:compressed/titanium"
+      "tag": "c:titanium_compressed"
     }
   },
   "result": {
