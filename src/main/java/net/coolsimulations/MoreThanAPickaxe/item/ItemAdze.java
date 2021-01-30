@@ -3,6 +3,8 @@ package net.coolsimulations.MoreThanAPickaxe.item;
 import java.util.Map;
 import java.util.Set;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.ImmutableSet;
@@ -327,6 +329,26 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
     {
         return stack.getItem() instanceof ItemAdze;
     }
+	
+	@Override
+	public boolean isShield(ItemStack stack, @Nullable LivingEntity entity) {
+		return false;
+	}
+
+	@Override
+	public boolean onDroppedByPlayer(ItemStack item, PlayerEntity player) {
+		return true;
+	}
+
+	@Override
+	public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
+		return false;
+	}
+
+	@Override
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player) {
+		return false;
+	}
 
 	static {
 
