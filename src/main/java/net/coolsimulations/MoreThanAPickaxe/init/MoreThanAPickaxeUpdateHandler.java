@@ -22,7 +22,7 @@ public class MoreThanAPickaxeUpdateHandler {
 	public static void init() {
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/versionchecker114.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/versionchecker115.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
             s.close();
@@ -31,7 +31,7 @@ public class MoreThanAPickaxeUpdateHandler {
         }
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/updateinfo114.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/updateinfo115.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersionInfo = s.nextLine();
             s.close();

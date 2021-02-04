@@ -28,7 +28,25 @@ dependencies {
 
 	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
-        compile files('libs/SurvivalPlus-Fabric-1.14.4-0.1.4b-API.jar')
+        compile files('libs/SurvivalPlus-Fabric-1.15.2-0.1.4b-API.jar')
+
+        compile files('libs/vanillaenhanced-0.3.0-Dev.jar')
+
+        compile files('libs/EmeraldTools-Fabric-1.15.2-1.0.2-Dev.jar')
+
+        compile files('libs/MoreGems-Fabric_1.15.2-1.0.8-Dev.jar')
+
+        compile files('libs/quartz-tools-justfatlard-0.2.0-Dev.jar')
+
+        compile files('libs/emerald-tools-justfatlard-0.2.3-Dev.jar')
+
+        compile files('libs/ruby-mod-1.0.0-Dev.jar')
+
+        compile files('libs/emerald-mod-1.0.0-Dev.jar')
+
+        compile files('libs/Simply-Emerald-v1.0-Beta-Dev.jar')
+
+        compile files('libs/emerald-tools-1.0.0-Dev.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.

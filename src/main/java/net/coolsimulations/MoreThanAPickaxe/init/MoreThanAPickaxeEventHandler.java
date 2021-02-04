@@ -28,7 +28,7 @@ public class MoreThanAPickaxeEventHandler {
 			
 			CompoundTag entityData = ((EntityAccessor) player).getPersistentData();
 
-			ServerAdvancementLoader manager = server.getAdvancementManager();
+			ServerAdvancementLoader manager = server.getAdvancementLoader();
 			Advancement install = manager.get(new Identifier(Reference.MOD_ID, Reference.MOD_ID + "/install"));
 
 			boolean isDone = false;

@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "steel_adze",
   "pattern": [
     "XXX",
     "X# ",
@@ -11,10 +10,10 @@
       "tag": "c:wood_sticks"
     },
     "X": {
-      "tag": "c:steel_ingots"
+      "item": "more_gems:citrine"
     }
   },
   "result": {
-    "item": "morethanapickaxe:steel_adze"
+    "item": "morethanapickaxe:citrine_adze"
   }
 }

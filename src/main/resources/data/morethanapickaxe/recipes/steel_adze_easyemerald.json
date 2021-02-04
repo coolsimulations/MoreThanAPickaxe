@@ -11,7 +11,7 @@
       "tag": "c:wood_sticks"
     },
     "X": {
-      "tag": "c:steel_ingots"
+      "item": "emerald_tools:steel_ingot"
     }
   },
   "result": {

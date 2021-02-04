@@ -27,6 +27,11 @@
   "item.morethanapickaxe.topaz_adze": "\u9ec4\u7389\u963f\u6cfd",
   "item.morethanapickaxe.quartz_adze": "\u77f3\u82f1\u963f\u6cfd",
   
+  "item.morethanapickaxe.alexandrite_adze": "\u4e9a\u5386\u5c71\u5927\u77f3\u963f\u6cfd",
+  "item.morethanapickaxe.citrine_adze": "\u8336\u6676\u963f\u6cfd",
+  "item.morethanapickaxe.tourmaline_adze": "\u7535\u6c14\u77f3\u963f\u6cfd",
+  "item.morethanapickaxe.corundum_adze": "\u521a\u7389\u963f\u6cfd",
+  
   "advancements.morethanapickaxe.install": "\u4e0d\u53ea\u662f\u9550\u5b89\u88c5",
   "advancements.morethanapickaxe.install.desc": "\u4e0b\u8f7d\u5e76\u5b89\u88c5\u4e0d\u53ea\u662f\u9550",
   "advancements.morethanapickaxe.install.display1": "coolsim\u8c22\u8c22\u60a8\u7684\u4e0b\u8f7d\u4e0d\u53ea\u662f\u9550\uff01",
