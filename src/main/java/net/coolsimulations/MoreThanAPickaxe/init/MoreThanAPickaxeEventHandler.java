@@ -9,11 +9,15 @@ import net.coolsimulations.SurvivalPlus.api.events.EntityAccessor;
 import net.coolsimulations.SurvivalPlus.api.events.SPPlayerJoinEvent;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.MessageType;
 import net.minecraft.server.ServerAdvancementLoader;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.HoverEvent;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 
 public class MoreThanAPickaxeEventHandler {
 
@@ -46,9 +50,8 @@ public class MoreThanAPickaxeEventHandler {
 				if(!player.world.isClient) {
 
 					TranslatableText installInfo = new TranslatableText("advancements.morethanapickaxe.install.display1");
-					installInfo.getStyle().setColor(Formatting.GOLD);
-					player.sendMessage(installInfo);
-
+					installInfo.formatted(Formatting.GOLD);
+					player.sendMessage(installInfo, MessageType.SYSTEM, Util.NIL_UUID);
 				}
 			}
 
@@ -56,8 +59,8 @@ public class MoreThanAPickaxeEventHandler {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo);
-						player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo);
+						player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo.setStyle(MoreThanAPickaxeUpdateHandler.updateInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"))), MessageType.SYSTEM, Util.NIL_UUID);
+						player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo.setStyle(MoreThanAPickaxeUpdateHandler.updateVersionInfo.getStyle().withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"))), MessageType.SYSTEM, Util.NIL_UUID);
 					}
 				}, 16000);
 			}

@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
@@ -25,8 +26,8 @@ import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributeModifier.Operation;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -45,6 +46,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	protected final float attackDamage;
 	protected final float attackSpeed;
 	protected final ToolMaterial material;
+	private final Multimap<EntityAttribute, EntityAttributeModifier> attribute;
 	protected static final Set<Block> EFFECTIVE_ON;
 	protected static final Map<Block, Block> BLOCK_STRIPPING_MAP;
 	protected static final Map<Block, BlockState> SHOVEL_LOOKUP;
@@ -55,9 +57,13 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 		this.material = material;
 		this.attackSpeed = speed;
 		this.attackDamage = damage;
+		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> attributeBuilder = ImmutableMultimap.<EntityAttribute, EntityAttributeModifier>builder();
+		attributeBuilder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", (double)this.attackDamage, EntityAttributeModifier.Operation.ADDITION));
+		attributeBuilder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", (double)this.attackSpeed, EntityAttributeModifier.Operation.ADDITION));
+		this.attribute = attributeBuilder.build();
 	}
 
-	public float getMiningSpeed(ItemStack stack, BlockState state)
+	public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
 	{
 		Block block = state.getBlock();
 
@@ -67,7 +73,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 		}
 		else {
 			Material material = state.getMaterial();
-			return material != Material.WOOD && material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.BAMBOO && material != material.UNDERWATER_PLANT && material != Material.LEAVES && material != Material.GOURD && material != Material.METAL && material != Material.REPAIR_STATION && material != material.STONE ? super.getMiningSpeed(stack, state) : this.miningSpeed;
+			return material != Material.WOOD && material != Material.NETHER_WOOD && material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.BAMBOO && material != material.UNDERWATER_PLANT && material != Material.LEAVES && material != Material.GOURD && material != Material.METAL && material != Material.REPAIR_STATION && material != material.STONE ? super.getMiningSpeedMultiplier(stack, state) : this.miningSpeed;
 		}
 	}
 	
@@ -311,17 +317,18 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	/**
 	 * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
 	 */
-	public Multimap<String, EntityAttributeModifier> getModifiers(EquipmentSlot equipmentSlot)
+	public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot equipmentSlot)
 	{
-		Multimap<String, EntityAttributeModifier> multimap = super.getModifiers(equipmentSlot);
+		/**Multimap<EntityAttribute, EntityAttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EquipmentSlot.MAINHAND)
 		{
-			multimap.put(EntityAttributes.ATTACK_DAMAGE.getId(), new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_UUID, "Weapon modifier", (double)this.attackDamage, Operation.ADDITION));
-			multimap.put(EntityAttributes.ATTACK_SPEED.getId(), new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_UUID, "Weapon modifier", -2.4000000953674316D, Operation.ADDITION));
+			multimap.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", (double)this.attackDamage, Operation.ADDITION));
+			multimap.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", -2.4000000953674316D, Operation.ADDITION));
 		}
 
-		return multimap;
+		return multimap;**/
+		return equipmentSlot == EquipmentSlot.MAINHAND ? this.attribute : super.getAttributeModifiers(equipmentSlot);
 	}
 	
 	@Override
@@ -383,6 +390,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 						Blocks.DARK_OAK_LOG, Blocks.CHEST, Blocks.PUMPKIN, Blocks.CARVED_PUMPKIN, Blocks.JACK_O_LANTERN,
 						Blocks.MELON, Blocks.LADDER, Blocks.SCAFFOLDING, Blocks.OAK_BUTTON, Blocks.SPRUCE_BUTTON,
 						Blocks.BIRCH_BUTTON, Blocks.JUNGLE_BUTTON, Blocks.DARK_OAK_BUTTON, Blocks.ACACIA_BUTTON,
+						Blocks.CRIMSON_BUTTON, Blocks.WARPED_BUTTON,
 						Blocks.OAK_PRESSURE_PLATE, Blocks.SPRUCE_PRESSURE_PLATE, Blocks.BIRCH_PRESSURE_PLATE,
 						Blocks.JUNGLE_PRESSURE_PLATE, Blocks.DARK_OAK_PRESSURE_PLATE, Blocks.ACACIA_PRESSURE_PLATE,
 						Blocks.CLAY, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL,
@@ -392,7 +400,10 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 						Blocks.YELLOW_CONCRETE_POWDER, Blocks.LIME_CONCRETE_POWDER, Blocks.PINK_CONCRETE_POWDER,
 						Blocks.GRAY_CONCRETE_POWDER, Blocks.LIGHT_GRAY_CONCRETE_POWDER, Blocks.CYAN_CONCRETE_POWDER,
 						Blocks.PURPLE_CONCRETE_POWDER, Blocks.BLUE_CONCRETE_POWDER, Blocks.BROWN_CONCRETE_POWDER,
-						Blocks.GREEN_CONCRETE_POWDER, Blocks.RED_CONCRETE_POWDER, Blocks.BLACK_CONCRETE_POWDER});
+						Blocks.GREEN_CONCRETE_POWDER, Blocks.RED_CONCRETE_POWDER, Blocks.BLACK_CONCRETE_POWDER, Blocks.SOUL_SOIL,
+						Blocks.NETHER_WART_BLOCK, Blocks.WARPED_WART_BLOCK, Blocks.HAY_BLOCK, Blocks.DRIED_KELP_BLOCK,
+						Blocks.TARGET, Blocks.SHROOMLIGHT, Blocks.SPONGE, Blocks.WET_SPONGE,
+						Blocks.JUNGLE_LEAVES, Blocks.OAK_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.DARK_OAK_LEAVES,Blocks.ACACIA_LEAVES, Blocks.BIRCH_LEAVES});
 
 		BLOCK_STRIPPING_MAP = (new Builder()).put(Blocks.OAK_WOOD, Blocks.STRIPPED_OAK_WOOD)
 				.put(Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG).put(Blocks.DARK_OAK_WOOD, Blocks.STRIPPED_DARK_OAK_WOOD)
@@ -401,6 +412,8 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 				.put(Blocks.BIRCH_WOOD, Blocks.STRIPPED_BIRCH_WOOD).put(Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG)
 				.put(Blocks.JUNGLE_WOOD, Blocks.STRIPPED_JUNGLE_WOOD).put(Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG)
 				.put(Blocks.SPRUCE_WOOD, Blocks.STRIPPED_SPRUCE_WOOD).put(Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG)
+				.put(Blocks.WARPED_STEM, Blocks.STRIPPED_WARPED_STEM).put(Blocks.WARPED_HYPHAE, Blocks.STRIPPED_WARPED_HYPHAE)
+				.put(Blocks.CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_STEM).put(Blocks.CRIMSON_HYPHAE, Blocks.STRIPPED_CRIMSON_HYPHAE)
 				.build();
 
 		SHOVEL_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.GRASS_PATH.getDefaultState()));

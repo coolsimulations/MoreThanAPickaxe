@@ -10,7 +10,7 @@ import net.minecraft.util.Lazy;
 
 public enum AdzeItemTier implements ToolMaterial {
     steelToolMaterial(2, 500, 7.0F, 2.5F, 9, () -> {
-    	return Ingredient.fromTag(new ItemTags.CachingTag(new Identifier("c", "steel_ingots")));
+    	return Ingredient.fromTag(ItemTags.getTagGroup().getTag(new Identifier("c", "steel_ingots")));
     });
 
     private final int harvestLevel;
@@ -33,7 +33,7 @@ public enum AdzeItemTier implements ToolMaterial {
         return this.maxUses;
     }
 
-    public float getMiningSpeed() {
+    public float getMiningSpeedMultiplier() {
         return this.efficiency;
     }
 

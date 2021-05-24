@@ -3,6 +3,13 @@ plugins {
 	id 'maven-publish'
 }
 
+repositories {
+	maven {
+		name = 'TerraformersMC'
+		url = 'https://maven.terraformersmc.com/'
+	}
+}
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -22,31 +29,27 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
+	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
 	modImplementation "me.shedaniel.cloth:config-2:${project.cloth_version}"
 
 	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
-        compile files('libs/SurvivalPlus-Fabric-1.15.2-0.1.4b-API.jar')
+        compile files('libs/SurvivalPlus-Fabric-1.16.5-0.1.4d-API.jar')
 
-        compile files('libs/vanillaenhanced-0.3.0-Dev.jar')
+        compile files('libs/vanillaenhanced-1.5.0-Dev.jar')
 
-        compile files('libs/EmeraldTools-Fabric-1.15.2-1.0.2-Dev.jar')
+        compile files('libs/EmeraldTools-Fabric-1.16.5-1.1.2-Dev.jar')
 
-        compile files('libs/MoreGems-Fabric_1.15.2-1.0.8-Dev.jar')
+        compile files('libs/MoreGems-Fabric_1.16.5-1.1.22-Dev.jar')
 
-        compile files('libs/quartz-tools-justfatlard-0.2.0-Dev.jar')
+        compile files('libs/ruby-mod-1.1.1-Dev.jar')
 
-        compile files('libs/emerald-tools-justfatlard-0.2.3-Dev.jar')
+        compile files('libs/emerald-mod-1.0.1-Dev.jar')
 
-        compile files('libs/ruby-mod-1.0.0-Dev.jar')
+        compile files('libs/SimpleEmeraldMod-1.16.2-FABRIC-Dev.jar')
 
-        compile files('libs/emerald-mod-1.0.0-Dev.jar')
-
-        compile files('libs/Simply-Emerald-v1.0-Beta-Dev.jar')
-
-        compile files('libs/emerald-tools-1.0.0-Dev.jar')
+        compile files('libs/amethyst-mod-1.0.0-Dev.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
