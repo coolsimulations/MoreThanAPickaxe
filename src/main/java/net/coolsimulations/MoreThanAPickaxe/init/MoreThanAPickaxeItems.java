@@ -1,12 +1,11 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
-import com.kwpugh.emerald_tools.EmeraldTools;
 import com.kwpugh.emerald_tools.materials.ModToolMaterials;
-import com.vanillaenhanced.materials.items.ToolMaterialEmerald;
 import com.vanillaenhanced.materials.items.ToolMaterialObsidian;
 import com.vanillaenhanced.materials.items.ToolMaterialSteel;
 
 import de.deeprobin.emeraldmod.EmeraldMod;
+import de.deeprobin.rubymod.RubyMod;
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.MoreThanAPickaxe.item.AdzeItemTier;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
@@ -112,8 +111,15 @@ public class MoreThanAPickaxeItems {
 			quartz_adze = new ItemAdze(new justfatlard.quartz_tools.QuartzToolMaterial(), 5.0F, -2.40F, new FabricItemSettings());
 		}
 		
-		if(SPCompatibilityManager.isMoreGemsLoaded()) {
+		if(SPCompatibilityManager.isRobinsRubyLoaded()) {
+			ruby_adze = new ItemAdze(RubyMod.TOOL_MATERIAL, 6.0F, -1.80F, new FabricItemSettings());
+		} else if(SPCompatibilityManager.isMoreGemsLoaded()) {
 			ruby_adze = new ItemAdze(com.kwpugh.more_gems.materials.ModToolMaterial.RUBY, 5.0F, -2.40F, new FabricItemSettings());
+		} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
+			ruby_adze = new ItemAdze(ModToolMaterials.RUBY, 5.0F, -2.40F, new FabricItemSettings());
+		}
+		
+		if(SPCompatibilityManager.isMoreGemsLoaded()) {
 			amethyst_adze = new ItemAdze(com.kwpugh.more_gems.materials.ModToolMaterial.AMETHYST, 5.0F, -2.40F, new FabricItemSettings());
 			topaz_adze = new ItemAdze(com.kwpugh.more_gems.materials.ModToolMaterial.TOPAZ, 5.0F, -2.40F, new FabricItemSettings());
 			sapphire_adze = new ItemAdze(com.kwpugh.more_gems.materials.ModToolMaterial.SAPPHIRE, 5.0F, -2.40F, new FabricItemSettings());
@@ -123,8 +129,6 @@ public class MoreThanAPickaxeItems {
 			alexandrite_adze = new ItemAdze(com.kwpugh.more_gems.materials.ModToolMaterial.ALEXANDRITE, 5.0F, -2.40F, new FabricItemSettings());
 			corundum_adze = new ItemAdze(com.kwpugh.more_gems.materials.ModToolMaterial.CORUNDUM, 5.0F, -2.40F, new FabricItemSettings());
 			carbonado_adze = new ItemAdze(com.kwpugh.more_gems.materials.ModToolMaterial.CARBONADO, 5.0F, -2.40F, new FabricItemSettings());
-		} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
-			ruby_adze = new ItemAdze(ModToolMaterials.RUBY, 5.0F, -2.40F, new FabricItemSettings());
 		}
 
 	}
@@ -169,7 +173,7 @@ public class MoreThanAPickaxeItems {
 			registerItem(quartz_adze, "quartz_adze");
 		}
 		
-		if(SPCompatibilityManager.isMoreGemsLoaded() || SPCompatibilityManager.isEasyEmeraldLoaded()) {
+		if(SPCompatibilityManager.isRobinsRubyLoaded() || SPCompatibilityManager.isMoreGemsLoaded() || SPCompatibilityManager.isEasyEmeraldLoaded()) {
 			registerItem(ruby_adze, "ruby_adze");
 		}
 		
