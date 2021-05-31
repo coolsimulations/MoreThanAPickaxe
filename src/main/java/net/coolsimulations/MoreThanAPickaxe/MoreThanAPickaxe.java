@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPicakxeAetherLegacyRecipes;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeFuelHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeHammerTime;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeLumberjack;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, dependencies = Reference.DEPENDENCIES, updateJSON = "https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json")
 public class MoreThanAPickaxe {
@@ -68,6 +70,7 @@ public class MoreThanAPickaxe {
 		System.out.println("Init");
 		proxy.init();
 		MoreThanAPickaxeToolMaterials.init();
+		GameRegistry.registerFuelHandler(new MoreThanAPickaxeFuelHandler());
 	}
 
 	@EventHandler
