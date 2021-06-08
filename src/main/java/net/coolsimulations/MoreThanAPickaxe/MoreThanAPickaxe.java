@@ -1,6 +1,7 @@
 package net.coolsimulations.MoreThanAPickaxe;
 
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeFuelHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeVillagerTrade;
@@ -25,6 +26,7 @@ public class MoreThanAPickaxe implements ModInitializer {
 		MoreThanAPickaxeUpdateHandler.init();
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
+		MoreThanAPickaxeFuelHandler.init();
 		MoreThanAPickaxeVillagerTrade.init();
 		SPTrades.postInitVillagerTrades();
 	}

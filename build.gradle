@@ -28,7 +28,7 @@ dependencies {
 
 	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
-        compile files('libs/SurvivalPlus-Fabric-1.14.4-0.1.4b-API.jar')
+        compile files('libs/SurvivalPlus-Fabric-1.14.4-0.1.5-API.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
