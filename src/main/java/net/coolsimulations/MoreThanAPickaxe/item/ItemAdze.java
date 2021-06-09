@@ -132,11 +132,13 @@ public class ItemAdze extends ToolItem{
 		if (blockstate.getBlock() instanceof CampfireBlock && blockstate.get(CampfireBlock.LIT)) {
 			world.playEvent((PlayerEntity)null, 1009, blockpos, 0);
 			world.setBlockState(blockpos, blockstate.with(CampfireBlock.LIT, Boolean.valueOf(false)), 11);
+			return ActionResultType.SUCCESS;
 		}
 		
 		if (SPCompatibilityManager.isExtendedNetherBackportLoaded() && blockstate.getBlock() instanceof SoulCampfireBlock && blockstate.get(SoulCampfireBlock.LIT)) {
 			world.playEvent((PlayerEntity)null, 1009, blockpos, 0);
 			world.setBlockState(blockpos, blockstate.with(SoulCampfireBlock.LIT, Boolean.valueOf(false)), 11);
+			return ActionResultType.SUCCESS;
 		}
 
 		if(!context.getPlayer().isSneaking()) {
