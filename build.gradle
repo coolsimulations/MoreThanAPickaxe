@@ -28,7 +28,7 @@ dependencies {
 
 	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
-        compile files('libs/SurvivalPlus-Fabric-1.15.2-0.1.4b-API.jar')
+        compile files('libs/SurvivalPlus-Fabric-1.15.2-0.1.5-API.jar')
 
         compile files('libs/vanillaenhanced-0.3.0-Dev.jar')
 

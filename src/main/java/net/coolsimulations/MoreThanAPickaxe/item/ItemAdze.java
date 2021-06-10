@@ -17,6 +17,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.block.PlantBlock;
@@ -51,7 +52,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	protected static final Map<Block, BlockState> HOE_LOOKUP;
 
 	public ItemAdze(ToolMaterial material, float damage, float speed, FabricItemSettings builder) {
-		super(damage, speed, material, EFFECTIVE_ON, builder/**.addToolType(net.minecraftforge.common.ToolType.AXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.PICKAXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.SHOVEL, material.getHarvestLevel())**/.group(SPTabs.tabTools).maxCount(1));
+		super(damage, speed, material, EFFECTIVE_ON, builder.group(SPTabs.tabTools).maxCount(1));
 		this.material = material;
 		this.attackSpeed = speed;
 		this.attackDamage = damage;
@@ -121,6 +122,12 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 				}
 			}
 
+			return ActionResult.SUCCESS;
+		}
+		
+		if (blockstate.getBlock() instanceof CampfireBlock && blockstate.get(CampfireBlock.LIT)) {
+			world.playLevelEvent((PlayerEntity)null, 1009, blockpos, 0);
+			world.setBlockState(blockpos, blockstate.with(CampfireBlock.LIT, Boolean.valueOf(false)), 11);
 			return ActionResult.SUCCESS;
 		}
 
