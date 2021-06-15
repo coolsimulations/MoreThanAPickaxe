@@ -46,7 +46,7 @@ public class MoreThanAPickaxeItems {
 		iron_adze = new ItemAdze(ItemTier.IRON, 8.0F, -2.40F, new Item.Properties()).setRegistryName("iron_adze");
 		gold_adze = new ItemAdze(ItemTier.GOLD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("gold_adze");
 		diamond_adze = new ItemAdze(ItemTier.DIAMOND, 8.0F, -2.40F, new Item.Properties()).setRegistryName("diamond_adze");
-		netherite_adze = new ItemAdze(ItemTier.NETHERITE, 9.0F, -2.40F, new Item.Properties().isImmuneToFire()).setRegistryName("netherite_adze");
+		netherite_adze = new ItemAdze(ItemTier.NETHERITE, 9.0F, -2.40F, new Item.Properties().fireResistant()).setRegistryName("netherite_adze");
 		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 7.0F, -2.40F, new Item.Properties()).setRegistryName("bronze_adze");
 		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 8.0F, -2.40F, new Item.Properties()).setRegistryName("titanium_adze");
 
@@ -75,7 +75,7 @@ public class MoreThanAPickaxeItems {
 			} else if (SPCompatibilityManager.isStandardMaterialsLoaded()) {
 				emerald_adze = new ItemAdze(com.baconbombing.standardmaterials.materials.ModItemTier.EMERALD, 5.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
-				emerald_adze = new ItemAdze(com.kwpugh.easy_emerald.lists.ToolMaterialList.EMERALD, 7.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+				emerald_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.EMERALD_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			}
 		}
 		
@@ -84,6 +84,8 @@ public class MoreThanAPickaxeItems {
 				obsidian_adze = new ItemAdze(ToolMaterialList.obsidian, 8.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			} else if (SPCompatibilityManager.isStandardMaterialsLoaded()) {
 				obsidian_adze = new ItemAdze(com.baconbombing.standardmaterials.materials.ModItemTier.OBSIDIAN, 5.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
+			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
+				obsidian_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			}
 		}
 		
@@ -94,7 +96,7 @@ public class MoreThanAPickaxeItems {
 			amethyst_adze = new ItemAdze(ModItemTier.AMETHYST, 5.7F, -2.4F, new Item.Properties()).setRegistryName("amethyst_adze");
 			quartz_adze = new ItemAdze(ModItemTier.QUARTZ, 6.5F, -2.4F, new Item.Properties()).setRegistryName("quartz_adze");			
 		} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
-			ruby_adze = new ItemAdze(com.kwpugh.easy_emerald.lists.ToolMaterialList.RUBY, 8.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
+			ruby_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.RUBY_TOOL_MATERIAL, 8.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
 		}
 
 	}

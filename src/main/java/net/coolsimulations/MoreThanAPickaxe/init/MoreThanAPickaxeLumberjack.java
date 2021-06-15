@@ -34,7 +34,7 @@ public class MoreThanAPickaxeLumberjack {
         if (event.phase != TickEvent.Phase.START) return;
         if (event.side != LogicalSide.SERVER) return;
 
-        final UUID uuid = event.player.getUniqueID();
+        final UUID uuid = event.player.getUUID();
 
         // If there are no blocks to chop, return
         if (!nextMap.containsKey(uuid) || nextMap.get(uuid).isEmpty()) return;
@@ -44,7 +44,7 @@ public class MoreThanAPickaxeLumberjack {
         for (BlockPos point : ImmutableSet.copyOf(nextMap.get(uuid)))
         {
             // This indirectly causes breakEvent to be invoked
-            ((ServerPlayerEntity) event.player).interactionManager.tryHarvestBlock(point);
+            ((ServerPlayerEntity) event.player).gameMode.destroyBlock(point);
             // Remove the current point
             nextMap.remove(uuid, point);
             if (i++ > LumberjackConfig.GENERAL.tickLimit.get()) break;
@@ -60,14 +60,14 @@ public class MoreThanAPickaxeLumberjack {
     {
         final PlayerEntity player = event.getPlayer();
         if (player == null) return;
-        final UUID uuid = player.getUniqueID();
+        final UUID uuid = player.getUUID();
         final BlockState state = event.getState();
         // Only interact if wood or leaves
         if (!(state.getMaterial() == Material.WOOD || (LumberjackConfig.GENERAL.leaves.get() && state.getMaterial() == Material.LEAVES)))
             return;
 
         // Only interact if  the item matches
-        ItemStack itemStack = player.getHeldItemMainhand();
+        ItemStack itemStack = player.getMainHandItem();
         if (itemStack == ItemStack.EMPTY || !(itemStack.getItem() instanceof ItemAdze && !player.isCrouching())) return;
 
         // We are chopping the current block, so save that info
@@ -80,7 +80,7 @@ public class MoreThanAPickaxeLumberjack {
             {
                 for (int offsetY = -1; offsetY <= 1; offsetY++)
                 {
-                    BlockPos newPoint = event.getPos().add(offsetX, offsetY, offsetZ);
+                    BlockPos newPoint = event.getPos().offset(offsetX, offsetY, offsetZ);
                     // Avoid doing the same block more then once
                     if (nextMap.containsEntry(uuid, newPoint) || pointMap.containsEntry(uuid, newPoint)) continue;
 

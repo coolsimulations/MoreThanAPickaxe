@@ -1,12 +1,12 @@
 modLoader="javafml"
-loaderVersion="[35,]"
+loaderVersion="[36,]"
 issueTrackerURL="http://github.com/coolsimulations/morethanapickaxe/issues/"
 logoFile="logo.png"
 license="All rights reserved"
 
 [[mods]]
     modId="morethanapickaxe"
-    version="0.1.4"
+    version="0.1.5"
     updateJSONURL="https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"
     displayName="More Than A Pickaxe"
@@ -18,18 +18,18 @@ license="All rights reserved"
 [[dependencies.morethanapickaxe]]
     modId="forge"
     mandatory=true
-    versionRange="[35.0.15,)"
+    versionRange="[36.1.20,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.morethanapickaxe]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.4]"
+    versionRange="[1.16.5]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.morethanapickaxe]]
     modId="survivalplus"
     mandatory=true
-    versionRange="[0.1.4c,)"
+    versionRange="[0.1.5,]"
     ordering="BEFORE"
     side="BOTH"

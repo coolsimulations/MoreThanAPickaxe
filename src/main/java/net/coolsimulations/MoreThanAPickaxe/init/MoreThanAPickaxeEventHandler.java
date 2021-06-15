@@ -27,14 +27,14 @@ public class MoreThanAPickaxeEventHandler {
 		ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 		CompoundNBT entityData = player.getPersistentData();
 
-		AdvancementManager manager = player.getServer().getAdvancementManager();
+		AdvancementManager manager = player.getServer().getAdvancements();
 		Advancement install = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/install"));
 
 		boolean isDone = false;
 
 		Timer timer = new Timer();
 
-		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
+		if(install !=null && player.getAdvancements().getOrStartProgress(install).hasProgress()) {
 			isDone = true;
 		}
 
@@ -42,11 +42,11 @@ public class MoreThanAPickaxeEventHandler {
 
 			entityData.putBoolean("morethanapickaxe.firstJoin", true);
 
-			if(!player.world.isRemote) {
+			if(!player.level.isClientSide) {
 
 				TranslationTextComponent installInfo = new TranslationTextComponent("advancements.morethanapickaxe.install.display1");
-				installInfo.mergeStyle(TextFormatting.GOLD);
-				player.func_241151_a_(installInfo, ChatType.SYSTEM, Util.DUMMY_UUID);
+				installInfo.withStyle(TextFormatting.GOLD);
+				player.sendMessage(installInfo, ChatType.SYSTEM, Util.NIL_UUID);
 
 			}
 		}
@@ -55,8 +55,8 @@ public class MoreThanAPickaxeEventHandler {
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
-					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
-					player.func_241151_a_(MoreThanAPickaxeUpdateHandler.updateVersionInfo.modifyStyle((style) -> {return style.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.DUMMY_UUID);
+					player.sendMessage(MoreThanAPickaxeUpdateHandler.updateInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.NIL_UUID);
+					player.sendMessage(MoreThanAPickaxeUpdateHandler.updateVersionInfo.withStyle((style) -> {return style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2"))).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));}), ChatType.SYSTEM, Util.NIL_UUID);
 				}
 			}, 16000);
 		}

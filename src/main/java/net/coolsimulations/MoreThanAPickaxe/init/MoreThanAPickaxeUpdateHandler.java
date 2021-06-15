@@ -46,13 +46,13 @@ public class MoreThanAPickaxeUpdateHandler {
 				isOld = true;
 				
 				TranslationTextComponent morethanapickaxe = new TranslationTextComponent("morethanapickaxe.name");
-				morethanapickaxe.mergeStyle(TextFormatting.BLUE);
+				morethanapickaxe.withStyle(TextFormatting.BLUE);
 				
 				StringTextComponent MCVersion = new StringTextComponent(MCPVersion.getMCVersion());
-				MCVersion.mergeStyle(TextFormatting.BLUE);
+				MCVersion.withStyle(TextFormatting.BLUE);
 				
 				updateInfo = new TranslationTextComponent("sp.update.display3", new Object[] {morethanapickaxe, MCVersion});
-				updateInfo.mergeStyle(TextFormatting.YELLOW);
+				updateInfo.withStyle(TextFormatting.YELLOW);
 				
 				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2")));
 				//updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));
@@ -64,13 +64,13 @@ public class MoreThanAPickaxeUpdateHandler {
 				isOld = true;
 				
 				TranslationTextComponent morethanapickaxe = new TranslationTextComponent("morethanapickaxe.name");
-				morethanapickaxe.mergeStyle(TextFormatting.BLUE);
+				morethanapickaxe.withStyle(TextFormatting.BLUE);
 				
 				StringTextComponent version = new StringTextComponent(latestVersion);
-				version.mergeStyle(TextFormatting.BLUE);
+				version.withStyle(TextFormatting.BLUE);
 				
 				updateInfo = new TranslationTextComponent("sp.update.display1", new Object[] {morethanapickaxe, version});
-				updateInfo.mergeStyle(TextFormatting.YELLOW);
+				updateInfo.withStyle(TextFormatting.YELLOW);
 				
 				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2")));
 				//updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));
@@ -78,8 +78,8 @@ public class MoreThanAPickaxeUpdateHandler {
 				if(latestVersionInfo != null) {
 					
 					updateVersionInfo = new StringTextComponent(latestVersionInfo);
-					updateVersionInfo.mergeStyle(TextFormatting.DARK_AQUA);
-					updateVersionInfo.mergeStyle(TextFormatting.BOLD);
+					updateVersionInfo.withStyle(TextFormatting.DARK_AQUA);
+					updateVersionInfo.withStyle(TextFormatting.BOLD);
 					
 					//updateVersionInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2")));
 					//updateVersionInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"));
