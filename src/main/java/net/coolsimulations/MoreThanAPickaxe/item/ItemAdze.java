@@ -169,7 +169,7 @@ public class ItemAdze extends ItemTool{
 				if (facing != EnumFacing.DOWN)
 				{
 					if(worldIn.isAirBlock(blockAboveBlockPos))
-						setBlockToFarmland(iblockstate, block, pos, stack, worldIn, playerIn);
+						return setBlockToFarmland(iblockstate, block, pos, stack, worldIn, playerIn);
 
 					if(block instanceof BlockBush) {
 
@@ -208,7 +208,7 @@ public class ItemAdze extends ItemTool{
 				if (facing != EnumFacing.DOWN)
 				{
 					if(worldIn.isAirBlock(blockAboveBlockPos))
-						setBlockToPath(iblockstate, block, pos, stack, worldIn, playerIn);
+						return setBlockToPath(iblockstate, block, pos, stack, worldIn, playerIn);
 					
 					if(block instanceof BlockBush) {
 
@@ -237,10 +237,10 @@ public class ItemAdze extends ItemTool{
 				{
 					return EnumActionResult.PASS;
 				}
+				
+				return EnumActionResult.PASS;
 			}
 		}
-
-		return EnumActionResult.PASS;
 	}
 
 	protected EnumActionResult setBlockToFarmland(IBlockState iblockstate, Block block, BlockPos pos, ItemStack stack, World worldIn, EntityPlayer playerIn) {
