@@ -4,20 +4,18 @@ import java.net.URL;
 import java.util.Scanner;
 
 import net.coolsimulations.MoreThanAPickaxe.Reference;
+import net.minecraft.ChatFormatting;
 import net.minecraft.SharedConstants;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.HoverEvent;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.TextComponent;
 
 public class MoreThanAPickaxeUpdateHandler {
 	
 	private static String latestVersion;
 	private static String latestVersionInfo;
 	public static boolean isOld = false;
-	public static TranslatableText updateInfo = null;
-	public static LiteralText updateVersionInfo = null;
+	public static TranslatableComponent updateInfo = null;
+	public static TextComponent updateVersionInfo = null;
 	
 	public static void init() {
 		
@@ -45,16 +43,16 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableText morethanapickaxe = new TranslatableText("morethanapickaxe.name");
-				morethanapickaxe.formatted(Formatting.BLUE);
+				TranslatableComponent morethanapickaxe = new TranslatableComponent("morethanapickaxe.name");
+				morethanapickaxe.withStyle(ChatFormatting.BLUE);
 				
-				LiteralText MCVersion = new LiteralText(SharedConstants.getGameVersion().getName());
-				MCVersion.formatted(Formatting.BLUE);
+				TextComponent MCVersion = new TextComponent(SharedConstants.getCurrentVersion().getName());
+				MCVersion.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableText("sp.update.display3", new Object[] {morethanapickaxe, MCVersion});
-				updateInfo.formatted(Formatting.YELLOW);
+				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {morethanapickaxe, MCVersion});
+				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2")));
+				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
 				//updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"));
 				
 			}
@@ -63,24 +61,24 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableText morethanapickaxe = new TranslatableText("morethanapickaxe.name");
-				morethanapickaxe.formatted(Formatting.BLUE);
+				TranslatableComponent morethanapickaxe = new TranslatableComponent("morethanapickaxe.name");
+				morethanapickaxe.withStyle(ChatFormatting.BLUE);
 				
-				LiteralText version = new LiteralText(latestVersion);
-				version.formatted(Formatting.BLUE);
+				TextComponent version = new TextComponent(latestVersion);
+				version.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableText("sp.update.display1", new Object[] {morethanapickaxe, version});
-				updateInfo.formatted(Formatting.YELLOW);
+				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {morethanapickaxe, version});
+				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2")));
+				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
 				//updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"));
 				
 				if(latestVersionInfo != null) {
 					
-					updateVersionInfo = new LiteralText(latestVersionInfo);
-					updateVersionInfo.formatted(Formatting.DARK_AQUA, Formatting.BOLD);
+					updateVersionInfo = new TextComponent(latestVersionInfo);
+					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD);
 					
-					//updateVersionInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("sp.update.display2")));
+					//updateVersionInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
 					//updateVersionInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"));
 					
 				}

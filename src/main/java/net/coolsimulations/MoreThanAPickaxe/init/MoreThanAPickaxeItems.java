@@ -16,10 +16,10 @@ import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.Item;
-import net.minecraft.item.ToolMaterials;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 
 public class MoreThanAPickaxeItems {
 
@@ -57,12 +57,12 @@ public class MoreThanAPickaxeItems {
 
 	public static void init() {
 
-		wooden_adze = new ItemAdze(ToolMaterials.WOOD, 6.0F, -2.40F, new FabricItemSettings());
-		stone_adze = new ItemAdze(ToolMaterials.STONE, 8.0F, -2.40F, new FabricItemSettings());
-		iron_adze = new ItemAdze(ToolMaterials.IRON, 8.0F, -2.40F, new FabricItemSettings());
-		gold_adze = new ItemAdze(ToolMaterials.GOLD, 6.0F, -2.40F, new FabricItemSettings());
-		diamond_adze = new ItemAdze(ToolMaterials.DIAMOND, 8.0F, -2.40F, new FabricItemSettings());
-		netherite_adze = new ItemAdze(ToolMaterials.NETHERITE, 9.0F, -2.40F, new FabricItemSettings().fireproof());
+		wooden_adze = new ItemAdze(Tiers.WOOD, 6.0F, -2.40F, new FabricItemSettings());
+		stone_adze = new ItemAdze(Tiers.STONE, 8.0F, -2.40F, new FabricItemSettings());
+		iron_adze = new ItemAdze(Tiers.IRON, 8.0F, -2.40F, new FabricItemSettings());
+		gold_adze = new ItemAdze(Tiers.GOLD, 6.0F, -2.40F, new FabricItemSettings());
+		diamond_adze = new ItemAdze(Tiers.DIAMOND, 8.0F, -2.40F, new FabricItemSettings());
+		netherite_adze = new ItemAdze(Tiers.NETHERITE, 9.0F, -2.40F, new FabricItemSettings().fireproof());
 		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 7.0F, -2.40F, new FabricItemSettings());
 		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 8.0F, -2.40F, new FabricItemSettings());
 
@@ -208,6 +208,6 @@ public class MoreThanAPickaxeItems {
 
 	public static void registerItem(Item item, String registryName) {
 
-		Registry.register(Registry.ITEM, new Identifier(Reference.MOD_ID, registryName), item);
+		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, registryName), item);
 	}
 }

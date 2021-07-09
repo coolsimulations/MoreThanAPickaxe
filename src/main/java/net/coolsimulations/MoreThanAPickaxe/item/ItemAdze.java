@@ -15,55 +15,56 @@ import com.google.common.collect.Multimap;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.block.TallPlantBlock;
-import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.MiningToolItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.material.Material;
 
-public class ItemAdze extends MiningToolItem implements ItemAccessor {
+public class ItemAdze extends DiggerItem implements ItemAccessor {
 
 	protected final float attackDamage;
 	protected final float attackSpeed;
-	protected final ToolMaterial material;
-	private final Multimap<EntityAttribute, EntityAttributeModifier> attribute;
+	protected final Tier material;
+	private final Multimap<Attribute, AttributeModifier> attribute;
 	protected static final Set<Block> EFFECTIVE_ON;
 	protected static final Map<Block, Block> BLOCK_STRIPPING_MAP;
 	protected static final Map<Block, BlockState> SHOVEL_LOOKUP;
 	protected static final Map<Block, BlockState> HOE_LOOKUP;
 
-	public ItemAdze(ToolMaterial material, float damage, float speed, FabricItemSettings builder) {
-		super(damage, speed, material, EFFECTIVE_ON, builder/**.addToolType(net.minecraftforge.common.ToolType.AXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.PICKAXE, material.getHarvestLevel()).addToolType(net.minecraftforge.common.ToolType.SHOVEL, material.getHarvestLevel())**/.group(SPTabs.tabTools).maxCount(1));
+	public ItemAdze(Tier material, float damage, float speed, FabricItemSettings builder) {
+		super(damage, speed, material, EFFECTIVE_ON, builder.group(SPTabs.tabTools).maxCount(1));
 		this.material = material;
 		this.attackSpeed = speed;
 		this.attackDamage = damage;
-		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> attributeBuilder = ImmutableMultimap.<EntityAttribute, EntityAttributeModifier>builder();
-		attributeBuilder.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", (double)this.attackDamage, EntityAttributeModifier.Operation.ADDITION));
-		attributeBuilder.put(EntityAttributes.GENERIC_ATTACK_SPEED, new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier", (double)this.attackSpeed, EntityAttributeModifier.Operation.ADDITION));
+		ImmutableMultimap.Builder<Attribute, AttributeModifier> attributeBuilder = ImmutableMultimap.<Attribute, AttributeModifier>builder();
+		attributeBuilder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
+		attributeBuilder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)this.attackSpeed, AttributeModifier.Operation.ADDITION));
 		this.attribute = attributeBuilder.build();
 	}
 
-	public float getMiningSpeedMultiplier(ItemStack stack, BlockState state)
+	public float getDestroySpeed(ItemStack stack, BlockState state)
 	{
 		Block block = state.getBlock();
 
@@ -73,19 +74,19 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 		}
 		else {
 			Material material = state.getMaterial();
-			return material != Material.WOOD && material != Material.NETHER_WOOD && material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.BAMBOO && material != material.UNDERWATER_PLANT && material != Material.LEAVES && material != Material.GOURD && material != Material.METAL && material != Material.REPAIR_STATION && material != material.STONE ? super.getMiningSpeedMultiplier(stack, state) : this.miningSpeed;
+			return material != Material.WOOD && material != Material.NETHER_WOOD && material != Material.PLANT && material != Material.REPLACEABLE_PLANT && material != Material.BAMBOO && material != material.CORAL && material != Material.LEAVES && material != Material.VEGETABLE && material != Material.METAL && material != Material.HEAVY_METAL && material != material.STONE ? super.getDestroySpeed(stack, state) : this.speed;
 		}
 	}
 	
-	public boolean isEffectiveOn(BlockState state) {
+	public boolean isCorrectToolForDrops(BlockState state) {
 	      Block block = state.getBlock();
-	      int i = this.getMaterial().getMiningLevel();
+	      int i = this.getTier().getLevel();
 	      if (block == Blocks.OBSIDIAN) {
 	         return i == 3;
 	      } else if (block != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE && block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK && block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE && block != Blocks.REDSTONE_ORE) {
 	         if (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE && block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE) {
 	            Material material = state.getMaterial();
-	            return material == Material.STONE || material == Material.METAL || material == Material.REPAIR_STATION || block == Blocks.SNOW || block == Blocks.SNOW_BLOCK;
+	            return material == Material.STONE || material == Material.METAL || material == Material.HEAVY_METAL || block == Blocks.SNOW || block == Blocks.SNOW_BLOCK;
 	         } else {
 	            return i >= 1;
 	         }
@@ -98,9 +99,9 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	 * Called when this item is used when targetting a Block
 	 */
 	@Override
-	public ActionResult useOnBlock(ItemUsageContext context) {
-		World world = context.getWorld();
-		BlockPos blockpos = context.getBlockPos();
+	public InteractionResult useOn(UseOnContext context) {
+		Level world = context.getLevel();
+		BlockPos blockpos = context.getClickedPos();
 		BlockState blockstate = world.getBlockState(blockpos);
 		Block blockStrip = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
 
@@ -110,166 +111,174 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 
 		BlockState blockStateBelow = world.getBlockState(blockBelowBlockPos);
 		Block blockBelow = blockStateBelow.getBlock();
-		BlockPos blockAboveBlockPos = blockpos.up();
+		BlockPos blockAboveBlockPos = blockpos.above();
 
-		BlockPos blockTwiceBelowBlockPos = blockpos.down(2);
+		BlockPos blockTwiceBelowBlockPos = blockpos.below(2);
 
-		BlockPos blockTwiceAboveBlockPos = blockpos.up(2);
+		BlockPos blockTwiceAboveBlockPos = blockpos.above(2);
 
 
 		if (blockStrip != null) {
-			PlayerEntity playerentity = context.getPlayer();
-			world.playSound(playerentity, blockpos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (!world.isClient) {
-				world.setBlockState(blockpos, (BlockState) blockStrip.getDefaultState().with(PillarBlock.AXIS, blockstate.get(PillarBlock.AXIS)), 11);
+			Player playerentity = context.getPlayer();
+			world.playSound(playerentity, blockpos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+			if (!world.isClientSide) {
+				world.setBlock(blockpos, (BlockState) blockStrip.defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockstate.getValue(RotatedPillarBlock.AXIS)), 11);
 				if (playerentity != null) {
-					context.getStack().damage(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendToolBreakStatus(context.getHand());});
+					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 				}
 			}
 
-			return ActionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
+		}
+		
+		if (blockstate.getBlock() instanceof CampfireBlock && blockstate.getValue(CampfireBlock.LIT)) {
+			world.levelEvent((Player)null, 1009, blockpos, 0);
+			world.setBlock(blockpos, blockstate.setValue(CampfireBlock.LIT, Boolean.valueOf(false)), 11);
+			return InteractionResult.SUCCESS;
 		}
 
-		if(!context.shouldCancelInteraction()) {
+		if(!context.getPlayer().isCrouching()) {
 
-			PlayerEntity playerentity = context.getPlayer();
-			if(context.getPlayerFacing() != Direction.DOWN) {
-				if (world.isAir(blockpos.up())) {
-					setBlockToFarmland(context, blockpos, world);
+			Player playerentity = context.getPlayer();
+			if(context.getClickedFace() != Direction.DOWN) {
+				if (world.isEmptyBlock(blockpos.above())) {
+					return setBlockToFarmland(context, blockpos, world);
 				}
 				
-				if(block instanceof PlantBlock) {
+				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					
-					if(iblockstate2 != null && world.isAir(blockAboveBlockPos)) {
+					if(iblockstate2 != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
 						if(!playerentity.isCreative())
-							block.afterBreak(world, playerentity, blockpos, iblockstate, null, context.getStack());
-						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
-						return ActionResult.SUCCESS;
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
+						return InteractionResult.SUCCESS;
 					}
 				}
 
-				if(block instanceof TallPlantBlock) {
+				if(block instanceof DoublePlantBlock) {
 					BlockState iblockstate2_below = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					BlockState iblockstate2_twice_below = HOE_LOOKUP.get(world.getBlockState(blockTwiceBelowBlockPos).getBlock());
 
-					if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAir(blockTwiceAboveBlockPos)) {
+					if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isEmptyBlock(blockTwiceAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
-						block.onBreak(world, blockpos, iblockstate, playerentity);
-						return ActionResult.SUCCESS;
-					} else if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAir(blockAboveBlockPos)) {
+						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						return InteractionResult.SUCCESS;
+					} else if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockTwiceBelowBlockPos, world);
-						block.onBreak(world, blockpos, iblockstate, playerentity);
-						return ActionResult.SUCCESS;
+						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						return InteractionResult.SUCCESS;
 					}
 				}
 			}
+			
+			return InteractionResult.PASS;
 		} else {
-			if(context.getPlayerFacing() != Direction.DOWN) {
-				PlayerEntity playerentity = context.getPlayer();
+			if(context.getClickedFace() != Direction.DOWN) {
+				Player playerentity = context.getPlayer();
 				
-				if (world.getBlockState(blockpos.up()).isAir()) {
-					setBlockToPath(context, blockpos, world);
+				if (world.getBlockState(blockpos.above()).isAir()) {
+					return setBlockToPath(context, blockpos, world);
 				}
 				
-				if(block instanceof PlantBlock) {
+				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 
-					if(blockBelow == Blocks.GRASS || iblockstate2 != null && world.isAir(blockAboveBlockPos)) {
+					if(blockBelow == Blocks.GRASS || iblockstate2 != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
 						if(!playerentity.isCreative())
-							block.afterBreak(world, playerentity, blockpos, iblockstate, null, context.getStack());
-						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
-						return ActionResult.SUCCESS;
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
+						return InteractionResult.SUCCESS;
 					}
 				}
 
-				if(block instanceof TallPlantBlock) {
+				if(block instanceof DoublePlantBlock) {
 					BlockState iblockstate2_below = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					BlockState iblockstate2_twice_below = SHOVEL_LOOKUP.get(world.getBlockState(blockTwiceBelowBlockPos).getBlock());
 					
-					if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAir(blockTwiceAboveBlockPos)) {
+					if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isEmptyBlock(blockTwiceAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
-						block.onBreak(world, blockpos, iblockstate, playerentity);
-						return ActionResult.SUCCESS;
-					} else if(iblockstate.get(TallPlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAir(blockAboveBlockPos)) {
+						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						return InteractionResult.SUCCESS;
+					} else if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToPath(context, blockTwiceBelowBlockPos, world);
-						block.onBreak(world, blockpos, iblockstate, playerentity);
-						return ActionResult.SUCCESS;
+						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						return InteractionResult.SUCCESS;
 					}
 				}
 
 			}
+			
+			return InteractionResult.PASS;
 		}
-
-		return ActionResult.PASS;
 	}
 
-	protected ActionResult setBlockToFarmland(ItemUsageContext context, BlockPos blockpos, World world) {
+	protected InteractionResult setBlockToFarmland(UseOnContext context, BlockPos blockpos, Level world) {
 
 		BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockpos).getBlock());
 		if (iblockstate2 != null) {
-			PlayerEntity playerentity = context.getPlayer();
-			world.playSound(playerentity, blockpos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (!world.isClient) {
-				world.setBlockState(blockpos, iblockstate2, 11);
+			Player playerentity = context.getPlayer();
+			world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+			if (!world.isClientSide) {
+				world.setBlock(blockpos, iblockstate2, 11);
 				if (playerentity != null) {
-					context.getStack().damage(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendToolBreakStatus(context.getHand());});
+					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 				}
 			}
 
-			return ActionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
 		}
 
-		return ActionResult.PASS;
+		return InteractionResult.PASS;
 	}
 
-	protected ActionResult setBlockToPath(ItemUsageContext context, BlockPos blockpos, World world) {
+	protected InteractionResult setBlockToPath(UseOnContext context, BlockPos blockpos, Level world) {
 
 		BlockState iblockstate1 = SHOVEL_LOOKUP.get(world.getBlockState(blockpos).getBlock());
 		if (iblockstate1 != null) {
-			PlayerEntity playerentity = context.getPlayer();
-			world.playSound(playerentity, blockpos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (!world.isClient) {
-				world.setBlockState(blockpos, iblockstate1, 11);
+			Player playerentity = context.getPlayer();
+			world.playSound(playerentity, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+			if (!world.isClientSide) {
+				world.setBlock(blockpos, iblockstate1, 11);
 				if (playerentity != null) {
-					context.getStack().damage(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.sendToolBreakStatus(context.getHand());});
+					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 				}
 			}
 
-			return ActionResult.SUCCESS;
+			return InteractionResult.SUCCESS;
 		}
 
-		return ActionResult.PASS;
+		return InteractionResult.PASS;
 	}
 
 	/**
 	 * Returns the amount of damage this item will deal. One heart of damage is equal to 2 damage points.
 	 */
-	public float getAttackDamage()
+	public float getAttackDamageBonus()
 	{
-		return this.material.getAttackDamage();
+		return this.material.getAttackDamageBonus();
 	}
 
 	/**
 	 * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
 	 * the damage on the stack.
 	 */
-	public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker)
+	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker)
 	{
-		stack.damage(1, attacker, (player) -> {player.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);});
+		stack.hurtAndBreak(1, attacker, (player) -> {player.broadcastBreakEvent(EquipmentSlot.MAINHAND);});
 		return true;
 	}
 
 	/**
 	 * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
 	 */
-	public boolean postMine(ItemStack stack, World worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving)
+	public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving)
 	{
-		if ((double)state.getHardness(worldIn, pos) != 0.0D)
+		if ((double)state.getDestroySpeed(worldIn, pos) != 0.0D)
 		{
-			stack.damage(2, entityLiving, (player) -> {player.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);});
+			stack.hurtAndBreak(2, entityLiving, (player) -> {player.broadcastBreakEvent(EquipmentSlot.MAINHAND);});
 		}
 
 		return true;
@@ -278,15 +287,15 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	/**
 	 * Return the enchantability factor of the item, most of the time is based on material.
 	 */
-	public int getEnchantability()
+	public int getEnchantmentValue()
 	{
-		return this.material.getEnchantability();
+		return this.material.getEnchantmentValue();
 	}
 	
 	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
+	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.world.item.enchantment.Enchantment enchantment)
 	{
-		if(enchantment.type == EnchantmentTarget.BREAKABLE || enchantment.type == EnchantmentTarget.WEAPON || enchantment.type == EnchantmentTarget.DIGGER)
+		if(enchantment.category == EnchantmentCategory.BREAKABLE || enchantment.category == EnchantmentCategory.WEAPON || enchantment.category == EnchantmentCategory.DIGGER)
 			return true;
 		else
 			return false;
@@ -304,10 +313,10 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	/**
 	 * Return whether this item is repairable in an anvil.
 	 */
-	public boolean canRepair(ItemStack toRepair, ItemStack repair)
+	public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair)
 	{
 
-		return this.material.getRepairIngredient().test(repair) || super.canRepair(toRepair, repair);
+		return this.material.getRepairIngredient().test(repair) || super.isValidRepairItem(toRepair, repair);
 
 		/**ItemStack mat = this.material.getRepairItemStack();
         if (mat != null && net.minecraftforge.oredict.OreDictionary.itemMatches(mat, repair, false)) return true;
@@ -317,7 +326,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	/**
 	 * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
 	 */
-	public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot equipmentSlot)
+	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot)
 	{
 		/**Multimap<EntityAttribute, EntityAttributeModifier> multimap = super.getAttributeModifiers(equipmentSlot);
 
@@ -328,7 +337,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 		}
 
 		return multimap;**/
-		return equipmentSlot == EquipmentSlot.MAINHAND ? this.attribute : super.getAttributeModifiers(equipmentSlot);
+		return equipmentSlot == EquipmentSlot.MAINHAND ? this.attribute : super.getDefaultAttributeModifiers(equipmentSlot);
 	}
 	
 	@Override
@@ -343,7 +352,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	}
 
 	@Override
-	public boolean onDroppedByPlayer(ItemStack item, PlayerEntity player) {
+	public boolean onDroppedByPlayer(ItemStack item, Player player) {
 		return true;
 	}
 
@@ -353,7 +362,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	}
 
 	@Override
-	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, PlayerEntity player) {
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, Player player) {
 		return false;
 	}
 
@@ -416,11 +425,11 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 				.put(Blocks.CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_STEM).put(Blocks.CRIMSON_HYPHAE, Blocks.STRIPPED_CRIMSON_HYPHAE)
 				.build();
 
-		SHOVEL_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.GRASS_PATH.getDefaultState()));
+		SHOVEL_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.GRASS_PATH.defaultBlockState()));
 
-		HOE_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.FARMLAND.getDefaultState(),
-				Blocks.GRASS_PATH, Blocks.FARMLAND.getDefaultState(), Blocks.DIRT, Blocks.FARMLAND.getDefaultState(),
-				Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState()));
+		HOE_LOOKUP = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Blocks.FARMLAND.defaultBlockState(),
+				Blocks.GRASS_PATH, Blocks.FARMLAND.defaultBlockState(), Blocks.DIRT, Blocks.FARMLAND.defaultBlockState(),
+				Blocks.COARSE_DIRT, Blocks.DIRT.defaultBlockState()));
 	}
 
 }
