@@ -136,7 +136,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 			PlayerEntity playerentity = context.getPlayer();
 			if(context.getPlayerFacing() != Direction.DOWN) {
 				if (world.isAir(blockpos.up())) {
-					setBlockToFarmland(context, blockpos, world);
+					return setBlockToFarmland(context, blockpos, world);
 				}
 				
 				if(block instanceof PlantBlock) {
@@ -166,12 +166,14 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 					}
 				}
 			}
+			
+			return ActionResult.PASS;
 		} else {
 			if(context.getPlayerFacing() != Direction.DOWN) {
 				PlayerEntity playerentity = context.getPlayer();
 				
 				if (world.getBlockState(blockpos.up()).isAir()) {
-					setBlockToPath(context, blockpos, world);
+					return setBlockToPath(context, blockpos, world);
 				}
 				
 				if(block instanceof PlantBlock) {
@@ -202,9 +204,9 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 				}
 
 			}
+			
+			return ActionResult.PASS;
 		}
-
-		return ActionResult.PASS;
 	}
 
 	protected ActionResult setBlockToFarmland(ItemUsageContext context, BlockPos blockpos, World world) {
