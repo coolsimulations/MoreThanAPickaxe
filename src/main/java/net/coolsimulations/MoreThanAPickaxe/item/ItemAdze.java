@@ -146,7 +146,7 @@ public class ItemAdze extends ToolItem{
 			if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
 			if(context.getClickedFace() != Direction.DOWN) {
 				if (world.isEmptyBlock(blockpos.above())) {
-					setBlockToFarmland(context, blockpos, world);
+					return setBlockToFarmland(context, blockpos, world);
 				}
 
 				if(block instanceof BushBlock) {
@@ -176,12 +176,14 @@ public class ItemAdze extends ToolItem{
 					}
 				}
 			}
+			
+			return ActionResultType.PASS;
 		} else {
 			if(context.getClickedFace() != Direction.DOWN) {
 				PlayerEntity playerentity = context.getPlayer();
 
 				if (world.getBlockState(blockpos.above()).isAir()) {
-					setBlockToPath(context, blockpos, world);
+					return setBlockToPath(context, blockpos, world);
 				}
 
 				if(block instanceof BushBlock) {
@@ -212,9 +214,9 @@ public class ItemAdze extends ToolItem{
 				}
 
 			}
+			
+			return ActionResultType.PASS;
 		}
-
-		return ActionResultType.PASS;
 	}
 
 	protected ActionResultType setBlockToFarmland(ItemUseContext context, BlockPos blockpos, World world) {
