@@ -14,6 +14,7 @@ import net.coolsimulations.MoreThanAPickaxe.item.ItemDenseAdze;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPConfig;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.compat.SPCompatRecipeManager;
 import net.insane96mcp.carbonado.init.ModItems;
 import net.insane96mcp.carbonado.lib.Properties;
 import net.minecraft.advancements.Advancement;
@@ -42,9 +43,6 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
-import thedarkcolour.futuremc.config.FConfig;
-import thedarkcolour.futuremc.recipe.smithing.SmithingRecipe;
-import thedarkcolour.futuremc.recipe.smithing.SmithingRecipes;
 
 public class MoreThanAPickaxeEventHandler {
 
@@ -58,7 +56,7 @@ public class MoreThanAPickaxeEventHandler {
 		Advancement install = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/install"));
 
 		boolean isDone = false;
-		
+
 		Timer timer = new Timer();
 
 		if(install !=null && player.getAdvancements().getProgress(install).hasProgress()) {
@@ -89,43 +87,43 @@ public class MoreThanAPickaxeEventHandler {
 
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void anvilRecipe(AnvilUpdateEvent event) {
 		if(SPCompatibilityManager.isCarbonadoLoaded()) {
-			
+
 			ItemStack left = event.getLeft();
 			ItemStack right = event.getRight();
 			ItemStack output = null;
 			int carbonadoAmount = 4;
-			
+
 			if (Properties.config.tools.enableAnvilCrafting && left.getItem().equals(MoreThanAPickaxeItems.diamond_adze) && right.getItem().equals(ModItems.carbonadoItem) && right.getCount() >= carbonadoAmount) {
-				
+
 				output = new ItemStack(MoreThanAPickaxeCarbonado.carbonado_adze);
 				NBTTagCompound tags = left.getTagCompound();
 				output.setTagCompound(tags);
 				event.setOutput(output);
 				event.setMaterialCost(carbonadoAmount);
-				
+
 				int cost = 0;
 				Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(left);
 				for (Enchantment enchantment : enchantments.keySet()) {
 					int lvl = enchantments.get(enchantment);
 					int baseCost = 0;
 					switch (enchantment.getRarity())
-	                {
-	                    case COMMON:
-	                    	baseCost = 1;
-	                        break;
-	                    case UNCOMMON:
-	                    	baseCost = 2;
-	                        break;
-	                    case RARE:
-	                    	baseCost = 4;
-	                        break;
-	                    case VERY_RARE:
-	                    	baseCost = 8;
-	                }
+					{
+					case COMMON:
+						baseCost = 1;
+						break;
+					case UNCOMMON:
+						baseCost = 2;
+						break;
+					case RARE:
+						baseCost = 4;
+						break;
+					case VERY_RARE:
+						baseCost = 8;
+					}
 					cost += baseCost * lvl;
 				}
 				cost *= 0.5f;
@@ -133,7 +131,7 @@ public class MoreThanAPickaxeEventHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * Warning! Below are spoilers for how to make a Sticky Desh Pickaxe in Galacticraft Planets
 	 */
@@ -150,7 +148,7 @@ public class MoreThanAPickaxeEventHandler {
 					event.getWorld().setBlockToAir(event.getPos());
 					event.getPlayer().addStat(StatList.getBlockStats(block));
 					event.getPlayer().addExhaustion(0.025F);
-		            block.dropBlockAsItem(event.getWorld(), event.getPos(), event.getState().getBlock().getStateFromMeta(event.getState().getBlock().getMetaFromState(event.getState()) % 3), 0);
+					block.dropBlockAsItem(event.getWorld(), event.getPos(), event.getState().getBlock().getStateFromMeta(event.getState().getBlock().getMetaFromState(event.getState()) % 3), 0);
 				}
 				if(itemStack.getItem() == MarsItems.deshPickaxe) {
 					if(itemStack.isItemEnchanted() && EnchantmentHelper.getEnchantments(itemStack).containsKey(Enchantments.SILK_TOUCH)) {
@@ -183,7 +181,7 @@ public class MoreThanAPickaxeEventHandler {
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public void onBlockClick(PlayerInteractEvent.LeftClickBlock event) {
 		if(SPCompatibilityManager.isGCPLoaded()) {
@@ -225,7 +223,7 @@ public class MoreThanAPickaxeEventHandler {
 		if(SPCompatibilityManager.isGCLoaded()) {
 			modRegistry.remove(new ResourceLocation(Reference.MOD_ID + ":" + "steel_adze"));	
 		}
-		
+
 		if(SPCompatibilityManager.isNoTreePunchingLoaded()) {
 			modRegistry.remove(new ResourceLocation(Reference.MOD_ID + ":" + "wooden_adze"));
 			modRegistry.remove(new ResourceLocation(SPCompatibilityManager.NO_TREE_PUNCHING_MODID + ":" + "tools/iron_mattock"));
@@ -236,10 +234,9 @@ public class MoreThanAPickaxeEventHandler {
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "titanium_mattock"));
 			modRegistry.remove(new ResourceLocation(SPReference.MOD_ID + ":" + "desh_mattock"));
 		}
-		
-		if(SPCompatibilityManager.isFutureMCLoaded() && FConfig.INSTANCE.getNetherUpdate().netherite) {
+
+		if(SPCompatibilityManager.isFutureMCLoaded() && SPCompatRecipeManager.futureRecipeManager.getNetheriteEnabled()) {
 			modRegistry.remove(new ResourceLocation(Reference.MOD_ID + ":" + "netherite_adze"));
-			SmithingRecipes.INSTANCE.getRecipes().add(new SmithingRecipe(new ItemStack(MoreThanAPickaxeItems.diamond_adze), new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(SPCompatibilityManager.FUTURE_MC_MODID, "netherite_ingot"))), new ItemStack(MoreThanAPickaxeItems.netherite_adze)));
 		}
 	}
 

@@ -14,9 +14,12 @@ import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeToolMaterials;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeVillagerTrade;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
+import net.coolsimulations.MoreThanAPickaxe.recipes.MoreThanAPickaxeSmeltingRecipes;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
+import net.coolsimulations.SurvivalPlus.api.compat.SPCompatRecipeManager;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -71,6 +74,8 @@ public class MoreThanAPickaxe {
 		proxy.init();
 		MoreThanAPickaxeToolMaterials.init();
 		GameRegistry.registerFuelHandler(new MoreThanAPickaxeFuelHandler());
+		MoreThanAPickaxeSmeltingRecipes.register();
+		SPCompatRecipeManager.futureRecipeManager.addOreDictionarySmithingRecipe(new ItemStack(MoreThanAPickaxeItems.diamond_adze), "ingotNetherite", new ItemStack(MoreThanAPickaxeItems.netherite_adze));
 	}
 
 	@EventHandler
