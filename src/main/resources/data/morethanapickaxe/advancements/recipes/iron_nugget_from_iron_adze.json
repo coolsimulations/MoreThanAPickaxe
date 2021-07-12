@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:iron_nugget_from_iron_adze_smelting",
+      "morethanapickaxe:iron_nugget_from_iron_adze_blasting"
+    ]
+  },
+  "criteria": {
+    "has_adze": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "morethanapickaxe:iron_adze"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:iron_nugget_from_iron_adze_smelting",
+        "recipe": "morethanapickaxe:iron_nugget_from_iron_adze_blasting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_adze",
+      "has_the_recipe"
+    ]
+  ]
+}
