@@ -140,7 +140,6 @@ public class MoreThanAPicakxeAetherLegacyRecipes {
 					newList.add(item);
 				newList.add(MoreThanAPickaxeItems.valkyrie_adze);
 				((PlayerAether) instance).extendedReachItems = newList;
-				System.out.println("ASDF: Reached Init: " + event.getEntity().getClass().getName());
 			}
 		}
 	}
