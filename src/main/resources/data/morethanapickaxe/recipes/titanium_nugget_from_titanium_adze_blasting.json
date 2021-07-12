@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "morethanapickaxe:titanium_adze"
+  },
+  "result": "survivalplus:titanium_nugget",
+  "experience": 0.1,
+  "cookingtime": 200
+}
