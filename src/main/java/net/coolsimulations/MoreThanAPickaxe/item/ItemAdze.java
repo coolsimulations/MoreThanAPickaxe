@@ -135,17 +135,14 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 
 			PlayerEntity playerentity = context.getPlayer();
 			if(context.getPlayerFacing() != Direction.DOWN) {
-				if (world.isAir(blockpos.up())) {
-					return setBlockToFarmland(context, blockpos, world);
-				}
-				
 				if(block instanceof PlantBlock) {
 					BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					
 					if(iblockstate2 != null && world.isAir(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
-						if(!playerentity.isCreative())
+						if(!playerentity.isCreative()) {
 							block.afterBreak(world, playerentity, blockpos, iblockstate, null, context.getStack());
+						}
 						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
 						return ActionResult.SUCCESS;
 					}
@@ -165,6 +162,10 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 						return ActionResult.SUCCESS;
 					}
 				}
+				
+				if (world.isAir(blockpos.up())) {
+					return setBlockToFarmland(context, blockpos, world);
+				}
 			}
 			
 			return ActionResult.PASS;
@@ -172,17 +173,14 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 			if(context.getPlayerFacing() != Direction.DOWN) {
 				PlayerEntity playerentity = context.getPlayer();
 				
-				if (world.getBlockState(blockpos.up()).isAir()) {
-					return setBlockToPath(context, blockpos, world);
-				}
-				
 				if(block instanceof PlantBlock) {
 					BlockState iblockstate2 = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 
 					if(blockBelow == Blocks.GRASS || iblockstate2 != null && world.isAir(blockAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
-						if(!playerentity.isCreative())
-							block.afterBreak(world, playerentity, blockpos, iblockstate, null, context.getStack());
+						if(!playerentity.isCreative()) {
+							block.onBreak(world, blockpos, iblockstate, playerentity);
+						}
 						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
 						return ActionResult.SUCCESS;
 					}
@@ -201,6 +199,10 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 						block.onBreak(world, blockpos, iblockstate, playerentity);
 						return ActionResult.SUCCESS;
 					}
+				}
+				
+				if (world.getBlockState(blockpos.up()).isAir()) {
+					return setBlockToPath(context, blockpos, world);
 				}
 
 			}
