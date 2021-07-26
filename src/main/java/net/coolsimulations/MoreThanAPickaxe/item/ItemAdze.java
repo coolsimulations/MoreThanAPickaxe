@@ -145,9 +145,6 @@ public class ItemAdze extends ToolItem{
 			PlayerEntity playerentity = context.getPlayer();
 			if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
 			if(context.getClickedFace() != Direction.DOWN) {
-				if (world.isEmptyBlock(blockpos.above())) {
-					return setBlockToFarmland(context, blockpos, world);
-				}
 
 				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
@@ -167,13 +164,25 @@ public class ItemAdze extends ToolItem{
 
 					if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isEmptyBlock(blockTwiceAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+							block.dropResources(iblockstate, world, blockpos);
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return ActionResultType.SUCCESS;
 					} else if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockTwiceBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+							block.dropResources(iblockstate, world, blockpos);
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return ActionResultType.SUCCESS;
 					}
+				}
+				
+				if (world.isEmptyBlock(blockpos.above())) {
+					return setBlockToFarmland(context, blockpos, world);
 				}
 			}
 			
@@ -181,10 +190,6 @@ public class ItemAdze extends ToolItem{
 		} else {
 			if(context.getClickedFace() != Direction.DOWN) {
 				PlayerEntity playerentity = context.getPlayer();
-
-				if (world.getBlockState(blockpos.above()).isAir()) {
-					return setBlockToPath(context, blockpos, world);
-				}
 
 				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
@@ -204,13 +209,25 @@ public class ItemAdze extends ToolItem{
 
 					if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isEmptyBlock(blockTwiceAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+							block.dropResources(iblockstate, world, blockpos);
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return ActionResultType.SUCCESS;
 					} else if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToPath(context, blockTwiceBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+							block.dropResources(iblockstate, world, blockpos);
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return ActionResultType.SUCCESS;
 					}
+				}
+				
+				if (world.getBlockState(blockpos.above()).isAir()) {
+					return setBlockToPath(context, blockpos, world);
 				}
 
 			}
