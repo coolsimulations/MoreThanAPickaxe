@@ -147,17 +147,15 @@ public class ItemAdze extends ToolItem{
 			PlayerEntity playerentity = context.getPlayer();
 			if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
 			if(context.getFace() != Direction.DOWN) {
-				if (world.isAirBlock(blockpos.up())) {
-					return setBlockToFarmland(context, blockpos, world);
-				}
 
 				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 
 					if(iblockstate2 != null && world.isAirBlock(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
-						if(!playerentity.isCreative())
+						if(!playerentity.isCreative()) {
 							block.harvestBlock(world, playerentity, blockpos, iblockstate, null, context.getItem());
+						}
 						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
 						return ActionResultType.SUCCESS;
 					}
@@ -177,6 +175,10 @@ public class ItemAdze extends ToolItem{
 						return ActionResultType.SUCCESS;
 					}
 				}
+				
+				if (world.isAirBlock(blockpos.up())) {
+					return setBlockToFarmland(context, blockpos, world);
+				}
 			}
 			
 			return ActionResultType.PASS;
@@ -184,17 +186,14 @@ public class ItemAdze extends ToolItem{
 			if(context.getFace() != Direction.DOWN) {
 				PlayerEntity playerentity = context.getPlayer();
 
-				if (world.getBlockState(blockpos.up()).isAir()) {
-					return setBlockToPath(context, blockpos, world);
-				}
-
 				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 
 					if(blockBelow == Blocks.GRASS || iblockstate2 != null && world.isAirBlock(blockAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
-						if(!playerentity.isCreative())
+						if(!playerentity.isCreative()) {
 							block.harvestBlock(world, playerentity, blockpos, iblockstate, null, context.getItem());
+						}
 						world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 11);
 						return ActionResultType.SUCCESS;
 					}
@@ -206,13 +205,19 @@ public class ItemAdze extends ToolItem{
 
 					if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isAirBlock(blockTwiceAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
-						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.harvestBlock(world, playerentity, blockpos, iblockstate, null, context.getItem());
+						}
 						return ActionResultType.SUCCESS;
 					} else if(iblockstate.get(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isAirBlock(blockAboveBlockPos)) {
 						setBlockToPath(context, blockTwiceBelowBlockPos, world);
 						block.onBlockHarvested(world, blockpos, iblockstate, playerentity);
 						return ActionResultType.SUCCESS;
 					}
+				}
+				
+				if (world.getBlockState(blockpos.up()).isAir()) {
+					return setBlockToPath(context, blockpos, world);
 				}
 
 			}
