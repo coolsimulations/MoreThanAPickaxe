@@ -141,10 +141,6 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 
 			Player playerentity = context.getPlayer();
 			if(context.getClickedFace() != Direction.DOWN) {
-				if (world.isEmptyBlock(blockpos.above())) {
-					return setBlockToFarmland(context, blockpos, world);
-				}
-				
 				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = HOE_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
 					
@@ -163,13 +159,25 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 
 					if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isEmptyBlock(blockTwiceAboveBlockPos)) {
 						setBlockToFarmland(context, blockBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+							block.dropResources(iblockstate, world, blockpos);
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return InteractionResult.SUCCESS;
 					} else if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToFarmland(context, blockTwiceBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+							block.dropResources(iblockstate, world, blockpos);
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return InteractionResult.SUCCESS;
 					}
+				}
+				
+				if (world.isEmptyBlock(blockpos.above())) {
+					return setBlockToFarmland(context, blockpos, world);
 				}
 			}
 			
@@ -177,10 +185,6 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 		} else {
 			if(context.getClickedFace() != Direction.DOWN) {
 				Player playerentity = context.getPlayer();
-				
-				if (world.getBlockState(blockpos.above()).isAir()) {
-					return setBlockToPath(context, blockpos, world);
-				}
 				
 				if(block instanceof BushBlock) {
 					BlockState iblockstate2 = SHOVEL_LOOKUP.get(world.getBlockState(blockBelowBlockPos).getBlock());
@@ -200,13 +204,24 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 					
 					if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.LOWER && iblockstate2_below != null && world.isEmptyBlock(blockTwiceAboveBlockPos)) {
 						setBlockToPath(context, blockBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return InteractionResult.SUCCESS;
 					} else if(iblockstate.getValue(DoublePlantBlock.HALF) == DoubleBlockHalf.UPPER && iblockstate2_twice_below != null && world.isEmptyBlock(blockAboveBlockPos)) {
 						setBlockToPath(context, blockTwiceBelowBlockPos, world);
-						block.playerWillDestroy(world, blockpos, iblockstate, playerentity);
+						if(!playerentity.isCreative()) {
+							block.playerDestroy(world, playerentity, blockpos, iblockstate, null, context.getItemInHand());
+							block.dropResources(iblockstate, world, blockpos);
+						}
+						world.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
 						return InteractionResult.SUCCESS;
 					}
+				}
+				
+				if (world.getBlockState(blockpos.above()).isAir()) {
+					return setBlockToPath(context, blockpos, world);
 				}
 
 			}
