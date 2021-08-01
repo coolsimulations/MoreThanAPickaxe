@@ -80,7 +80,7 @@ public class ItemAdze extends MiningToolItem implements ItemAccessor {
 	      } else if (block != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE && block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK && block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE && block != Blocks.REDSTONE_ORE) {
 	         if (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE && block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE) {
 	            Material material = state.getMaterial();
-	            return material == Material.STONE || material == Material.METAL || material == Material.REPAIR_STATION || block == Blocks.SNOW || block == Blocks.SNOW_BLOCK;
+	            return material == Material.STONE || material == Material.METAL || material == Material.REPAIR_STATION || block == Blocks.SNOW || block == Blocks.SNOW_BLOCK || block == Blocks.COBWEB;
 	         } else {
 	            return i >= 1;
 	         }
