@@ -288,15 +288,13 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 
 				if (facing != EnumFacing.DOWN)
 				{
-					if(worldIn.isAirBlock(blockAboveBlockPos))
-						return setBlockToFarmland(iblockstate, block, pos, stack, worldIn, playerIn);
-
 					if(block instanceof BlockBush) {
 
 						if(blockBelow == Blocks.GRASS || blockBelow == Blocks.GRASS_PATH || blockBelow instanceof BlockDirt && worldIn.isAirBlock(blockAboveBlockPos)) {
 							setBlockToFarmland(blockStateBelow, blockBelow, blockBelowBlockPos, stack, worldIn, playerIn);
-							if(!playerIn.isCreative())
+							if(!playerIn.isCreative()) {
 								block.harvestBlock(worldIn, playerIn, pos, iblockstate, null, stack);
+							}
 							this.setBlock(stack, playerIn, worldIn, pos, Blocks.AIR.getDefaultState());
 							return EnumActionResult.SUCCESS;
 						}
@@ -313,6 +311,9 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 							return EnumActionResult.SUCCESS;
 						}
 					}
+					
+					if(worldIn.isAirBlock(blockAboveBlockPos))
+						return setBlockToFarmland(iblockstate, block, pos, stack, worldIn, playerIn);
 				}
 
 				return EnumActionResult.PASS;
@@ -327,15 +328,13 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 
 				if (facing != EnumFacing.DOWN)
 				{
-					if(worldIn.isAirBlock(blockAboveBlockPos))
-						return setBlockToPath(iblockstate, block, pos, stack, worldIn, playerIn);
-					
 					if(block instanceof BlockBush) {
 
 						if(blockBelow == Blocks.GRASS || blockBelow == Blocks.GRASS_PATH || blockBelow instanceof BlockDirt && worldIn.isAirBlock(blockAboveBlockPos)) {
 							setBlockToPath(blockStateBelow, blockBelow, blockBelowBlockPos, stack, worldIn, playerIn);
-							if(!playerIn.isCreative())
+							if(!playerIn.isCreative()) {
 								block.harvestBlock(worldIn, playerIn, pos, iblockstate, null, stack);
+							}
 							this.setBlock(stack, playerIn, worldIn, pos, Blocks.AIR.getDefaultState());
 							return EnumActionResult.SUCCESS;
 						}
@@ -352,14 +351,17 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 							return EnumActionResult.SUCCESS;
 						}
 					}
+					
+					if(worldIn.isAirBlock(blockAboveBlockPos))
+						return setBlockToPath(iblockstate, block, pos, stack, worldIn, playerIn);
 				}
 				else
 				{
 					return EnumActionResult.PASS;
 				}
+				
+				return EnumActionResult.PASS;
 			}
-			
-			return EnumActionResult.PASS;
 		}
 	}
 
