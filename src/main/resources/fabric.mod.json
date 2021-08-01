@@ -25,9 +25,21 @@
   },
   
   "depends": {
-    "fabricloader": ">=0.10.8",
+    "fabricloader": ">=0.11.3",
     "fabric": "*",
-    "minecraft": "1.16.x",
+    "minecraft": "1.17.x",
     "survivalplus": "*"
+  },
+  "custom": {
+    "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 306992
+    },
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/7DDsHfQ",
+        "modmenu.guilded": "https://guilded.gg/i/Wkn138B2"
+      }
+    }
   }
 }

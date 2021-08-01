@@ -10,10 +10,10 @@
       "tag": "c:wood_sticks"
     },
     "X": {
-      "tag": "c:sapphire_shards"
+      "item": "more_gems:kunzite"
     }
   },
   "result": {
-    "item": "morethanapickaxe:sapphire_adze"
+    "item": "morethanapickaxe:kunzite_adze"
   }
 }

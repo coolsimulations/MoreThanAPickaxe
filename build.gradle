@@ -1,17 +1,21 @@
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id 'fabric-loom' version '0.8-SNAPSHOT'
 	id 'maven-publish'
 }
 
 repositories {
 	maven {
 		name = 'TerraformersMC'
-		url = 'https://maven.terraformersmc.com/'
+		url = 'https://raw.githubusercontent.com/TerraformersMC/Archive/main/releases/'
+	}
+	maven {
+		name = 'SheDaniel'
+		url = 'https://maven.shedaniel.me/'
 	}
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -31,25 +35,11 @@ dependencies {
 
 	modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
 
-	modImplementation "me.shedaniel.cloth:config-2:${project.cloth_version}"
+	modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}"
 
-	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
+	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-        compile files('libs/SurvivalPlus-Fabric-1.16.5-0.1.5-API.jar')
-
-        compile files('libs/vanillaenhanced-1.5.0-Dev.jar')
-
-        compile files('libs/EmeraldTools-Fabric-1.16.5-1.1.2-Dev.jar')
-
-        compile files('libs/MoreGems-Fabric_1.16.5-1.1.22-Dev.jar')
-
-        compile files('libs/ruby-mod-1.1.1-Dev.jar')
-
-        compile files('libs/emerald-mod-1.0.1-Dev.jar')
-
-        compile files('libs/SimpleEmeraldMod-1.16.2-FABRIC-Dev.jar')
-
-        compile files('libs/amethyst-mod-1.0.0-Dev.jar')
+        implementation fileTree(dir: 'libs', include: '*.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
@@ -73,7 +63,7 @@ tasks.withType(JavaCompile).configureEach {
 	// The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
 	// JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
 	// We'll use that if it's available, but otherwise we'll use the older option.
-	def targetVersion = 8
+	def targetVersion = 16
 	if (JavaVersion.current().isJava9Compatible()) {
 		 it.options.release = targetVersion
 	}
