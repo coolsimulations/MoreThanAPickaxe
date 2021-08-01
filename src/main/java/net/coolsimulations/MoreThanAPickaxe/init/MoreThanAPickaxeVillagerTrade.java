@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.entity.merchant.villager.VillagerTrades.ITrade;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.BasicTrade;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -20,7 +20,7 @@ public class MoreThanAPickaxeVillagerTrade {
 		MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeVillagerTrade());
 	}@SubscribeEvent
 	public void villagerTrades(VillagerTradesEvent event) {
-		Int2ObjectMap<List<ITrade>> trades = event.getTrades();
+		Int2ObjectMap<List<ItemListing>> trades = event.getTrades();
 		Random random = new Random();
 
 		if(event.getType() == VillagerProfession.TOOLSMITH) {

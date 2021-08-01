@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MoreThanAPickaxe {
 
-	public static CommonProxy proxy = (CommonProxy) DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+	public static CommonProxy proxy = (CommonProxy) DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
 	private static MoreThanAPickaxe instance;
 
@@ -35,6 +35,8 @@ public class MoreThanAPickaxe {
 		MoreThanAPickaxeItems.init();
 		MoreThanAPickaxeItems.register();
 		MoreThanAPickaxeVillagerTrade.init();
+
+		proxy.init();
 
 		if(SPCompatibilityManager.isHammerTimeLoaded()) {
 			MoreThanAPickaxeHammerTime.init();

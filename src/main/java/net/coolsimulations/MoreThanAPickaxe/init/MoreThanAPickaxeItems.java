@@ -1,13 +1,11 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
-import com.coliwogg.gemsandcrystals.init.ItemInit.ModItemTier;
-
 import net.coolsimulations.MoreThanAPickaxe.item.AdzeItemTier;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemTier;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.ForgeRegistries;
 import xmods.ota.api.ToolMaterialList;
 
@@ -41,12 +39,12 @@ public class MoreThanAPickaxeItems {
 
 	public static void init() {
 
-		wooden_adze = new ItemAdze(ItemTier.WOOD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("wooden_adze");
-		stone_adze = new ItemAdze(ItemTier.STONE, 8.0F, -2.40F, new Item.Properties()).setRegistryName("stone_adze");
-		iron_adze = new ItemAdze(ItemTier.IRON, 8.0F, -2.40F, new Item.Properties()).setRegistryName("iron_adze");
-		gold_adze = new ItemAdze(ItemTier.GOLD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("gold_adze");
-		diamond_adze = new ItemAdze(ItemTier.DIAMOND, 8.0F, -2.40F, new Item.Properties()).setRegistryName("diamond_adze");
-		netherite_adze = new ItemAdze(ItemTier.NETHERITE, 9.0F, -2.40F, new Item.Properties().fireResistant()).setRegistryName("netherite_adze");
+		wooden_adze = new ItemAdze(Tiers.WOOD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("wooden_adze");
+		stone_adze = new ItemAdze(Tiers.STONE, 8.0F, -2.40F, new Item.Properties()).setRegistryName("stone_adze");
+		iron_adze = new ItemAdze(Tiers.IRON, 8.0F, -2.40F, new Item.Properties()).setRegistryName("iron_adze");
+		gold_adze = new ItemAdze(Tiers.GOLD, 6.0F, -2.40F, new Item.Properties()).setRegistryName("gold_adze");
+		diamond_adze = new ItemAdze(Tiers.DIAMOND, 8.0F, -2.40F, new Item.Properties()).setRegistryName("diamond_adze");
+		netherite_adze = new ItemAdze(Tiers.NETHERITE, 9.0F, -2.40F, new Item.Properties().fireResistant()).setRegistryName("netherite_adze");
 		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 7.0F, -2.40F, new Item.Properties()).setRegistryName("bronze_adze");
 		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 8.0F, -2.40F, new Item.Properties()).setRegistryName("titanium_adze");
 
@@ -70,10 +68,6 @@ public class MoreThanAPickaxeItems {
 		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isSimpleEmeraldLoaded()) {
 				emerald_adze = new ItemAdze(com.technovision.emeraldmod.util.enums.ModItemTier.EMERALD, 8.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
-			} else if(SPCompatibilityManager.isGACLoaded()) {
-				emerald_adze = new ItemAdze(ModItemTier.EMERALD, 5.5F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
-			} else if (SPCompatibilityManager.isStandardMaterialsLoaded()) {
-				emerald_adze = new ItemAdze(com.baconbombing.standardmaterials.materials.ModItemTier.EMERALD, 5.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				emerald_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.EMERALD_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			}
@@ -82,20 +76,12 @@ public class MoreThanAPickaxeItems {
 		if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isOAATLoaded()) {
 				obsidian_adze = new ItemAdze(ToolMaterialList.obsidian, 8.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
-			} else if (SPCompatibilityManager.isStandardMaterialsLoaded()) {
-				obsidian_adze = new ItemAdze(com.baconbombing.standardmaterials.materials.ModItemTier.OBSIDIAN, 5.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				obsidian_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			}
 		}
 		
-		if(SPCompatibilityManager.isGACLoaded()) {
-			ruby_adze = new ItemAdze(ModItemTier.RUBY, 5.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
-			sapphire_adze = new ItemAdze(ModItemTier.SAPPHIRE, 5.0F, -2.4F, new Item.Properties()).setRegistryName("sapphire_adze");
-			topaz_adze = new ItemAdze(ModItemTier.TOPAZ, 5.3F, -2.4F, new Item.Properties()).setRegistryName("topaz_adze");
-			amethyst_adze = new ItemAdze(ModItemTier.AMETHYST, 5.7F, -2.4F, new Item.Properties()).setRegistryName("amethyst_adze");
-			quartz_adze = new ItemAdze(ModItemTier.QUARTZ, 6.5F, -2.4F, new Item.Properties()).setRegistryName("quartz_adze");			
-		} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
+		if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
 			ruby_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.RUBY_TOOL_MATERIAL, 8.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
 		}
 
@@ -136,14 +122,7 @@ public class MoreThanAPickaxeItems {
 		if(SPCompatibilityManager.isObsidianMaterialModsLoaded())
 			registerItem(obsidian_adze);
 		
-		if(SPCompatibilityManager.isGACLoaded()) {
-			registerItem(amethyst_adze);
-			registerItem(sapphire_adze);
-			registerItem(topaz_adze);
-			registerItem(quartz_adze);
-		}
-		
-		if(SPCompatibilityManager.isGACLoaded() || SPCompatibilityManager.isEasyEmeraldLoaded())
+		if(SPCompatibilityManager.isEasyEmeraldLoaded())
 			registerItem(ruby_adze);
 		
 	}

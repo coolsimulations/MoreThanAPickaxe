@@ -7,12 +7,12 @@ import com.google.common.collect.ImmutableSet;
 
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
 import net.doubledoordev.lumberjack.LumberjackConfig;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -44,7 +44,7 @@ public class MoreThanAPickaxeLumberjack {
         for (BlockPos point : ImmutableSet.copyOf(nextMap.get(uuid)))
         {
             // This indirectly causes breakEvent to be invoked
-            ((ServerPlayerEntity) event.player).gameMode.destroyBlock(point);
+            ((ServerPlayer) event.player).gameMode.destroyBlock(point);
             // Remove the current point
             nextMap.remove(uuid, point);
             if (i++ > LumberjackConfig.GENERAL.tickLimit.get()) break;
@@ -58,7 +58,7 @@ public class MoreThanAPickaxeLumberjack {
     @SubscribeEvent
     public void breakEvent(BlockEvent.BreakEvent event)
     {
-        final PlayerEntity player = event.getPlayer();
+        final Player player = event.getPlayer();
         if (player == null) return;
         final UUID uuid = player.getUUID();
         final BlockState state = event.getState();

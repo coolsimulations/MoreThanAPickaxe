@@ -1,7 +1,7 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
 import net.coolsimulations.MoreThanAPickaxe.Reference;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

@@ -12,7 +12,9 @@
       "conditions": {
         "items": [
           {
-            "item": "morethanapickaxe:bronze_adze"
+            "items": [
+              "morethanapickaxe:bronze_adze"
+            ]
           }
         ]
       }

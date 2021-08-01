@@ -3,7 +3,7 @@ package net.coolsimulations.MoreThanAPickaxe.init;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemDenseAdze;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPItems;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 //import com.ewyboy.bibliotheca.common.loaders.ItemLoader;
 

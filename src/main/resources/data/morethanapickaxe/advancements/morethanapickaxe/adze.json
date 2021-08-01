@@ -17,7 +17,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:wooden_adze"
+                        "items": [
+                            "morethanapickaxe:wooden_adze"
+                        ]
                     }
                 ]
             }
@@ -27,7 +29,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:stone_adze"
+                        "items": [
+                            "morethanapickaxe:stone_adze"
+                        ]
                     }
                 ]
             }
@@ -37,7 +41,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:iron_adze"
+                        "items": [
+                            "morethanapickaxe:iron_adze"
+                        ]
                     }
                 ]
             }
@@ -47,7 +53,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:gold_adze"
+                        "items": [
+                            "morethanapickaxe:gold_adze"
+                        ]
                     }
                 ]
             }
@@ -57,7 +65,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:diamond_adze"
+                        "items": [
+                            "morethanapickaxe:diamond_adze"
+                        ]
                     }
                 ]
             }
@@ -67,7 +77,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:netherite_adze"
+                        "items": [
+                            "morethanapickaxe:netherite_adze"
+                        ]
                     }
                 ]
             }
@@ -77,7 +89,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:bronze_adze"
+                        "items": [
+                            "morethanapickaxe:bronze_adze"
+                        ]
                     }
                 ]
             }
@@ -87,7 +101,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:titanium_adze"
+                        "items": [
+                            "morethanapickaxe:titanium_adze"
+                        ]
                     }
                 ]
             }
@@ -97,7 +113,9 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "morethanapickaxe:steel_adze"
+                        "items": [
+                            "morethanapickaxe:steel_adze"
+                        ]
                     }
                 ]
             }

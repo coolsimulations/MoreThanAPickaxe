@@ -1,15 +1,13 @@
 package net.coolsimulations.MoreThanAPickaxe.item;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.LazyValue;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeMod;
-
 import java.util.function.Supplier;
 
-public enum AdzeItemTier implements IItemTier {
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
+
+public enum AdzeItemTier implements Tier {
     steelToolMaterial(2, 500, 7.0F, 2.5F, 9, () -> {
     	return Ingredient.of(ItemTags.bind("forge:" + "ingots/steel"));
     });
@@ -19,7 +17,7 @@ public enum AdzeItemTier implements IItemTier {
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final LazyValue<Ingredient> repairMaterial;
+    private final LazyLoadedValue<Ingredient> repairMaterial;
 
     AdzeItemTier(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
         this.harvestLevel = harvestLevelIn;
@@ -27,7 +25,7 @@ public enum AdzeItemTier implements IItemTier {
         this.efficiency = efficiencyIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
-        this.repairMaterial = new LazyValue(repairMaterialIn);
+        this.repairMaterial = new LazyLoadedValue(repairMaterialIn);
     }
 
     public int getUses() {
