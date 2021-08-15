@@ -1,24 +1,29 @@
 package net.coolsimulations.MoreThanAPickaxe.item;
 
 import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.util.Optional;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
-import com.mojang.datafixers.util.Pair;
 
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTags;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.ServerAdvancementManager;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -29,12 +34,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.HoneycombItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -42,6 +47,7 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
@@ -65,24 +71,24 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 		attributeBuilder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)this.attackSpeed, AttributeModifier.Operation.ADDITION));
 		this.attribute = attributeBuilder.build();
 	}
-	
+
 	public float getDestroySpeed(ItemStack stack, BlockState state)
 	{
 		if (state.is(Blocks.COBWEB))
 		{
 			return 15.0F;
 		}
-		
+
 		return super.getDestroySpeed(stack, state);
 	}
-	
+
 	public boolean isCorrectToolForDrops(BlockState state) {
-		
+
 		if (state.is(Blocks.COBWEB))
 		{
 			return true;
 		}
-		
+
 		return super.isCorrectToolForDrops(state);
 	}
 
@@ -94,7 +100,8 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 		Level world = context.getLevel();
 		BlockPos blockpos = context.getClickedPos();
 		BlockState blockstate = world.getBlockState(blockpos);
-		Block blockStrip = BLOCK_STRIPPING_MAP.get(blockstate.getBlock());
+		Player player = context.getPlayer();
+		ItemStack itemstack = context.getItemInHand();
 
 		BlockState iblockstate = world.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
@@ -108,23 +115,61 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 
 		BlockPos blockTwiceAboveBlockPos = blockpos.above(2);
 
+		Optional<BlockState> optional = Optional.ofNullable((Block) BLOCK_STRIPPING_MAP.get(blockstate.getBlock())).map(state -> state.defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockstate.getValue(RotatedPillarBlock.AXIS)));
+		Optional<BlockState> optional1 = WeatheringCopper.getPrevious(blockstate);
+		Optional<BlockState> optional2 = Optional.ofNullable((Block) ((BiMap) HoneycombItem.WAX_OFF_BY_BLOCK.get()).get(blockstate.getBlock())).map(state -> state.withPropertiesOf(blockstate));
 
-		if (blockStrip != null) {
-			Player playerentity = context.getPlayer();
-			world.playSound(playerentity, blockpos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
-			if (!world.isClientSide) {
-				world.setBlock(blockpos, (BlockState) blockStrip.defaultBlockState().setValue(RotatedPillarBlock.AXIS, blockstate.getValue(RotatedPillarBlock.AXIS)), 11);
-				if (playerentity != null) {
-					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
+		Optional<BlockState> optional3 = Optional.empty();
+		if (optional.isPresent()) {
+			world.playSound(player, blockpos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+			optional3 = optional;
+		} else if (optional1.isPresent()) {
+			world.playSound(player, blockpos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
+			world.levelEvent(player, 3005, blockpos, 0);
+			optional3 = optional1;
+		} else if (optional2.isPresent()) {
+			world.playSound(player, blockpos, SoundEvents.AXE_WAX_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
+			world.levelEvent(player, 3004, blockpos, 0);
+			if (player instanceof ServerPlayer) {
+				ServerAdvancementManager manager = player.getServer().getAdvancements();
+				Advancement wax_off = manager.getAdvancement(new ResourceLocation("minecraft:husbandry/wax_off"));
+				AdvancementProgress advancementprogress = ((ServerPlayer) player).getAdvancements().getOrStartProgress(wax_off);
+				if (!advancementprogress.isDone()) {
+					for(String s : advancementprogress.getRemainingCriteria()) {
+						((ServerPlayer) player).getAdvancements().award(wax_off, s);
+					}
 				}
+			}
+			optional3 = optional2;
+		}
+
+		if (optional3.isPresent()) {
+			if (player instanceof ServerPlayer) {
+				CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer) player, blockpos, itemstack);
+			}
+
+			world.setBlock(blockpos, optional3.get(), 11);
+			if (player != null) {
+				itemstack.hurtAndBreak(1, player, (p_150686_) -> {
+					p_150686_.broadcastBreakEvent(context.getHand());
+				});
 			}
 
 			return InteractionResult.sidedSuccess(world.isClientSide);
 		}
 
 		if (blockstate.getBlock() instanceof CampfireBlock && blockstate.getValue(CampfireBlock.LIT)) {
-			world.levelEvent((Player)null, 1009, blockpos, 0);
+			if (!world.isClientSide()) {
+				world.levelEvent((Player)null, 1009, blockpos, 0);
+			}
+
+			CampfireBlock.dowse(context.getPlayer(), world, blockpos, blockstate);
 			world.setBlock(blockpos, blockstate.setValue(CampfireBlock.LIT, Boolean.valueOf(false)), 11);
+
+			if (player != null) {
+				context.getItemInHand().hurtAndBreak(1, player, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
+			}
+
 			return InteractionResult.sidedSuccess(world.isClientSide);
 		}
 
@@ -166,7 +211,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 						return InteractionResult.SUCCESS;
 					}
 				}
-				
+
 				if (world.isEmptyBlock(blockpos.above())) {
 					return setBlockToFarmland(context, blockpos, world);
 				}
@@ -210,8 +255,8 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 						return InteractionResult.SUCCESS;
 					}
 				}
-				
-				if (world.getBlockState(blockpos.above()).isAir()) {
+
+				if(world.isEmptyBlock(blockpos.above())) {
 					return setBlockToPath(context, blockpos, world);
 				}
 
