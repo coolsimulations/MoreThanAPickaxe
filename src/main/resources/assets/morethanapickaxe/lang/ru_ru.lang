@@ -33,6 +33,23 @@ item.skyroot_adze.name=Небесный Корень Адзе
 item.valkyrie_adze.name=Валькирия Адзе
 item.zanite_adze.name=Занит Адзе
 
+item.mercury_adze.name=Ртутная Адзе
+item.carbon_adze.name=Углеродная Адзе
+item.uranium_adze.name=Урановая Адзе
+item.palladium_adze.name=Палладиевая Адзе
+item.red_gem_adze.name=Красный драгоценный камень Адзе
+item.magnesium_adze.name=Магниевая Адзе
+item.crystal_adze.name=Кристальная Адзе
+item.white_gem_adze.name=Белый драгоценный камень Адзе
+item.blue_gem_adze.name=Синий драгоценный камень Адзе
+item.zinc_adze.name=Цинкова Адзе
+item.tungsten_adze.name=Вольфрамовая Адзе
+item.blue_diamond_adze.name=Синий алмаз Адзе
+item.red_diamond_adze.name=Красный алмаз Адзе
+item.purple_diamond_adze.name=Фиолетовый алмаз Адзе
+item.yellow_diamond_adze.name=Жёлтый алмаз Адзе
+item.green_diamond_adze.name=Зелёный алмаз Адзе
+
 item.hammertime.itemdenseadzewood.name=Деревянная Плотная Aдзе
 item.hammertime.itemdenseadzestone.name=Каменная Плотная Aдзе
 item.hammertime.itemdenseadzeiron.name=Железные Плотная Aдзе

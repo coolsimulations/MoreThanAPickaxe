@@ -33,6 +33,23 @@ item.skyroot_adze.name=スカイルートのアズ
 item.valkyrie_adze.name=ヴァルキリーのアズ
 item.zanite_adze.name=ザナイトのアズ
 
+item.mercury_adze.name=水星のアズ
+item.carbon_adze.name=カーボンのアズ
+item.uranium_adze.name=ウランのアズ
+item.palladium_adze.name=パラジウムのアズ
+item.red_gem_adze.name=赤色宝石のアズ
+item.magnesium_adze.name=マグネシウムのアズ
+item.crystal_adze.name=クォーツのアズ
+item.white_gem_adze.name=白色宝石のアズ
+item.blue_gem_adze.name=青色宝石のアズ
+item.zinc_adze.name=亜鉛のアズ
+item.tungsten_adze.name=タングステンのアズ
+item.blue_diamond_adze.name=ブルーダイヤモンドのアズ
+item.red_diamond_adze.name=レッドダイヤモンドのアズ
+item.purple_diamond_adze.name=パープルダイヤモンドのアズ
+item.yellow_diamond_adze.name=イエローダイヤモンドのアズ
+item.green_diamond_adze.name=グリーンダイヤモンドのアズ
+
 item.hammertime.itemdenseadzewood.name=木のアズ（高密化）
 item.hammertime.itemdenseadzestone.name=石のアズ（高密化）
 item.hammertime.itemdenseadzeiron.name=鉄のアズ（高密化）

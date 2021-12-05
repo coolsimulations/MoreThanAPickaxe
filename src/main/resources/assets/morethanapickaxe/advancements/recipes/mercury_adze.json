@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:mercury_adze"
+    ]
+  },
+  "criteria": {
+    "has_mercury": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "ingotMercury"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:mercury_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mercury",
+      "has_the_recipe"
+    ]
+  ]
+}

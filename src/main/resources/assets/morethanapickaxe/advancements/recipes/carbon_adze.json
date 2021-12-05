@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:carbon_adze"
+    ]
+  },
+  "criteria": {
+    "has_carbon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "ingotCarbon"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:carbon_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_carbon",
+      "has_the_recipe"
+    ]
+  ]
+}

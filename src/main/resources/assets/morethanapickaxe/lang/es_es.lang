@@ -33,6 +33,23 @@ item.skyroot_adze.name=Adze de Raízcelestial
 item.valkyrie_adze.name=Adze de Valquiria
 item.zanite_adze.name=Adze de Zanite
 
+item.mercury_adze.name=Adze de Mercurio
+item.carbon_adze.name=Adze de Carbono
+item.uranium_adze.name=Adze de Uranio
+item.palladium_adze.name=Adze de Paladio
+item.red_gem_adze.name=Adze de Gema Roja
+item.magnesium_adze.name=Adze de Magnesio
+item.crystal_adze.name=Adze de Cristal
+item.white_gem_adze.name=Adze de Gema Blanca
+item.blue_gem_adze.name=Adze de Gema Azúl
+item.zinc_adze.name=Adze de Zinc
+item.tungsten_adze.name=Adze de Tungsteno
+item.blue_diamond_adze.name=Adze de Diamante Azúl
+item.red_diamond_adze.name=Adze de Diamante Rojo
+item.purple_diamond_adze.name=Adze de Diamante Púrpura
+item.yellow_diamond_adze.name=Adze de Diamante Amarillo
+item.green_diamond_adze.name=Adze de Diamante Verde
+
 item.hammertime.itemdenseadzewood.name=Adze Densa de Madera
 item.hammertime.itemdenseadzestone.name=Adze Densa de Piedra
 item.hammertime.itemdenseadzeiron.name=Adze Densa de Hierro

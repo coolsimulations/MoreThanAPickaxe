@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:yellow_diamond_adze"
+    ]
+  },
+  "criteria": {
+    "has_yellow_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemYellowDiamond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:yellow_diamond_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_yellow_diamond",
+      "has_the_recipe"
+    ]
+  ]
+}

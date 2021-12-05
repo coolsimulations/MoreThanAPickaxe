@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:purple_diamond_adze"
+    ]
+  },
+  "criteria": {
+    "has_purple_diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemPurpleDiamond"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:purple_diamond_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_purple_diamond",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "morethanapickaxe:items/red_diamond_adze"
+    }
+}

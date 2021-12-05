@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:tungsten_adze"
+    ]
+  },
+  "criteria": {
+    "has_tungsten": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "ingotTungsten"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:tungsten_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tungsten",
+      "has_the_recipe"
+    ]
+  ]
+}

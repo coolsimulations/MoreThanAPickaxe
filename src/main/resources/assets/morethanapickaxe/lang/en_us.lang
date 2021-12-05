@@ -33,6 +33,23 @@ item.skyroot_adze.name=Skyroot Adze
 item.valkyrie_adze.name=Valkyrie Adze
 item.zanite_adze.name=Zanite Adze
 
+item.mercury_adze.name=Mercury Adze
+item.carbon_adze.name=Carbon Adze
+item.uranium_adze.name=Uranium Adze
+item.palladium_adze.name=Palladium Adze
+item.red_gem_adze.name=Red Gem Adze
+item.magnesium_adze.name=Magnesium Adze
+item.crystal_adze.name=Crystal Adze
+item.white_gem_adze.name=White Gem Adze
+item.blue_gem_adze.name=Blue Gem Adze
+item.zinc_adze.name=Zinc Adze
+item.tungsten_adze.name=Tungsten Adze
+item.blue_diamond_adze.name=Blue Diamond Adze
+item.red_diamond_adze.name=Red Diamond Adze
+item.purple_diamond_adze.name=Purple Diamond Adze
+item.yellow_diamond_adze.name=Yellow Diamond Adze
+item.green_diamond_adze.name=Green Diamond Adze
+
 item.hammertime.itemdenseadzewood.name=Wooden Dense Adze
 item.hammertime.itemdenseadzestone.name=Stone Dense Adze
 item.hammertime.itemdenseadzeiron.name=Iron Dense Adze

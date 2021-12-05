@@ -20,6 +20,7 @@ import com.gildedgames.the_aether.items.dungeon.ItemDungeonKey;
 import com.gildedgames.the_aether.networking.AetherNetworkingManager;
 import com.gildedgames.the_aether.networking.packets.PacketExtendedAttack;
 import com.gildedgames.the_aether.player.PlayerAether;
+import com.mjr.extraplanets.Config;
 
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemGravititeAdze;
@@ -85,6 +86,51 @@ public class MoreThanAPicakxeAetherLegacyRecipes {
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.desh_adze, 3250));
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.sticky_desh_adze, 3250));
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.titanium_adze_gc, 2750));
+
+			if(SPCompatibilityManager.isExtraPlanetsLoaded()) {
+
+				if(Config.MERCURY && Config.ITEMS_MERCURY)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.mercury_adze, 160));
+
+				if(Config.MERCURY && Config.ITEMS_CARBON)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.carbon_adze, 40));
+
+				if(Config.CERES && Config.ITEMS_URANIUM)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.uranium_adze, 160));
+
+				if(Config.JUPITER && Config.ITEMS_PALLADIUM)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.palladium_adze, 60));
+
+				if(Config.JUPITER && Config.ITEMS_GEM_RED)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.red_gem_adze, 80));
+
+				if(Config.SATURN && Config.ITEMS_MAGNESIUM)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.magnesium_adze, 80));
+
+				if(Config.URANUS && Config.ITEMS_CRYSTAL)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.crystal_adze, 120));
+
+				if(Config.URANUS && Config.ITEMS_GEM_WHITE)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.white_gem_adze, 160));
+
+				if(Config.NEPTUNE && Config.ITEMS_GEM_BLUE)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.blue_gem_adze, 100));
+
+				if(Config.NEPTUNE && Config.ITEMS_ZINC)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.zinc_adze, 160));
+
+				if(Config.PLUTO && Config.ITEMS_TUNGSTEN)
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.tungsten_adze, 120));
+
+				if(Config.KEPLER22B && Config.ITEMS_KEPLER22B && Config.KEPLER_SOLAR_SYSTEMS) {
+
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.blue_diamond_adze, 250));
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.red_diamond_adze, 250));
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.purple_diamond_adze, 250));
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.yellow_diamond_adze, 250));
+					registry.register(new AetherEnchantment(MoreThanAPickaxeItems.green_diamond_adze, 250));
+				}
+			}
 		}
 
 		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded() || SPConfig.enableEmeraldMaterial)
@@ -224,11 +270,11 @@ public class MoreThanAPicakxeAetherLegacyRecipes {
 			doubleDropHelper(size, event.getState(), event.getPlayer(), event.getWorld(), event.getPos());
 		}
 		if (event.getState().getBlock() instanceof BlockAetherLog && event.getState().getValue(BlockAetherLog.wood_type) == EnumLogType.Oak && (event.getPlayer().getHeldItemMainhand().getItem() instanceof ItemZaniteAdze || event.getPlayer().getHeldItemMainhand().getItem() instanceof ItemGravititeAdze || event.getPlayer().getHeldItemMainhand().getItem()  == MoreThanAPickaxeItems.valkyrie_adze))
-        {
+		{
 			BlockAetherLog.spawnAsEntity(event.getWorld(), event.getPos(), new ItemStack(ItemsAether.golden_amber, 1 + new java.util.Random().nextInt(2)));
-        }
+		}
 	}
-	
+
 	public void doubleDropHelper(int size, IBlockState state, EntityPlayer player, World world, BlockPos pos) {
 		if (player.getHeldItemMainhand().getItem() == MoreThanAPickaxeItems.skyroot_adze)
 		{

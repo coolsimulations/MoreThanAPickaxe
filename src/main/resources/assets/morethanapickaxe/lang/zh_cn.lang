@@ -33,6 +33,23 @@ item.skyroot_adze.name=天根木阿泽
 item.valkyrie_adze.name=女武神阿泽
 item.zanite_adze.name=紫晶阿泽
 
+item.mercury_adze.name=水星汞阿泽
+item.carbon_adze.name=碳阿泽
+item.uranium_adze.name=铀阿泽
+item.palladium_adze.name=钯阿泽
+item.red_gem_adze.name=红色宝石阿泽
+item.magnesium_adze.name=镁阿泽
+item.crystal_adze.name=水晶阿泽
+item.white_gem_adze.name=白色宝石阿泽
+item.blue_gem_adze.name=蓝色宝石阿泽
+item.zinc_adze.name=锌阿泽
+item.tungsten_adze.name=钨阿泽
+item.blue_diamond_adze.name=蓝色钻石阿泽
+item.red_diamond_adze.name=红色钻石阿泽
+item.purple_diamond_adze.name=紫色钻石阿泽
+item.yellow_diamond_adze.name=黄色钻石阿泽
+item.green_diamond_adze.name=绿色钻石阿泽
+
 item.hammertime.itemdenseadzewood.name=致密木阿泽
 item.hammertime.itemdenseadzestone.name=致密石阿泽
 item.hammertime.itemdenseadzeiron.name=致密铁阿泽

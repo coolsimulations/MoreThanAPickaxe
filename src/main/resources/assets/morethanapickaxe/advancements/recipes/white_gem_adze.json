@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:white_gem_adze"
+    ]
+  },
+  "criteria": {
+    "has_white_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemWhiteGem"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:white_gem_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_gem",
+      "has_the_recipe"
+    ]
+  ]
+}

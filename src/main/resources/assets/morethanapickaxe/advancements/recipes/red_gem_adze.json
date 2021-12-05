@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:red_gem_adze"
+    ]
+  },
+  "criteria": {
+    "has_red_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "type": "forge:ore_dict",
+            "ore": "gemRedGem"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:red_gem_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_gem",
+      "has_the_recipe"
+    ]
+  ]
+}

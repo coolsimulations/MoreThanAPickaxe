@@ -3,7 +3,7 @@
   "modid": "morethanapickaxe",
   "name": "More Than A Pickaxe",
   "description": "This mod is an add-on to SurvivalPlus that adds a multitool which is a pickaxe, axe, sword, hoe, and shovel.",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "mcversion": "${mcversion}",
   "url": "https://minecraft.curseforge.com/projects/more-than-a-pickaxe",
   "updateUrl": "",
