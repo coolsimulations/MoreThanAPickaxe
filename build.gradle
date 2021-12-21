@@ -1,6 +1,17 @@
 plugins {
-	id 'fabric-loom' version '0.5-SNAPSHOT'
+	id 'fabric-loom' version '0.7-SNAPSHOT'
 	id 'maven-publish'
+}
+
+repositories {
+	maven {
+		name = 'TerraformersMC'
+		url = 'https://maven.terraformersmc.com/'
+	}
+	maven {
+		name = 'SheDaniel'
+		url = 'https://maven.shedaniel.me/'
+	}
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -28,7 +39,7 @@ dependencies {
 
 	modImplementation "me.shedaniel:RoughlyEnoughItems:${project.rei_version}"
 
-        compile files('libs/SurvivalPlus-Fabric-1.14.4-0.1.5-API.jar')
+        compile files('libs/SurvivalPlus-Fabric-1.14.4-0.1.5b-API.jar')
 
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.

@@ -47,7 +47,9 @@ public class MoreThanAPickaxeItems {
 		diamond_adze = new ItemAdze(ToolMaterials.DIAMOND, 5.0F, -2.40F, new FabricItemSettings());
 		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 5.5F, -2.40F, new FabricItemSettings());
 		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 5.5F, -2.40F, new FabricItemSettings());
-
+	}
+	
+	public static void initCompat() {
 
 		if(!SPCompatibilityManager.isGCLoaded()) {
 
@@ -64,7 +66,6 @@ public class MoreThanAPickaxeItems {
 				//titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F, new FabricItemSettings());
 			}
 		}**/
-
 	}
 
 	public static void register()
@@ -77,7 +78,10 @@ public class MoreThanAPickaxeItems {
 		registerItem(diamond_adze, "diamond_adze");
 		registerItem(bronze_adze, "bronze_adze");
 		registerItem(titanium_adze, "titanium_adze");
-
+	}
+	
+	public static void registerCompat()
+	{
 
 		if(!SPCompatibilityManager.isGCLoaded()) {
 
