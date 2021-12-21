@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:quartz_adze"
-  }
+  },
+  "conditions": [
+    {
+      "item": "morethanapickaxe:quartz_adze",
+      "type": "forge:item_exists"
+    }
+  ]
 }

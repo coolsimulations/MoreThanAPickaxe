@@ -15,5 +15,14 @@
   },
   "result": {
     "item": "morethanapickaxe:wooden_adze"
-  }
+  },
+  "conditions": [
+    {
+      "value": {
+        "modid": "notreepunching",
+        "type": "forge:mod_loaded"
+      },
+      "type": "forge:not"
+    }
+  ]
 }

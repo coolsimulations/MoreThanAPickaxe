@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:titanium_adze_gc"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "galacticraftplanets",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

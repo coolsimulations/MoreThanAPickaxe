@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:obsidian_adze"
-  }
+  },
+  "conditions": [
+    {
+      "item": "morethanapickaxe:obsidian_adze",
+      "type": "forge:item_exists"
+    }
+  ]
 }

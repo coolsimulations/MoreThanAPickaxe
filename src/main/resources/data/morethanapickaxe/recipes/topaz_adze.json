@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:topaz_adze"
-  }
+  },
+  "conditions": [
+    {
+      "item": "morethanapickaxe:topaz_adze",
+      "type": "forge:item_exists"
+    }
+  ]
 }

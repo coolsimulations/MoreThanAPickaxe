@@ -15,5 +15,14 @@
   },
   "result": {
     "item": "morethanapickaxe:steel_adze"
-  }
+  },
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:ingots/steel",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    }
+  ]
 }

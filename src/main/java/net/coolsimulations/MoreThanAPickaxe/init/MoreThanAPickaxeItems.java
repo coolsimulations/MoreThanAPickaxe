@@ -1,5 +1,7 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
+import at.xander.fancytools.FancyToolsMod;
+import at.xander.fancytools.config.FancyToolsConfig;
 import net.coolsimulations.MoreThanAPickaxe.item.AdzeItemTier;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
@@ -66,16 +68,26 @@ public class MoreThanAPickaxeItems {
 		}
 		
 		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
-			if(SPCompatibilityManager.isSimpleEmeraldLoaded()) {
+			if(SPCompatibilityManager.isFancyToolsLoaded()) {
+				FancyToolsConfig cfg = FancyToolsMod.getInstance().getConfig();
+				emerald_adze = new ItemAdze(cfg.getEmerald(), 8.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+			} else if(SPCompatibilityManager.isSimpleEmeraldLoaded()) {
 				emerald_adze = new ItemAdze(com.technovision.emeraldmod.util.enums.ModItemTier.EMERALD, 8.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				emerald_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.EMERALD_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+			} else if (SPCompatibilityManager.isEmeraldEquipmentLoaded()) {
+				emerald_adze = new ItemAdze(com.exline.emeraldequipment.items.ModItemTier.EMERALD, 6.5F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			}
 		}
 		
 		if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
-			if(SPCompatibilityManager.isOAATLoaded()) {
+			if(SPCompatibilityManager.isFancyToolsLoaded()) {
+				FancyToolsConfig cfg = FancyToolsMod.getInstance().getConfig();
+				obsidian_adze = new ItemAdze(cfg.getObsidian(), 8.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
+			} else if(SPCompatibilityManager.isOAATLoaded()) {
 				obsidian_adze = new ItemAdze(ToolMaterialList.obsidian, 8.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
+			} else if (SPCompatibilityManager.isObsidianEquipmentLoaded()) {
+				obsidian_adze = new ItemAdze(com.exline.obsidianequipment.items.ModItemTier.OBSIDIAN, 8.4F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				obsidian_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			}

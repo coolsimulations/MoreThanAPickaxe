@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:emerald_adze"
-  }
+  },
+  "conditions": [
+    {
+      "item": "morethanapickaxe:emerald_adze",
+      "type": "forge:item_exists"
+    }
+  ]
 }

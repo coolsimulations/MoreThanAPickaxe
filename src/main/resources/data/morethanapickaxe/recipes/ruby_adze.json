@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:ruby_adze"
-  }
+  },
+  "conditions": [
+    {
+      "item": "morethanapickaxe:ruby_adze",
+      "type": "forge:item_exists"
+    }
+  ]
 }

@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:sapphire_adze"
-  }
+  },
+  "conditions": [
+    {
+      "item": "morethanapickaxe:sapphire_adze",
+      "type": "forge:item_exists"
+    }
+  ]
 }

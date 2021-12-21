@@ -6,7 +6,7 @@ license="All rights reserved"
 
 [[mods]]
     modId="morethanapickaxe"
-    version="0.1.5b"
+    version="0.1.6"
     updateJSONURL="https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"
     displayName="More Than A Pickaxe"
@@ -18,7 +18,7 @@ license="All rights reserved"
 [[dependencies.morethanapickaxe]]
     modId="forge"
     mandatory=true
-    versionRange="[37.0.31,]"
+    versionRange="[37.1.0,]"
     ordering="NONE"
     side="BOTH"
 [[dependencies.morethanapickaxe]]
@@ -30,6 +30,6 @@ license="All rights reserved"
 [[dependencies.morethanapickaxe]]
     modId="survivalplus"
     mandatory=true
-    versionRange="[0.1.5b,]"
+    versionRange="[0.1.6,]"
     ordering="BEFORE"
     side="BOTH"

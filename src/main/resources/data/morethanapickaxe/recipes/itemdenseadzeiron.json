@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "hammertime:itemdenseadzeiron"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "hammertime",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }

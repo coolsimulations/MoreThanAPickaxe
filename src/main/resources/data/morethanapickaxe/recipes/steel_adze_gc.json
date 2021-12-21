@@ -15,5 +15,11 @@
   },
   "result": {
     "item": "morethanapickaxe:steel_adze"
-  }
+  },
+  "conditions": [
+    {
+      "modid": "galacticraftcore",
+      "type": "forge:mod_loaded"
+    }
+  ]
 }
