@@ -1,5 +1,6 @@
 package net.coolsimulations.MoreThanAPickaxe.item;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTags;
+import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -21,8 +23,10 @@ import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -32,6 +36,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.HoneycombItem;
@@ -50,13 +55,18 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
 
 public class ItemAdze extends DiggerItem implements ItemAccessor {
 
 	protected final float attackDamage;
 	protected final float attackSpeed;
 	protected final Tier material;
-	private final Multimap<Attribute, AttributeModifier> attribute;
+	protected Multimap<Attribute, AttributeModifier> attribute;
 	protected static final Map<Block, Block> BLOCK_STRIPPING_MAP;
 	protected static final Map<Block, BlockState> SHOVEL_LOOKUP;
 	protected static final Map<Block, BlockState> HOE_LOOKUP;
@@ -171,6 +181,25 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 			}
 
 			return InteractionResult.sidedSuccess(world.isClientSide);
+		}
+
+		if(SPCompatibilityManager.isAetherRebornLoaded()) {
+			if (world.getBlockState(blockpos).getBlock() == Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "golden_oak_log")) && !world.isClientSide) {
+				ServerLevel server = (ServerLevel) world;
+				LootTable supplier = server.getServer().getLootTables().get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "gameplay/golden_oak_log_strip"));
+				List<ItemStack> items = supplier.getRandomItems(new LootContext.Builder(server)
+						.withParameter(LootContextParams.BLOCK_STATE, world.getBlockState(blockpos))
+						.withParameter(LootContextParams.ORIGIN, Vec3.atLowerCornerOf(blockpos))
+						.withParameter(LootContextParams.TOOL, context.getItemInHand())
+						.create(LootContextParamSets.BLOCK)
+						);
+				Vec3 offsetDirection = context.getClickLocation();
+				for (ItemStack item : items) {
+					ItemEntity itemEntity = new ItemEntity(context.getLevel(), offsetDirection.x, offsetDirection.y, offsetDirection.z, item);
+					world.addFreshEntity(itemEntity);
+				}
+				world.setBlock(blockpos, Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "stripped_golden_oak_log")).defaultBlockState(), 11);
+			}
 		}
 
 		if(!context.getPlayer().isCrouching()) {

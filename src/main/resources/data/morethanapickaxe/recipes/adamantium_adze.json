@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "item": "galacticraft:desh_stick"
+      "item": "adabraniummod:adamantium_rod"
     },
     "X": {
-      "item": "galacticraft:desh_ingot"
+      "item": "adabraniummod:adamantium_ingot"
     }
   },
   "result": {
-    "item": "morethanapickaxe:desh_adze"
+    "item": "morethanapickaxe:adamantium_adze"
   }
 }

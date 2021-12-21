@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:valkyrie_adze"
+    ]
+  },
+  "criteria": {
+    "has_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_aether:valkyrie_axe"
+            ]
+          }
+        ]
+      }
+    },
+    "has_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_aether:valkyrie_pickaxe"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:valkyrie_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_axe",
+      "has_pickaxe",
+      "has_the_recipe"
+    ]
+  ]
+}

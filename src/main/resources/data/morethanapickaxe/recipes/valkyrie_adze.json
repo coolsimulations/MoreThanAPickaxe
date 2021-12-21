@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "the_aether:valkyrie_axe"
+    },
+    {
+      "item": "the_aether:valkyrie_pickaxe"
+    }
+  ],
+  "result": {
+    "item": "morethanapickaxe:valkyrie_adze"
+  }
+}

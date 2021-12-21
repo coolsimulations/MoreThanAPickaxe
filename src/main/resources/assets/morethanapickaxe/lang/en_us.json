@@ -33,6 +33,14 @@
   "item.morethanapickaxe.corundum_adze": "Corundum Adze",
   "item.morethanapickaxe.kunzite_adze": "Kunzite Adze",
   
+  "item.morethanapickaxe.gravitite_adze": "Gravitite Adze",
+  "item.morethanapickaxe.zanite_adze": "Zanite Adze",
+  "item.morethanapickaxe.valkyrie_adze": "Valkyrie Adze",
+  
+  "item.morethanapickaxe.adamantium_adze": "Adamantium Adze",
+  "item.morethanapickaxe.vibranium_adze": "Vibranium Adze",
+  "item.morethanapickaxe.nether_brick_adze": "Nether Brick Adze",
+  
   "advancements.morethanapickaxe.install": "More Than A Pickaxe Installation",
   "advancements.morethanapickaxe.install.desc": "Download and Install More Than A Pickaxe",
   "advancements.morethanapickaxe.install.display1": "coolsim thanks you for downloading More Than A Pickaxe!",

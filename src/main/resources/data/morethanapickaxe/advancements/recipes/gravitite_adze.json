@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:gravitite_adze"
+    ]
+  },
+  "criteria": {
+    "has_gravitite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_aether:gravitite_gemstone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:gravitite_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gravitite",
+      "has_the_recipe"
+    ]
+  ]
+}

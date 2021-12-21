@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "morethanapickaxe:iron_adze"
+  },
+  "addition": {
+    "item": "minecraft:nether_brick"
+  },
+  "result": {
+    "item": "morethanapickaxe:nether_brick_adze"
+  }
+}

@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "item": "galacticraft:desh_stick"
+      "tag": "c:wood_sticks"
     },
     "X": {
-      "item": "galacticraft:desh_ingot"
+      "item": "the_aether:zanite_gemstone"
     }
   },
   "result": {
-    "item": "morethanapickaxe:desh_adze"
+    "item": "morethanapickaxe:zanite_adze"
   }
 }

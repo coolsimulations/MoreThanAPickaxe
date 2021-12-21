@@ -33,6 +33,14 @@
   "item.morethanapickaxe.corundum_adze": "\u521a\u7389\u963f\u6cfd",
   "item.morethanapickaxe.kunzite_adze": "\u9502\u7d2b\u7389\u963f\u6cfd",
   
+  "item.morethanapickaxe.gravitite_adze": "\u91cd\u529b\u6676\u963f\u6cfd",
+  "item.morethanapickaxe.zanite_adze": "\u7d2b\u6676\u963f\u6cfd",
+  "item.morethanapickaxe.valkyrie_adze": "\u5973\u6b66\u795e\u963f\u6cfd",
+  
+  "item.morethanapickaxe.adamantium_adze": "\u7cbe\u91d1\u963f\u6cfd",
+  "item.morethanapickaxe.vibranium_adze": "\u632f\u91d1\u963f\u6cfd",
+  "item.morethanapickaxe.nether_brick_adze": "\u5730\u72f1\u7816\u5757u963f\u6cfd",
+  
   "advancements.morethanapickaxe.install": "\u4e0d\u53ea\u662f\u9550\u5b89\u88c5",
   "advancements.morethanapickaxe.install.desc": "\u4e0b\u8f7d\u5e76\u5b89\u88c5\u4e0d\u53ea\u662f\u9550",
   "advancements.morethanapickaxe.install.display1": "coolsim\u8c22\u8c22\u60a8\u7684\u4e0b\u8f7d\u4e0d\u53ea\u662f\u9550\uff01",
