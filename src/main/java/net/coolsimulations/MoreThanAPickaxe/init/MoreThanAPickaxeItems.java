@@ -65,7 +65,10 @@ public class MoreThanAPickaxeItems {
 		netherite_adze = new ItemAdze(Tiers.NETHERITE, 9.0F, -2.40F, new FabricItemSettings().fireproof());
 		bronze_adze = new ItemAdze(SPItemTier.bronzeToolMaterial, 7.0F, -2.40F, new FabricItemSettings());
 		titanium_adze = new ItemAdze(SPItemTier.titaniumToolMaterial, 8.0F, -2.40F, new FabricItemSettings());
-
+	}
+	
+	public static void initCompat() {
+		
 		if(!SPCompatibilityManager.isGCLoaded()) {
 
 			if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
@@ -143,7 +146,6 @@ public class MoreThanAPickaxeItems {
 			corundum_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CORUNDUM_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
 			carbonado_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CARBONADO_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
 		}
-
 	}
 
 	public static void register()
@@ -157,8 +159,11 @@ public class MoreThanAPickaxeItems {
 		registerItem(netherite_adze, "netherite_adze");
 		registerItem(bronze_adze, "bronze_adze");
 		registerItem(titanium_adze, "titanium_adze");
-
-
+	}
+	
+	public static void registerCompat()
+	{
+		
 		if(!SPCompatibilityManager.isGCLoaded()) {
 
 			registerItem(steel_adze, "steel_adze");
