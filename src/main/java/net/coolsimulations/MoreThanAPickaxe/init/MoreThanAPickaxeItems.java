@@ -74,9 +74,9 @@ public class MoreThanAPickaxeItems {
 			} else if(SPCompatibilityManager.isSimpleEmeraldLoaded()) {
 				emerald_adze = new ItemAdze(com.technovision.emeraldmod.util.enums.ModItemTier.EMERALD, 8.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
-				emerald_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.EMERALD_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+				emerald_adze = new ItemAdze(com.kwpugh.easy_emerald.lists.ToolMaterialTiers.EMERALD, 7.0F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			} else if (SPCompatibilityManager.isEmeraldEquipmentLoaded()) {
-				emerald_adze = new ItemAdze(com.exline.emeraldequipment.items.ModItemTier.EMERALD, 6.5F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
+				emerald_adze = new ItemAdze(com.exline.emeraldequipment.items.ModItemTier.EMERALD, 8.5F, -2.4F, new Item.Properties()).setRegistryName("emerald_adze");
 			}
 		}
 		
@@ -89,12 +89,12 @@ public class MoreThanAPickaxeItems {
 			} else if (SPCompatibilityManager.isObsidianEquipmentLoaded()) {
 				obsidian_adze = new ItemAdze(com.exline.obsidianequipment.items.ModItemTier.OBSIDIAN, 8.4F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			} else if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
-				obsidian_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
+				obsidian_adze = new ItemAdze(com.kwpugh.easy_emerald.lists.ToolMaterialTiers.OBSIDIAN, 7.0F, -2.4F, new Item.Properties()).setRegistryName("obsidian_adze");
 			}
 		}
 		
 		if (SPCompatibilityManager.isEasyEmeraldLoaded()) {
-			ruby_adze = new ItemAdze(com.kwpugh.easy_emerald.init.ItemInit.RUBY_TOOL_MATERIAL, 8.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
+			ruby_adze = new ItemAdze(com.kwpugh.easy_emerald.lists.ToolMaterialTiers.RUBY, 8.0F, -2.4F, new Item.Properties()).setRegistryName("ruby_adze");
 		}
 
 	}
