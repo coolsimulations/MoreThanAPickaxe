@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "c:wood_sticks"
+    },
+    "X": {
+      "item": "more_gems:moissanite"
+    }
+  },
+  "result": {
+    "item": "morethanapickaxe:moissanite_adze"
+  }
+}

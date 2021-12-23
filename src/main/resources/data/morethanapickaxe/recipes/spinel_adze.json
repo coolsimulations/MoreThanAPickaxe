@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "c:wood_sticks"
+    },
+    "X": [
+      {
+        "tag": "c:spinel_shards"
+      },
+      {
+        "tag": "c:spinel"
+      }
+    ]
+  },
+  "result": {
+    "item": "morethanapickaxe:spinel_adze"
+  }
+}

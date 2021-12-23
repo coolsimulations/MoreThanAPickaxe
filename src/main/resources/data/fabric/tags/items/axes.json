@@ -86,6 +86,14 @@
 		{
 		  "id": "morethanapickaxe:nether_brick_adze",
 		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:moissanite_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:spinel_adze",
+		  "required": false
 		}
 	]
 }
