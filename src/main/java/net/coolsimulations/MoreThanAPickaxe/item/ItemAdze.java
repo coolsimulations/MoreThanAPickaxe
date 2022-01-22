@@ -116,6 +116,14 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 
 		return super.isCorrectToolForDrops(state);
 	}
+	
+	@Override
+	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity entity) {
+		if(!unbreakable)
+			return super.hurtEnemy(stack, target, entity);
+		else
+			return true;
+	}
 
 	/**
 	 * Called when this item is used when targetting a Block
