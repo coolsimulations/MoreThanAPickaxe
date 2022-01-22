@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 
 def mcVersion = "1.17.1"
-def modVersion = "0.1.6"
+def modVersion = "0.1.6b"
 version = "${mcVersion}-${modVersion}"
 group = "net.coolsimulations.MoreThanAPickaxe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MoreThanAPickaxe"

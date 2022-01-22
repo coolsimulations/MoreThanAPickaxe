@@ -6,7 +6,7 @@ license="All rights reserved"
 
 [[mods]]
     modId="morethanapickaxe"
-    version="0.1.6"
+    version="0.1.6b"
     updateJSONURL="https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker.json"
     displayURL="https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe"
     displayName="More Than A Pickaxe"
