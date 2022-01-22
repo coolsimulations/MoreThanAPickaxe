@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:end_adze"
+    ]
+  },
+  "criteria": {
+    "has_end": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gobber2:gobber2_ingot_end"
+            ]
+          }
+        ]
+      }
+    },
+    "has_stars": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gobber2:gobber2_staff_stars"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:end_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_end",
+      "has_stars",
+      "has_the_recipe"
+    ]
+  ]
+}
