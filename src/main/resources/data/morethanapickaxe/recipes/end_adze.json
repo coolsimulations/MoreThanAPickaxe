@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XY ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "gobber2:gobber2_rod_end"
+    },
+    "X": {
+      "item": "gobber2:gobber2_ingot_end"
+    },
+    "Y": {
+      "item": "gobber2:gobber2_staff_stars"
+    }
+  },
+  "result": {
+    "item": "morethanapickaxe:end_adze"
+  }
+}

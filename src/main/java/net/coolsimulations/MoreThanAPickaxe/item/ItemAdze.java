@@ -13,6 +13,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 
+import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTags;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.SPTabs;
@@ -31,6 +32,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -70,8 +72,19 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 	protected static final Map<Block, Block> BLOCK_STRIPPING_MAP;
 	protected static final Map<Block, BlockState> SHOVEL_LOOKUP;
 	protected static final Map<Block, BlockState> HOE_LOOKUP;
-
+	
+	protected final boolean isModded;
+	protected final boolean unbreakable;
+	
 	public ItemAdze(Tier material, float damage, float speed, FabricItemSettings builder) {
+		this(material, damage, speed, builder, false);
+	}
+	
+	public ItemAdze(Tier material, float damage, float speed, FabricItemSettings builder, boolean isModded) {
+		this(material, damage, speed, builder, isModded, false);
+	}
+
+	public ItemAdze(Tier material, float damage, float speed, FabricItemSettings builder, boolean isModded, boolean unbreakable) {
 		super(damage, speed, material, MoreThanAPickaxeTags.Blocks.MINEABLE_WITH_ADZE, builder.group(SPTabs.tabTools).maxCount(1));
 		this.material = material;
 		this.attackSpeed = speed;
@@ -80,6 +93,8 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 		attributeBuilder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)this.attackDamage, AttributeModifier.Operation.ADDITION));
 		attributeBuilder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", (double)this.attackSpeed, AttributeModifier.Operation.ADDITION));
 		this.attribute = attributeBuilder.build();
+		this.isModded = isModded;
+		this.unbreakable = unbreakable;
 	}
 
 	public float getDestroySpeed(ItemStack stack, BlockState state)
@@ -159,7 +174,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 			}
 
 			world.setBlock(blockpos, optional3.get(), 11);
-			if (player != null) {
+			if (!unbreakable && player != null) {
 				itemstack.hurtAndBreak(1, player, (p_150686_) -> {
 					p_150686_.broadcastBreakEvent(context.getHand());
 				});
@@ -176,7 +191,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 			CampfireBlock.dowse(context.getPlayer(), world, blockpos, blockstate);
 			world.setBlock(blockpos, blockstate.setValue(CampfireBlock.LIT, Boolean.valueOf(false)), 11);
 
-			if (player != null) {
+			if (!unbreakable && player != null) {
 				context.getItemInHand().hurtAndBreak(1, player, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 			}
 
@@ -306,7 +321,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 					Block.popResourceFromFace(context.getLevel(), context.getClickedPos(), context.getClickedFace(), new ItemStack(Items.HANGING_ROOTS));
 				}
 				world.setBlock(blockpos, iblockstate2, 11);
-				if (playerentity != null) {
+				if (!unbreakable && playerentity != null) {
 					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 				}
 			}
@@ -325,7 +340,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 			world.playSound(playerentity, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 			if (!world.isClientSide) {
 				world.setBlock(blockpos, iblockstate1, 11);
-				if (playerentity != null) {
+				if (!unbreakable && playerentity != null) {
 					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 				}
 			}
@@ -360,7 +375,30 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 		else
 			return false;
 	}
+	
+	@Override
+	public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
 
+		checkAdvancement(entity);
+	}
+	
+	protected void checkAdvancement(Entity entity) {
+		
+		if(isModded) {
+			if (entity instanceof ServerPlayer) {
+				ServerAdvancementManager manager = entity.getServer().getAdvancements();
+
+				Advancement universal = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/adze"));
+
+				AdvancementProgress advancementprogress = ((ServerPlayer) entity).getAdvancements().getOrStartProgress(universal);
+				if (!advancementprogress.isDone()) {
+					for(String s : advancementprogress.getRemainingCriteria()) {
+						((ServerPlayer) entity).getAdvancements().award(universal, s);
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 * Return the name for this tool's material.

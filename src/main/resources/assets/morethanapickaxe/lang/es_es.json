@@ -41,6 +41,10 @@
   "item.morethanapickaxe.vibranium_adze": "Adze de Vibranio",
   "item.morethanapickaxe.nether_brick_adze": "Adze de Ladrillo del Nether",
   
+  "item.morethanapickaxe.gobber_adze": "Adze de Gobber",
+  "item.morethanapickaxe.nether_adze": "Adze de Infernal",
+  "item.morethanapickaxe.end_adze": "Adze de Ender",
+  
   "advancements.morethanapickaxe.install": "M\u00e1s Que un Pico Instalaci\u00f3n",
   "advancements.morethanapickaxe.install.desc": "Descargue e Instale M\u00e1s Que un Pico",
   "advancements.morethanapickaxe.install.display1": "¡coolsim te agradece por descargar M\u00e1s Que un Pico!",

@@ -2,16 +2,18 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "morethanapickaxe:stone_adze"
+      "morethanapickaxe:nether_adze"
     ]
   },
   "criteria": {
-    "has_stone": {
+    "has_nether": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:stone_tool_materials"
+            "items": [
+              "gobber2:gobber2_ingot_nether"
+            ]
           }
         ]
       }
@@ -19,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "morethanapickaxe:stone_adze"
+        "recipe": "morethanapickaxe:nether_adze"
       }
     }
   },
   "requirements": [
     [
-      "has_stone",
+      "has_nether",
       "has_the_recipe"
     ]
   ]

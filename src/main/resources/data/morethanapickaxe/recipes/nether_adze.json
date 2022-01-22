@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "tag": "c:wood_sticks"
+      "item": "gobber2:gobber2_rod_nether"
     },
     "X": {
-      "tag": "minecraft:stone_tool_materials"
+      "item": "gobber2:gobber2_ingot_nether"
     }
   },
   "result": {
-    "item": "morethanapickaxe:stone_adze"
+    "item": "morethanapickaxe:nether_adze"
   }
 }

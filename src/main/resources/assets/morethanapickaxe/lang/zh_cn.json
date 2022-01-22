@@ -39,7 +39,11 @@
   
   "item.morethanapickaxe.adamantium_adze": "\u7cbe\u91d1\u963f\u6cfd",
   "item.morethanapickaxe.vibranium_adze": "\u632f\u91d1\u963f\u6cfd",
-  "item.morethanapickaxe.nether_brick_adze": "\u5730\u72f1\u7816\u5757u963f\u6cfd",
+  "item.morethanapickaxe.nether_brick_adze": "\u5730\u72f1\u7816\u5757\u963f\u6cfd",
+  
+  "item.morethanapickaxe.gobber_adze": "\u6208\u4f2f\u963f\u6cfd",
+  "item.morethanapickaxe.nether_adze": "\u5730\u72f1\u963f\u6cfd",
+  "item.morethanapickaxe.end_adze": "\u672b\u5f71\u963f\u6cfd",
   
   "advancements.morethanapickaxe.install": "\u4e0d\u53ea\u662f\u9550\u5b89\u88c5",
   "advancements.morethanapickaxe.install.desc": "\u4e0b\u8f7d\u5e76\u5b89\u88c5\u4e0d\u53ea\u662f\u9550",
