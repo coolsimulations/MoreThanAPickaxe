@@ -56,14 +56,14 @@ public class ItemAdze extends DiggerItem{
 	private final Multimap<Attribute, AttributeModifier> attribute;
 	protected static final Map<Block, BlockState> SHOVEL_LOOKUP;
 	protected static final Map<Block, BlockState> HOE_LOOKUP;
-	
+
 	protected final boolean isModded;
 	protected final boolean unbreakable;
 
 	public ItemAdze(Tier material, float damage, float speed, Item.Properties builder) {
 		this(material, damage, speed, builder, false);
 	}
-	
+
 	public ItemAdze(Tier material, float damage, float speed, Item.Properties builder, boolean isModded) {
 		this(material, damage, speed, builder, isModded, false);
 	}
@@ -114,6 +114,14 @@ public class ItemAdze extends DiggerItem{
 	}
 
 	@Override
+	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity entity) {
+		if(!unbreakable)
+			return super.hurtEnemy(stack, target, entity);
+		else
+			return true;
+	}
+
+	@Override
 	public InteractionResult useOn(UseOnContext context) {
 
 		Level world = context.getLevel();
@@ -153,11 +161,11 @@ public class ItemAdze extends DiggerItem{
 				ServerAdvancementManager manager = player.getServer().getAdvancements();
 				Advancement wax_off = manager.getAdvancement(new ResourceLocation("minecraft:husbandry/wax_off"));
 				AdvancementProgress advancementprogress = ((ServerPlayer) player).getAdvancements().getOrStartProgress(wax_off);
-	            if (!advancementprogress.isDone()) {
-	               for(String s : advancementprogress.getRemainingCriteria()) {
-	            	   ((ServerPlayer) player).getAdvancements().award(wax_off, s);
-	               }
-	            }
+				if (!advancementprogress.isDone()) {
+					for(String s : advancementprogress.getRemainingCriteria()) {
+						((ServerPlayer) player).getAdvancements().award(wax_off, s);
+					}
+				}
 			}
 			optional3 = optional2;
 		}
@@ -284,7 +292,7 @@ public class ItemAdze extends DiggerItem{
 				}
 
 			}
-			
+
 			return InteractionResult.PASS;
 		}
 	}
@@ -353,15 +361,15 @@ public class ItemAdze extends DiggerItem{
 		else
 			return false;
 	}
-	
+
 	@Override
 	public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int i, boolean bl) {
 
 		checkAdvancement(entity);
 	}
-	
+
 	protected void checkAdvancement(Entity entity) {
-		
+
 		if(isModded) {
 			if (entity instanceof ServerPlayer) {
 				ServerAdvancementManager manager = entity.getServer().getAdvancements();
