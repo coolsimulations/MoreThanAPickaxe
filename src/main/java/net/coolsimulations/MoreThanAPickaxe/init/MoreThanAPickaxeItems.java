@@ -2,6 +2,7 @@ package net.coolsimulations.MoreThanAPickaxe.init;
 
 import com.brand.adabraniummod.content.stuff.materials.AdabraniumToolMaterials;
 import com.kwpugh.emerald_tools.init.ItemInit;
+import com.kwpugh.gobber2.Gobber2;
 import com.kwpugh.more_gems.MoreGems;
 import com.vanillaenhanced.materials.items.ToolMaterialAmethyst;
 import com.vanillaenhanced.materials.items.ToolMaterialObsidian;
@@ -15,6 +16,8 @@ import de.deeprobin.ruby_mod.RubyMod;
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.MoreThanAPickaxe.item.AdzeItemTier;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
+import net.coolsimulations.MoreThanAPickaxe.item.ItemEndAdze;
+import net.coolsimulations.MoreThanAPickaxe.item.ItemGobberAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemGravititeAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemValkyrieAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemZaniteAdze;
@@ -71,6 +74,10 @@ public class MoreThanAPickaxeItems {
 	public static Item adamantium_adze;
 	public static Item vibranium_adze;
 	public static Item nether_brick_adze;
+	
+	public static Item gobber_adze;
+	public static Item nether_adze;
+	public static Item end_adze;
 
 	public static void init() {
 
@@ -110,77 +117,77 @@ public class MoreThanAPickaxeItems {
 
 		if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isRobinsEmeraldLoaded()) {
-				emerald_adze = new ItemAdze(EmeraldMod.TOOL_MATERIAL, 6.0F, -2.40F, new FabricItemSettings());
+				emerald_adze = new ItemAdze(EmeraldMod.TOOL_MATERIAL, 6.0F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isSimpleEmeraldLoaded()) {
-				emerald_adze = new ItemAdze(com.mrsebi123.emeraldmod.util.EmeraldToolMaterial.EMERALD, 6.0F, -2.40F, new FabricItemSettings());
+				emerald_adze = new ItemAdze(com.mrsebi123.emeraldmod.util.EmeraldToolMaterial.EMERALD, 6.0F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
-				emerald_adze = new ItemAdze(ItemInit.EMERALD_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings());
+				emerald_adze = new ItemAdze(ItemInit.EMERALD_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-				emerald_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialEmerald(), 7.5F, -2.40F, new FabricItemSettings());
+				emerald_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialEmerald(), 7.5F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEmeraldEquipmentLoaded()) {
-				emerald_adze = new ItemAdze(com.exline.emeraldequipment.item.EmeraldToolMaterial.INSTANCE, 7.5F, -2.40F, new FabricItemSettings());	
+				emerald_adze = new ItemAdze(com.exline.emeraldequipment.item.EmeraldToolMaterial.INSTANCE, 7.5F, -2.40F, new FabricItemSettings(), true);	
 			}
 		}
 
 		if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isObsidianEquipmentLoaded()) {
-				obsidian_adze = new ItemAdze(com.exline.obsidianequipment.ModToolMaterials.OBSIDIAN, 8.4F, -2.40F, new FabricItemSettings());
+				obsidian_adze = new ItemAdze(com.exline.obsidianequipment.ModToolMaterials.OBSIDIAN, 8.4F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
-				obsidian_adze = new ItemAdze(ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.5F, -2.40F, new FabricItemSettings());
+				obsidian_adze = new ItemAdze(ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.5F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-				obsidian_adze = new ItemAdze(new ToolMaterialObsidian(), 8.0F, -2.40F, new FabricItemSettings());
+				obsidian_adze = new ItemAdze(new ToolMaterialObsidian(), 8.0F, -2.40F, new FabricItemSettings(), true);
 			}
 		}
 		
 		if(SPCompatibilityManager.isRobinsRubyLoaded()) {
-			ruby_adze = new ItemAdze(RubyMod.TOOL_MATERIAL, 6.0F, -1.80F, new FabricItemSettings());
+			ruby_adze = new ItemAdze(RubyMod.TOOL_MATERIAL, 6.0F, -1.80F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
-			ruby_adze = new ItemAdze(ItemInit.RUBY_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings());
+			ruby_adze = new ItemAdze(ItemInit.RUBY_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
 		} else if (SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-			ruby_adze = new ItemAdze(new ToolMaterialRuby(), 7.0F, -2.40F, new FabricItemSettings());
+			ruby_adze = new ItemAdze(new ToolMaterialRuby(), 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {
-			sapphire_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SAPPHIRE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+			sapphire_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SAPPHIRE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-			sapphire_adze = new ItemAdze(new ToolMaterialSapphire(), 7.0F, -2.40F, new FabricItemSettings());
+			sapphire_adze = new ItemAdze(new ToolMaterialSapphire(), 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
-			amethyst_adze = new ItemAdze(ItemInit.AMETHYST_TOOL_MATERIAL, 6.5F, -2.40F, new FabricItemSettings());
+			amethyst_adze = new ItemAdze(ItemInit.AMETHYST_TOOL_MATERIAL, 6.5F, -2.40F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isRobinsAmethystLoaded()) {
-			amethyst_adze = new ItemAdze(AmethystMod.TOOL_MATERIAL, 9.0F, -1.80F, new FabricItemSettings());
+			amethyst_adze = new ItemAdze(AmethystMod.TOOL_MATERIAL, 9.0F, -1.80F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-			amethyst_adze = new ItemAdze(new ToolMaterialAmethyst(), 7.0F, -2.40F, new FabricItemSettings());
+			amethyst_adze = new ItemAdze(new ToolMaterialAmethyst(), 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {
 			if(MoreGems.CONFIG.GENERAL.enableTopazSet)
-				topaz_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOPAZ_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+				topaz_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOPAZ_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableCitrineSet)
-				citrine_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CITRINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+				citrine_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CITRINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableTourmalineSet)
-				tourmaline_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOURMALINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+				tourmaline_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOURMALINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableAlexandriteSet)
-				alexandrite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.ALEXANDRITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+				alexandrite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.ALEXANDRITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableCorundumSet)
-				corundum_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CORUNDUM_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+				corundum_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CORUNDUM_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableCarbonadoSet)
-				carbonado_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CARBONADO_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings());
+				carbonado_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CARBONADO_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableKunziteSet)
-				kunzite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.KUNZITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+				kunzite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.KUNZITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableMoissaniteSet)
-				moissanite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.MOISSANITE_TOOL_MATERIAL, 9.0F, -2.40F, new FabricItemSettings());
+				moissanite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.MOISSANITE_TOOL_MATERIAL, 9.0F, -2.40F, new FabricItemSettings(), true);
 			
 			if(MoreGems.CONFIG.GENERAL.enableSpinelSet)
-				spinel_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SPINEL_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings());
+				spinel_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SPINEL_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isAetherRebornLoaded()) {
@@ -190,9 +197,15 @@ public class MoreThanAPickaxeItems {
 		}
 		
 		if(SPCompatibilityManager.isAdabraniumLoaded()) {
-			adamantium_adze = new ItemValkyrieAdze(AdabraniumToolMaterials.ADAMANTIUM, 14.0F, -2.40F, new FabricItemSettings());
-			vibranium_adze = new ItemValkyrieAdze(AdabraniumToolMaterials.VIBRANIUM, 11.0F, -2.40F, new FabricItemSettings());
-			nether_brick_adze = new ItemValkyrieAdze(AdabraniumToolMaterials.NETHER_BRICK, 8.0F, -2.40F, new FabricItemSettings().fireproof());
+			adamantium_adze = new ItemAdze(AdabraniumToolMaterials.ADAMANTIUM, 14.0F, -2.40F, new FabricItemSettings(), true);
+			vibranium_adze = new ItemAdze(AdabraniumToolMaterials.VIBRANIUM, 11.0F, -2.40F, new FabricItemSettings(), true);
+			nether_brick_adze = new ItemAdze(AdabraniumToolMaterials.NETHER_BRICK, 8.0F, -2.40F, new FabricItemSettings().fireproof(), true);
+		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			gobber_adze = new ItemGobberAdze(com.kwpugh.gobber2.init.ItemInit.GOBBER_TOOL_MATERIAL, 10.0F, -4.0F + Gobber2.CONFIG.GENERAL.gobberSwordAttackSpeed, new FabricItemSettings());
+			nether_adze = new ItemGobberAdze(com.kwpugh.gobber2.init.ItemInit.GOBBER_NETHER_TOOL_MATERIAL, 12.0F, -4.0F + Gobber2.CONFIG.GENERAL.gobberNetherSwordAttackSpeed, new FabricItemSettings());
+			end_adze = new ItemEndAdze(com.kwpugh.gobber2.init.ItemInit.GOBBER_END_TOOL_MATERIAL, 15.0F, -4.0F + Gobber2.CONFIG.GENERAL.gobberEndSwordAttackSpeed, new FabricItemSettings());
 		}
 	}
 
@@ -287,6 +300,12 @@ public class MoreThanAPickaxeItems {
 			registerItem(adamantium_adze, "adamantium_adze");
 			registerItem(vibranium_adze, "vibranium_adze");
 			registerItem(nether_brick_adze, "nether_brick_adze");
+		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			registerItem(gobber_adze, "gobber_adze");
+			registerItem(nether_adze, "nether_adze");
+			registerItem(end_adze, "end_adze");
 		}
 	}
 

@@ -18,7 +18,7 @@ public class ItemValkyrieAdze extends ItemAdze {
     private static final UUID ATTACK_RANGE_MODIFIER_ID = UUID.fromString("7CB7BC58-D3BA-40AE-BC95-F8C38fE144FF");
 
 	public ItemValkyrieAdze(Tier material, float damage, float speed, FabricItemSettings builder) {
-		super(material, damage, speed, builder.rarity(AetherRarity.AETHER_LOOT));
+		super(material, damage, speed, builder.rarity(AetherRarity.AETHER_LOOT), true);
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> attributeBuilder = ImmutableMultimap.builder();
 		attributeBuilder.putAll(this.getDefaultAttributeModifiers(EquipmentSlot.MAINHAND));
 		attributeBuilder.put(ReachEntityAttributes.REACH, new AttributeModifier(REACH_MODIFIER_ID, "Weapon modifier", 6.0F, AttributeModifier.Operation.ADDITION));

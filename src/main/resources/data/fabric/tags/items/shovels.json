@@ -88,14 +88,6 @@
 		  "required": false
 		},
 		{
-		  "id": "morethanapickaxe:moissanite_adze",
-		  "required": false
-		},
-		{
-		  "id": "morethanapickaxe:spinel_adze",
-		  "required": false
-		},
-		{
 		  "id": "morethanapickaxe:gobber_adze",
 		  "required": false
 		},

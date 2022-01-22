@@ -94,6 +94,18 @@
 		{
 		  "id": "morethanapickaxe:spinel_adze",
 		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:gobber_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:nether_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:end_adze",
+		  "required": false
 		}
 	]
 }

@@ -14,7 +14,7 @@ import net.minecraft.world.item.context.UseOnContext;
 public class ItemGravititeAdze extends ItemAdze {
 
 	public ItemGravititeAdze(Tier material, float damage, float speed, FabricItemSettings builder) {
-		super(material, damage, speed, builder.rarity(Rarity.RARE));
+		super(material, damage, speed, builder.rarity(Rarity.RARE), true);
 	}
 	
 	@Override

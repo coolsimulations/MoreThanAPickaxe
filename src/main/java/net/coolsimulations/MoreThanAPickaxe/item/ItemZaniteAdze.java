@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class ItemZaniteAdze extends ItemAdze {
 
 	public ItemZaniteAdze(Tier material, float damage, float speed, FabricItemSettings builder) {
-		super(material, damage, speed, builder);
+		super(material, damage, speed, builder, true);
 	}
 	
 	@Override
