@@ -112,6 +112,14 @@ public class ItemAdze extends DiggerItem{
 
 		return success;
 	}
+	
+	@Override
+	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity entity) {
+		if(!unbreakable)
+			return super.hurtEnemy(stack, target, entity);
+		else
+			return true;
+	}
 
 	@Override
 	public InteractionResult useOn(UseOnContext context) {
