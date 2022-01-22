@@ -10,7 +10,7 @@
       "tag": "c:wood_sticks"
     },
     "X": {
-      "tag": "c:cobblestones"
+      "tag": "minecraft:stone_tool_materials"
     }
   },
   "result": {
