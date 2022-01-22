@@ -1,0 +1,19 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "XXX",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "gb:globot2_rod"
+    },
+    "X": {
+      "item": "gb:globot2"
+    }
+  },
+  "result": {
+    "item": "morethanapickaxe:nether_adze"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "XXX",
+    "XY ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "gb:globot3_rod"
+    },
+    "X": {
+      "item": "gb:globot3"
+    },
+    "Y": {
+      "item": "gb:gobber_staff8"
+    }
+  },
+  "result": {
+    "item": "morethanapickaxe:end_adze"
+  }
+}

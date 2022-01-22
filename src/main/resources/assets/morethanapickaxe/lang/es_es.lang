@@ -50,6 +50,10 @@ item.purple_diamond_adze.name=Adze de Diamante Púrpura
 item.yellow_diamond_adze.name=Adze de Diamante Amarillo
 item.green_diamond_adze.name=Adze de Diamante Verde
 
+item.gobber_adze.name=Adze de Gobber
+item.nether_adze.name=Adze de Infernal
+item.end_adze.name=Adze de Ender
+
 item.hammertime.itemdenseadzewood.name=Adze Densa de Madera
 item.hammertime.itemdenseadzestone.name=Adze Densa de Piedra
 item.hammertime.itemdenseadzeiron.name=Adze Densa de Hierro

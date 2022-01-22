@@ -21,7 +21,7 @@ public class MoreThanAPickaxeCarbonado {
 	
 	public static void init() {
 		
-		carbonado_adze = new ItemAdze(ModMaterial.Tools, 6.0F, -2.4F).setUnlocalizedName("carbonado_adze").setRegistryName("carbonado_adze").setCreativeTab(SPTabs.tabTools);
+		carbonado_adze = new ItemAdze(ModMaterial.Tools, 6.0F, -2.4F, true).setUnlocalizedName("carbonado_adze").setRegistryName("carbonado_adze").setCreativeTab(SPTabs.tabTools);
 	}
 	
 	public static void register() {

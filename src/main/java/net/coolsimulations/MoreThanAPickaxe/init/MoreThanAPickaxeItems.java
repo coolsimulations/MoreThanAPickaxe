@@ -13,7 +13,9 @@ import mod.gttiqwt.emeraldobsidian.init.ModItems;
 import mods.railcraft.common.items.ItemMaterials;
 import net.coolsimulations.MoreThanAPickaxe.MoreThanAPickaxe;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
+import net.coolsimulations.MoreThanAPickaxe.item.ItemEndAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemFireproofAdze;
+import net.coolsimulations.MoreThanAPickaxe.item.ItemGobberAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemGravititeAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemHolystoneAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemZaniteAdze;
@@ -77,6 +79,10 @@ public class MoreThanAPickaxeItems {
 	public static Item purple_diamond_adze;
 	public static Item yellow_diamond_adze;
 	public static Item green_diamond_adze;
+	
+	public static Item gobber_adze;
+	public static Item nether_adze;
+	public static Item end_adze;
 
 	public static ToolMaterial steelToolMaterial = EnumHelper.addToolMaterial("steel_adze", 2, 500, 7, 2.5F, 9);
 
@@ -103,84 +109,84 @@ public class MoreThanAPickaxeItems {
 
 			if(SPCompatibilityManager.isGCPLoaded()) {
 
-				desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F).setUnlocalizedName("desh_adze").setRegistryName("desh_adze").setCreativeTab(SPTabs.tabTools);
-				sticky_desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F).setUnlocalizedName("sticky_desh_adze").setRegistryName("sticky_desh_adze").setCreativeTab(SPTabs.tabTools);
-				titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F).setUnlocalizedName("titanium_adze_gc").setRegistryName("titanium_adze_gc").setCreativeTab(SPTabs.tabTools);
+				desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F, true).setUnlocalizedName("desh_adze").setRegistryName("desh_adze").setCreativeTab(SPTabs.tabTools);
+				sticky_desh_adze = new ItemAdze(MarsItems.TOOLDESH, 3.5F, -2.4F, true).setUnlocalizedName("sticky_desh_adze").setRegistryName("sticky_desh_adze").setCreativeTab(SPTabs.tabTools);
+				titanium_adze_gc = new ItemAdze(AsteroidsItems.TOOL_TITANIUM, 3.0F, -2.4F, true).setUnlocalizedName("titanium_adze_gc").setRegistryName("titanium_adze_gc").setCreativeTab(SPTabs.tabTools);
 				
 				if(SPCompatibilityManager.isExtraPlanetsLoaded()) {
 					
 					if(Config.MERCURY && Config.ITEMS_MERCURY)
-						mercury_adze = new ItemAdze(ToolMaterial.valueOf("Mercury Material"), 0.0F, -2.4F).setUnlocalizedName("mercury_adze").setRegistryName("mercury_adze").setCreativeTab(SPTabs.tabTools);
+						mercury_adze = new ItemAdze(ToolMaterial.valueOf("Mercury Material"), 0.0F, -2.4F, true).setUnlocalizedName("mercury_adze").setRegistryName("mercury_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.MERCURY && Config.ITEMS_CARBON)
-						carbon_adze = new ItemAdze(ToolMaterial.valueOf("Carbon Material"), 0.0F, -2.4F).setUnlocalizedName("carbon_adze").setRegistryName("carbon_adze").setCreativeTab(SPTabs.tabTools);
+						carbon_adze = new ItemAdze(ToolMaterial.valueOf("Carbon Material"), 0.0F, -2.4F, true).setUnlocalizedName("carbon_adze").setRegistryName("carbon_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.CERES && Config.ITEMS_URANIUM)
-						uranium_adze = new ItemAdze(ToolMaterial.valueOf("Uranium Material"), 0.0F, -2.4F).setUnlocalizedName("uranium_adze").setRegistryName("uranium_adze").setCreativeTab(SPTabs.tabTools);
+						uranium_adze = new ItemAdze(ToolMaterial.valueOf("Uranium Material"), 0.0F, -2.4F, true).setUnlocalizedName("uranium_adze").setRegistryName("uranium_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.JUPITER && Config.ITEMS_PALLADIUM)
-						palladium_adze = new ItemAdze(ToolMaterial.valueOf("Palladium Material"), 0.0F, -2.4F).setUnlocalizedName("palladium_adze").setRegistryName("palladium_adze").setCreativeTab(SPTabs.tabTools);
+						palladium_adze = new ItemAdze(ToolMaterial.valueOf("Palladium Material"), 0.0F, -2.4F, true).setUnlocalizedName("palladium_adze").setRegistryName("palladium_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.JUPITER && Config.ITEMS_GEM_RED)
-						red_gem_adze = new ItemAdze(ToolMaterial.valueOf("Red Gem Material"), 0.0F, -2.4F).setUnlocalizedName("red_gem_adze").setRegistryName("red_gem_adze").setCreativeTab(SPTabs.tabTools);
+						red_gem_adze = new ItemAdze(ToolMaterial.valueOf("Red Gem Material"), 0.0F, -2.4F, true).setUnlocalizedName("red_gem_adze").setRegistryName("red_gem_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.SATURN && Config.ITEMS_MAGNESIUM)
-						magnesium_adze = new ItemAdze(ToolMaterial.valueOf("Magnesium Material"), 0.0F, -2.4F).setUnlocalizedName("magnesium_adze").setRegistryName("magnesium_adze").setCreativeTab(SPTabs.tabTools);
+						magnesium_adze = new ItemAdze(ToolMaterial.valueOf("Magnesium Material"), 0.0F, -2.4F, true).setUnlocalizedName("magnesium_adze").setRegistryName("magnesium_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.URANUS && Config.ITEMS_CRYSTAL)
-						crystal_adze = new ItemAdze(ToolMaterial.valueOf("Crystal Material"), 0.0F, -2.4F).setUnlocalizedName("crystal_adze").setRegistryName("crystal_adze").setCreativeTab(SPTabs.tabTools);
+						crystal_adze = new ItemAdze(ToolMaterial.valueOf("Crystal Material"), 0.0F, -2.4F, true).setUnlocalizedName("crystal_adze").setRegistryName("crystal_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.URANUS && Config.ITEMS_GEM_WHITE)
-						white_gem_adze = new ItemAdze(ToolMaterial.valueOf("White Gem Material"), 0.0F, -2.4F).setUnlocalizedName("white_gem_adze").setRegistryName("white_gem_adze").setCreativeTab(SPTabs.tabTools);
+						white_gem_adze = new ItemAdze(ToolMaterial.valueOf("White Gem Material"), 0.0F, -2.4F, true).setUnlocalizedName("white_gem_adze").setRegistryName("white_gem_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.NEPTUNE && Config.ITEMS_GEM_BLUE)
-						blue_gem_adze = new ItemAdze(ToolMaterial.valueOf("Blue Gem Material"), 0.0F, -2.4F).setUnlocalizedName("blue_gem_adze").setRegistryName("blue_gem_adze").setCreativeTab(SPTabs.tabTools);
+						blue_gem_adze = new ItemAdze(ToolMaterial.valueOf("Blue Gem Material"), 0.0F, -2.4F, true).setUnlocalizedName("blue_gem_adze").setRegistryName("blue_gem_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.NEPTUNE && Config.ITEMS_ZINC)
-						zinc_adze = new ItemAdze(ToolMaterial.valueOf("Zinc Material"), 0.0F, -2.4F).setUnlocalizedName("zinc_adze").setRegistryName("zinc_adze").setCreativeTab(SPTabs.tabTools);
+						zinc_adze = new ItemAdze(ToolMaterial.valueOf("Zinc Material"), 0.0F, -2.4F, true).setUnlocalizedName("zinc_adze").setRegistryName("zinc_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.PLUTO && Config.ITEMS_TUNGSTEN)
-						tungsten_adze = new ItemAdze(ToolMaterial.valueOf("Tungsten Material"), 0.0F, -2.4F).setUnlocalizedName("tungsten_adze").setRegistryName("tungsten_adze").setCreativeTab(SPTabs.tabTools);
+						tungsten_adze = new ItemAdze(ToolMaterial.valueOf("Tungsten Material"), 0.0F, -2.4F, true).setUnlocalizedName("tungsten_adze").setRegistryName("tungsten_adze").setCreativeTab(SPTabs.tabTools);
 					
 					if(Config.KEPLER22B && Config.ITEMS_KEPLER22B && Config.KEPLER_SOLAR_SYSTEMS) {
 						
-						blue_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Blue Diamond Material"), 0.0F, -2.4F).setUnlocalizedName("blue_diamond_adze").setRegistryName("blue_diamond_adze").setCreativeTab(SPTabs.tabTools);
-						red_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Red Diamond Material"), 0.0F, -2.4F).setUnlocalizedName("red_diamond_adze").setRegistryName("red_diamond_adze").setCreativeTab(SPTabs.tabTools);
-						purple_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Purple Diamond Material"), 0.0F, -2.4F).setUnlocalizedName("purple_diamond_adze").setRegistryName("purple_diamond_adze").setCreativeTab(SPTabs.tabTools);
-						yellow_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Yellow Diamond Material"), 0.0F, -2.4F).setUnlocalizedName("yellow_diamond_adze").setRegistryName("yellow_diamond_adze").setCreativeTab(SPTabs.tabTools);
-						green_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Green Diamond Material"), 0.0F, -2.4F).setUnlocalizedName("green_diamond_adze").setRegistryName("green_diamond_adze").setCreativeTab(SPTabs.tabTools);
+						blue_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Blue Diamond Material"), 0.0F, -2.4F, true).setUnlocalizedName("blue_diamond_adze").setRegistryName("blue_diamond_adze").setCreativeTab(SPTabs.tabTools);
+						red_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Red Diamond Material"), 0.0F, -2.4F, true).setUnlocalizedName("red_diamond_adze").setRegistryName("red_diamond_adze").setCreativeTab(SPTabs.tabTools);
+						purple_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Purple Diamond Material"), 0.0F, -2.4F, true).setUnlocalizedName("purple_diamond_adze").setRegistryName("purple_diamond_adze").setCreativeTab(SPTabs.tabTools);
+						yellow_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Yellow Diamond Material"), 0.0F, -2.4F, true).setUnlocalizedName("yellow_diamond_adze").setRegistryName("yellow_diamond_adze").setCreativeTab(SPTabs.tabTools);
+						green_diamond_adze = new ItemAdze(ToolMaterial.valueOf("Green Diamond Material"), 0.0F, -2.4F, true).setUnlocalizedName("green_diamond_adze").setRegistryName("green_diamond_adze").setCreativeTab(SPTabs.tabTools);
 					}
 				}
 			}
 		}
 
 		if(!SPCompatibilityManager.isEmeraldMaterialModsLoaded() && SPConfig.enableEmeraldMaterial) {
-			emerald_adze = new ItemAdze(SPItems.emeraldToolMaterial, 4.5F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
+			emerald_adze = new ItemAdze(SPItems.emeraldToolMaterial, 4.5F, -2.4F, true).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 		} else if(SPCompatibilityManager.isEmeraldMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isPI3xLoaded()) {
-				emerald_adze = new ItemAdze(EmeraldMaterial.TOOL, 4.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
+				emerald_adze = new ItemAdze(EmeraldMaterial.TOOL, 4.0F, -2.4F, true).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isFancyToolsLoaded()) {
-				emerald_adze = new ItemAdze(MaterialHandler.emerald, 5.25F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
+				emerald_adze = new ItemAdze(MaterialHandler.emerald, 5.25F, -2.4F, true).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isTriGemsLoaded() && ConfigHandler.enableEmerald) {
-				emerald_adze = new ItemAdze(TriGemsMod.Emerald, 4.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
+				emerald_adze = new ItemAdze(TriGemsMod.Emerald, 4.0F, -2.4F, true).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isEAOLoaded()) {
-				emerald_adze = new ItemAdze(ModItems.emerald, 5.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
+				emerald_adze = new ItemAdze(ModItems.emerald, 5.0F, -2.4F, true).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isGACLoaded()) {
-				emerald_adze = new ItemAdze(EnumHelper.addToolMaterial("material_emerald", 3, 850, 8.5F, 3.5F, 11), 6.0F, -2.4F).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
+				emerald_adze = new ItemAdze(EnumHelper.addToolMaterial("material_emerald", 3, 850, 8.5F, 3.5F, 11), 6.0F, -2.4F, true).setUnlocalizedName("emerald_adze").setRegistryName("emerald_adze").setCreativeTab(SPTabs.tabTools);
 			}
 		}
 
 		if(!SPCompatibilityManager.isObsidianMaterialModsLoaded() && SPConfig.enableObsidianMaterial) {
-			obsidian_adze = new ItemAdze(SPItems.obsidianToolMaterial, 1.5F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
+			obsidian_adze = new ItemAdze(SPItems.obsidianToolMaterial, 1.5F, -2.4F, true).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
 		} else if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isFancyToolsLoaded()) {
-				obsidian_adze = new ItemAdze(MaterialHandler.obsidian, 5.25F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
+				obsidian_adze = new ItemAdze(MaterialHandler.obsidian, 5.25F, -2.4F, true).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isEAOLoaded()) {
-				obsidian_adze = new ItemAdze(ModItems.obsidian, 6.0F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
+				obsidian_adze = new ItemAdze(ModItems.obsidian, 6.0F, -2.4F, true).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isOAATLoaded()) {
-				obsidian_adze = new ItemAdze(OTA_ToolMaterial.obsidianMaterial, 4.0F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
+				obsidian_adze = new ItemAdze(OTA_ToolMaterial.obsidianMaterial, 4.0F, -2.4F, true).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
 			} else if(SPCompatibilityManager.isOTAALoaded()) {
-				obsidian_adze = new ItemAdze(EnumHelper.addToolMaterial("material_obsidian", 4, 32, 8.0F, 4.0F, 35), 5.0F, -2.4F).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
+				obsidian_adze = new ItemAdze(EnumHelper.addToolMaterial("material_obsidian", 4, 32, 8.0F, 4.0F, 35), 5.0F, -2.4F, true).setUnlocalizedName("obsidian_adze").setRegistryName("obsidian_adze").setCreativeTab(SPTabs.tabTools);
 			}
 		}
 
@@ -202,25 +208,25 @@ public class MoreThanAPickaxeItems {
 
 		if(SPCompatibilityManager.isTriGemsLoaded()) {
 			if(ConfigHandler.enableRuby)
-				ruby_adze = new ItemAdze(TriGemsMod.Ruby, 5.0F, -2.4F).setUnlocalizedName("ruby_adze").setRegistryName("ruby_adze").setCreativeTab(SPTabs.tabTools);
+				ruby_adze = new ItemAdze(TriGemsMod.Ruby, 5.0F, -2.4F, true).setUnlocalizedName("ruby_adze").setRegistryName("ruby_adze").setCreativeTab(SPTabs.tabTools);
 			if(ConfigHandler.enableSapphire)
-				sapphire_adze = new ItemAdze(TriGemsMod.Sapphire, 4.5F, -2.4F).setUnlocalizedName("sapphire_adze").setRegistryName("sapphire_adze").setCreativeTab(SPTabs.tabTools);
+				sapphire_adze = new ItemAdze(TriGemsMod.Sapphire, 4.5F, -2.4F, true).setUnlocalizedName("sapphire_adze").setRegistryName("sapphire_adze").setCreativeTab(SPTabs.tabTools);
 			if(ConfigHandler.enableTopaz)
-				topaz_adze = new ItemAdze(TriGemsMod.Topaz, 5.5F, -2.4F).setUnlocalizedName("topaz_adze").setRegistryName("topaz_adze").setCreativeTab(SPTabs.tabTools);
+				topaz_adze = new ItemAdze(TriGemsMod.Topaz, 5.5F, -2.4F, true).setUnlocalizedName("topaz_adze").setRegistryName("topaz_adze").setCreativeTab(SPTabs.tabTools);
 		} else if(SPCompatibilityManager.isGACLoaded()) {
 			ToolMaterial RUBY = EnumHelper.addToolMaterial("material_ruby", 3, 900, 9.0F, 4.0F, 12);
-			ruby_adze = new ItemAdze(RUBY, 4.0F, -2.4F).setUnlocalizedName("ruby_adze").setRegistryName("ruby_adze").setCreativeTab(SPTabs.tabTools);
+			ruby_adze = new ItemAdze(RUBY, 4.0F, -2.4F, true).setUnlocalizedName("ruby_adze").setRegistryName("ruby_adze").setCreativeTab(SPTabs.tabTools);
 			ToolMaterial SAPPHIRE = EnumHelper.addToolMaterial("material_sapphire", 3, 900, 4.0F, 4.0F, 12);
-			sapphire_adze = new ItemAdze(SAPPHIRE, 4.0F, -2.4F).setUnlocalizedName("sapphire_adze").setRegistryName("sapphire_adze").setCreativeTab(SPTabs.tabTools);
+			sapphire_adze = new ItemAdze(SAPPHIRE, 4.0F, -2.4F, true).setUnlocalizedName("sapphire_adze").setRegistryName("sapphire_adze").setCreativeTab(SPTabs.tabTools);
 			ToolMaterial TOPAZ = EnumHelper.addToolMaterial("material_topaz", 2, 775, 8.0F, 2.7F, 9);
-			topaz_adze = new ItemAdze(TOPAZ, 5.3F, -2.4F).setUnlocalizedName("topaz_adze").setRegistryName("topaz_adze").setCreativeTab(SPTabs.tabTools);
+			topaz_adze = new ItemAdze(TOPAZ, 5.3F, -2.4F, true).setUnlocalizedName("topaz_adze").setRegistryName("topaz_adze").setCreativeTab(SPTabs.tabTools);
 		}
 
 		if(SPCompatibilityManager.isGACLoaded()) {
 			ToolMaterial AMETHYST = EnumHelper.addToolMaterial("material_amethyst", 2, 775, 8.0F, 2.3F, 9);
-			amethyst_adze = new ItemAdze(AMETHYST, 5.7F, -2.4F).setUnlocalizedName("amethyst_adze").setRegistryName("amethyst_adze").setCreativeTab(SPTabs.tabTools);
+			amethyst_adze = new ItemAdze(AMETHYST, 5.7F, -2.4F, true).setUnlocalizedName("amethyst_adze").setRegistryName("amethyst_adze").setCreativeTab(SPTabs.tabTools);
 			ToolMaterial QUARTZ = EnumHelper.addToolMaterial("material_quartz", 2, 400, 7.0F, 1.5F, 7);
-			quartz_adze = new ItemAdze(QUARTZ, 6.5F, -2.4F).setUnlocalizedName("quartz_adze").setRegistryName("quartz_adze").setCreativeTab(SPTabs.tabTools);
+			quartz_adze = new ItemAdze(QUARTZ, 6.5F, -2.4F, true).setUnlocalizedName("quartz_adze").setRegistryName("quartz_adze").setCreativeTab(SPTabs.tabTools);
 		}
 
 		if(SPCompatibilityManager.isAetherLegacyLoaded()) {
@@ -234,6 +240,15 @@ public class MoreThanAPickaxeItems {
 			valkyrie_adze = new ItemAdze(VALKYRIE, 5.0F, -2.4F).setUnlocalizedName("valkyrie_adze").setRegistryName("valkyrie_adze").setCreativeTab(SPTabs.tabTools);
 			ToolMaterial ZANITE = EnumHelper.addToolMaterial("ZANITE", ToolMaterial.IRON.getHarvestLevel(), ToolMaterial.IRON.getMaxUses(), ToolMaterial.IRON.getEfficiency(), ToolMaterial.IRON.getAttackDamage(), ToolMaterial.IRON.getEnchantability());
 			zanite_adze = new ItemZaniteAdze(ZANITE, 6.0F, -2.4F).setUnlocalizedName("zanite_adze").setRegistryName("zanite_adze").setCreativeTab(SPTabs.tabTools);
+		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			ToolMaterial MATERIAL_PICKAXE_GLOBOT = EnumHelper.addToolMaterial("material_pickaxe_globot", 3, 4000, 24.0F, 2.0F, 20);
+			gobber_adze = new ItemGobberAdze(MATERIAL_PICKAXE_GLOBOT, 9.0F, -2.2F, true).setUnlocalizedName("gobber_adze").setRegistryName("gobber_adze").setCreativeTab(SPTabs.tabTools);
+			ToolMaterial MATERIAL_PICKAXE_GLOBOT2 = EnumHelper.addToolMaterial("material_pickaxe_globot2", 3, 6000, 32.0F, 2.0F, 25);
+			nether_adze = new ItemGobberAdze(MATERIAL_PICKAXE_GLOBOT2, 13.0F, -2.2F, true).setUnlocalizedName("nether_adze").setRegistryName("nether_adze").setCreativeTab(SPTabs.tabTools);
+			ToolMaterial MATERIAL_PICKAXE_GLOBOT3 = EnumHelper.addToolMaterial("material_pickaxe_globot3", 10, 6000, 48.0F, 2.0F, 25);
+			end_adze = new ItemEndAdze(MATERIAL_PICKAXE_GLOBOT3, 19.0F, -2.2F).setUnlocalizedName("end_adze").setRegistryName("end_adze").setCreativeTab(SPTabs.tabTools);
 		}
 	}
 
@@ -361,6 +376,12 @@ public class MoreThanAPickaxeItems {
 			registerItem(valkyrie_adze);
 			registerItem(zanite_adze);
 		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			registerItem(gobber_adze);
+			registerItem(nether_adze);
+			registerItem(end_adze);
+		}
 	}
 
 	public static void registerRenders()
@@ -480,6 +501,12 @@ public class MoreThanAPickaxeItems {
 			registerRender(skyroot_adze);
 			registerRender(valkyrie_adze);
 			registerRender(zanite_adze);
+		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			registerRender(gobber_adze);
+			registerRender(nether_adze);
+			registerRender(end_adze);
 		}
 	}
 

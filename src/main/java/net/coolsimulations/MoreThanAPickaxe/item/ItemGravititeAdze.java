@@ -14,7 +14,7 @@ import net.minecraftforge.common.ForgeHooks;
 public class ItemGravititeAdze extends ItemAdze {
 
 	public ItemGravititeAdze(ToolMaterial material, float damage, float speed) {
-		super(material, damage, speed);
+		super(material, damage, speed, true);
 	}
 	
 	@Override

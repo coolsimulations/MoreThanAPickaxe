@@ -50,6 +50,10 @@ item.purple_diamond_adze.name=紫色钻石阿泽
 item.yellow_diamond_adze.name=黄色钻石阿泽
 item.green_diamond_adze.name=绿色钻石阿泽
 
+item.gobber_adze.name=戈伯阿泽
+item.nether_adze.name=地狱阿泽
+item.end_adze.name=末影阿泽
+
 item.hammertime.itemdenseadzewood.name=致密木阿泽
 item.hammertime.itemdenseadzestone.name=致密石阿泽
 item.hammertime.itemdenseadzeiron.name=致密铁阿泽

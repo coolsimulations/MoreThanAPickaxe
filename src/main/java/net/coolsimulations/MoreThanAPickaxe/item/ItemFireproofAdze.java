@@ -40,7 +40,7 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 public class ItemFireproofAdze extends ItemAdze {
 
 	public ItemFireproofAdze(ToolMaterial material, float damage, float speed) {
-		super(material, damage, speed);
+		super(material, damage, speed, true);
 	}
 
 	@Override

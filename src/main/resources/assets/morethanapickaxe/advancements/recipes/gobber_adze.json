@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:gobber_adze"
+    ]
+  },
+  "criteria": {
+    "has_gobber": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "gb:globot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:gobber_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gobber",
+      "has_the_recipe"
+    ]
+  ]
+}

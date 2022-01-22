@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class ItemHolystoneAdze extends ItemAdze {
 
 	public ItemHolystoneAdze(ToolMaterial material, float damage, float speed) {
-		super(material, damage, speed);
+		super(material, damage, speed, true);
 	}
 
     public boolean onBlockDestroyed(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)

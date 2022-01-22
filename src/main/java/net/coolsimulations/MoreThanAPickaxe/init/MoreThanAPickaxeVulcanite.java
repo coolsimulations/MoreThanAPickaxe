@@ -20,7 +20,7 @@ public class MoreThanAPickaxeVulcanite {
 
 	public static void init() {
 
-		vulcanite_adze = new ItemAdze(ModMaterial.tool, 4.5F, -2.4F).setUnlocalizedName("vulcanite_adze").setRegistryName("vulcanite_adze").setCreativeTab(SPTabs.tabTools);
+		vulcanite_adze = new ItemAdze(ModMaterial.tool, 4.5F, -2.4F, true).setUnlocalizedName("vulcanite_adze").setRegistryName("vulcanite_adze").setCreativeTab(SPTabs.tabTools);
 		registerHarvestList();
 		registerLivingList();
 		registerBreakList();

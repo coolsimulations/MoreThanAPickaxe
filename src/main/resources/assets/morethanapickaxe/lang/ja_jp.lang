@@ -50,6 +50,10 @@ item.purple_diamond_adze.name=パープルダイヤモンドのアズ
 item.yellow_diamond_adze.name=イエローダイヤモンドのアズ
 item.green_diamond_adze.name=グリーンダイヤモンドのアズ
 
+item.gobber_adze.name=ゴバーのアズ
+item.nether_adze.name=ネザーのアズ
+item.end_adze.name=エンダーのアズ
+
 item.hammertime.itemdenseadzewood.name=木のアズ（高密化）
 item.hammertime.itemdenseadzestone.name=石のアズ（高密化）
 item.hammertime.itemdenseadzeiron.name=鉄のアズ（高密化）

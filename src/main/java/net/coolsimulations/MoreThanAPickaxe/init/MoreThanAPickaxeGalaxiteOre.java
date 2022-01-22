@@ -19,7 +19,7 @@ public class MoreThanAPickaxeGalaxiteOre {
 	
 	public static void init() {
 		
-		galaxite_adze = new ItemAdze(ModMaterial.Tool, 6.5F, -2.4F).setUnlocalizedName("galaxite_adze").setRegistryName("galaxite_adze").setCreativeTab(SPTabs.tabTools);
+		galaxite_adze = new ItemAdze(ModMaterial.Tool, 6.5F, -2.4F, true).setUnlocalizedName("galaxite_adze").setRegistryName("galaxite_adze").setCreativeTab(SPTabs.tabTools);
 		registerLivingList();
 		registerBreakList();
 	}

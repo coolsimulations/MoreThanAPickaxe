@@ -6,8 +6,12 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
+import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.SurvivalPlus.api.SPBlocks;
 import net.coolsimulations.SurvivalPlus.api.blocks.SPBlockOre;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDirt;
@@ -16,14 +20,17 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,68 +45,68 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
-	
+
 	public static class TreeChopTask {
-        public final World world;
-        public final EntityPlayer player;
-        public final ItemStack tool;
-        public final int blocksPerTick;
-        public Queue<BlockPos> blocks = Lists.newLinkedList();
-        public Set<BlockPos> visited = new THashSet();
+		public final World world;
+		public final EntityPlayer player;
+		public final ItemStack tool;
+		public final int blocksPerTick;
+		public Queue<BlockPos> blocks = Lists.newLinkedList();
+		public Set<BlockPos> visited = new THashSet();
 
-        public TreeChopTask(ItemStack tool, BlockPos start, EntityPlayer player, int blocksPerTick) {
-            this.world = player.getEntityWorld();
-            this.player = player;
-            this.tool = tool;
-            this.blocksPerTick = blocksPerTick;
-            this.blocks.add(start);
-        }
+		public TreeChopTask(ItemStack tool, BlockPos start, EntityPlayer player, int blocksPerTick) {
+			this.world = player.getEntityWorld();
+			this.player = player;
+			this.tool = tool;
+			this.blocksPerTick = blocksPerTick;
+			this.blocks.add(start);
+		}
 
-        @SubscribeEvent
-        public void chopChop(TickEvent.WorldTickEvent event) {
-            if (event.side.isClient()) {
-                this.finish();
-                return;
-            }
-            if (event.world.provider.getDimension() != this.world.provider.getDimension()) {
-                return;
-            }
-            int left = this.blocksPerTick;
-            while (left > 0) {
-                if (this.tool.getItemDamage() >= this.tool.getMaxDamage()) {
-                    this.player.getHeldItem(this.player.swingingHand).shrink(1);
-                    this.finish();
-                    break;
-                }
-                if (this.blocks.isEmpty()) {
-                    this.finish();
-                    return;
-                }
-                BlockPos pos = this.blocks.remove();
-                if (!this.visited.add(pos) || !ItemDenseAdze.isLog(this.world, pos)) continue;
-                for (EnumFacing facing : new EnumFacing[]{EnumFacing.NORTH, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.WEST}) {
-                    BlockPos pos2 = pos.offset(facing);
-                    if (this.visited.contains((Object)pos2)) continue;
-                    this.blocks.add(pos2);
-                }
-                for (int x = 0; x < 3; ++x) {
-                    for (int z = 0; z < 3; ++z) {
-                        BlockPos pos2 = pos.add(-1 + x, 1, -1 + z);
-                        if (this.visited.contains((Object)pos2)) continue;
-                        this.blocks.add(pos2);
-                    }
-                }
-                this.world.destroyBlock(new BlockPos(pos.getX(), pos.getY(), pos.getZ()), true);
-                this.tool.damageItem(1, (EntityLivingBase)this.player);
-                --left;
-            }
-        }
+		@SubscribeEvent
+		public void chopChop(TickEvent.WorldTickEvent event) {
+			if (event.side.isClient()) {
+				this.finish();
+				return;
+			}
+			if (event.world.provider.getDimension() != this.world.provider.getDimension()) {
+				return;
+			}
+			int left = this.blocksPerTick;
+			while (left > 0) {
+				if (this.tool.getItemDamage() >= this.tool.getMaxDamage()) {
+					this.player.getHeldItem(this.player.swingingHand).shrink(1);
+					this.finish();
+					break;
+				}
+				if (this.blocks.isEmpty()) {
+					this.finish();
+					return;
+				}
+				BlockPos pos = this.blocks.remove();
+				if (!this.visited.add(pos) || !ItemDenseAdze.isLog(this.world, pos)) continue;
+				for (EnumFacing facing : new EnumFacing[]{EnumFacing.NORTH, EnumFacing.EAST, EnumFacing.SOUTH, EnumFacing.WEST}) {
+					BlockPos pos2 = pos.offset(facing);
+					if (this.visited.contains((Object)pos2)) continue;
+					this.blocks.add(pos2);
+				}
+				for (int x = 0; x < 3; ++x) {
+					for (int z = 0; z < 3; ++z) {
+						BlockPos pos2 = pos.add(-1 + x, 1, -1 + z);
+						if (this.visited.contains((Object)pos2)) continue;
+						this.blocks.add(pos2);
+					}
+				}
+				this.world.destroyBlock(new BlockPos(pos.getX(), pos.getY(), pos.getZ()), true);
+				this.tool.damageItem(1, (EntityLivingBase)this.player);
+				--left;
+			}
+		}
 
-        private void finish() {
-            MinecraftForge.EVENT_BUS.unregister((Object)this);
-        }
-    }
-	
+		private void finish() {
+			MinecraftForge.EVENT_BUS.unregister((Object)this);
+		}
+	}
+
 	public static final Set<Block> EFFECTIVE_ON;
 
 	public ItemDenseAdze(ToolMaterial toolMaterial) {
@@ -109,7 +116,7 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 		this.setHarvestLevel("shovel", toolMaterial.getHarvestLevel());
 		this.setHarvestLevel("mattock", toolMaterial.getHarvestLevel());
 	}
-	
+
 	public boolean onBlockDestroyed(ItemStack stack, World world,
 			IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
 		return super.onBlockDestroyed(stack, world, state, pos, entityLiving);
@@ -183,9 +190,9 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 	private static boolean isLog(World world, BlockPos pos) {
 		return world.getBlockState(pos).getBlock().isWood(world, pos);
 	}
-	
+
 	private static boolean isLeaves(World world, BlockPos pos) {
-		
+
 		return world.getBlockState(pos).getBlock().isLeaves(world.getBlockState(pos), world, pos);
 	}
 
@@ -199,7 +206,7 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 			return true;
 		}
 	}
-	
+
 	public boolean canHarvestBlock(IBlockState blockIn) {
 		Block block = blockIn.getBlock();
 		if (block == Blocks.OBSIDIAN) {
@@ -252,7 +259,7 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 			return this.toolMaterial.getHarvestLevel() >= 2;
 		}
 	}
-	
+
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -311,7 +318,7 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 							return EnumActionResult.SUCCESS;
 						}
 					}
-					
+
 					if(worldIn.isAirBlock(blockAboveBlockPos))
 						return setBlockToFarmland(iblockstate, block, pos, stack, worldIn, playerIn);
 				}
@@ -351,7 +358,7 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 							return EnumActionResult.SUCCESS;
 						}
 					}
-					
+
 					if(worldIn.isAirBlock(blockAboveBlockPos))
 						return setBlockToPath(iblockstate, block, pos, stack, worldIn, playerIn);
 				}
@@ -359,7 +366,7 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 				{
 					return EnumActionResult.PASS;
 				}
-				
+
 				return EnumActionResult.PASS;
 			}
 		}
@@ -410,14 +417,36 @@ public class ItemDenseAdze extends ItemBaseTool implements IItemRenderer {
 	}
 
 	private void setBlock(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos, IBlockState state) {
-	      worldIn.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-	      if (!worldIn.isRemote) {
-	         worldIn.setBlockState(pos, state, 11);
-	         stack.damageItem(1, player);
-	      }
+		worldIn.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		if (!worldIn.isRemote) {
+			worldIn.setBlockState(pos, state, 11);
+			stack.damageItem(1, player);
+		}
 
-	   }
-	
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	{
+		checkAdvancement(entityIn);
+	}
+
+	protected void checkAdvancement(Entity entity) {
+
+		if (entity instanceof EntityPlayerMP) {
+			AdvancementManager manager = entity.getServer().getAdvancementManager();
+
+			Advancement universal = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/adze"));
+
+			AdvancementProgress advancementprogress = ((EntityPlayerMP) entity).getAdvancements().getProgress(universal);
+			if (!advancementprogress.isDone()) {
+				for(String s : advancementprogress.getRemaningCriteria()) {
+					((EntityPlayerMP) entity).getAdvancements().grantCriterion(universal, s);
+				}
+			}
+		}
+	}
+
 	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
 	{
 		if(enchantment.type == EnumEnchantmentType.BREAKABLE || enchantment.type == EnumEnchantmentType.DIGGER)

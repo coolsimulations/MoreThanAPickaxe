@@ -5,29 +5,33 @@ import java.util.Set;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
+import net.coolsimulations.MoreThanAPickaxe.Reference;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -39,8 +43,19 @@ public class ItemAdze extends ItemTool{
 	protected final float attackDamage;
 	protected final Item.ToolMaterial material;
 	protected static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(new Block[] {Blocks.ACTIVATOR_RAIL, Blocks.COAL_ORE, Blocks.COBBLESTONE, Blocks.DETECTOR_RAIL, Blocks.DIAMOND_BLOCK, Blocks.DIAMOND_ORE, Blocks.DOUBLE_STONE_SLAB, Blocks.GOLDEN_RAIL, Blocks.GOLD_BLOCK, Blocks.GOLD_ORE, Blocks.ICE, Blocks.IRON_BLOCK, Blocks.IRON_ORE, Blocks.LAPIS_BLOCK, Blocks.LAPIS_ORE, Blocks.LIT_REDSTONE_ORE, Blocks.MOSSY_COBBLESTONE, Blocks.NETHERRACK, Blocks.PACKED_ICE, Blocks.RAIL, Blocks.REDSTONE_ORE, Blocks.SANDSTONE, Blocks.RED_SANDSTONE, Blocks.STONE, Blocks.STONE_SLAB, Blocks.STONE_BUTTON, Blocks.STONE_PRESSURE_PLATE, Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE, Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH});
-
+	
+	protected final boolean isModded;
+	protected final boolean unbreakable;
+	
 	public ItemAdze(ToolMaterial material, float damage, float speed) {
+		this(material, damage, speed, false);
+	}
+	
+	public ItemAdze(ToolMaterial material, float damage, float speed, boolean isModded) {
+		this(material, damage, speed, isModded, false);
+	}
+
+	public ItemAdze(ToolMaterial material, float damage, float speed, boolean isModded, boolean unbreakable) {
 		super(damage, speed, material, EFFECTIVE_ON);
 		this.material = material;
 		this.maxStackSize = 1;
@@ -50,6 +65,8 @@ public class ItemAdze extends ItemTool{
 		this.setHarvestLevel("axe", material.getHarvestLevel());
 		this.setHarvestLevel("shovel", material.getHarvestLevel());
 		this.setHarvestLevel("mattock", material.getHarvestLevel());
+		this.isModded = isModded;
+		this.unbreakable = unbreakable;
 	}
 
 	public float getDestroySpeed(ItemStack stack, IBlockState state)
@@ -282,7 +299,8 @@ public class ItemAdze extends ItemTool{
 			if (!worldIn.isRemote)
 			{
 				worldIn.setBlockState(pos, iblockstate1, 11);
-				stack.damageItem(1, playerIn);
+				if(!unbreakable)
+					stack.damageItem(1, playerIn);
 			}
 		}
 
@@ -296,7 +314,8 @@ public class ItemAdze extends ItemTool{
 		if (!worldIn.isRemote)
 		{
 			worldIn.setBlockState(pos, state, 11);
-			stack.damageItem(1, player);
+			if(!unbreakable)
+				stack.damageItem(1, player);
 		}
 	}
 
@@ -314,7 +333,8 @@ public class ItemAdze extends ItemTool{
 	 */
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
-		stack.damageItem(1, attacker);
+		if(!unbreakable)
+			stack.damageItem(1, attacker);
 		return true;
 	}
 
@@ -325,7 +345,8 @@ public class ItemAdze extends ItemTool{
 	{
 		if ((double)state.getBlockHardness(worldIn, pos) != 0.0D)
 		{
-			stack.damageItem(2, entityLiving);
+			if(!unbreakable)
+				stack.damageItem(2, entityLiving);
 		}
 
 		return true;
@@ -354,6 +375,30 @@ public class ItemAdze extends ItemTool{
 			return true;
 		else
 			return false;
+	}
+	
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+    {
+		checkAdvancement(entityIn);
+    }
+	
+	protected void checkAdvancement(Entity entity) {
+		
+		if(isModded) {
+			if (entity instanceof EntityPlayerMP) {
+				AdvancementManager manager = entity.getServer().getAdvancementManager();
+
+				Advancement universal = manager.getAdvancement(new ResourceLocation(Reference.MOD_ID, Reference.MOD_ID + "/adze"));
+
+				AdvancementProgress advancementprogress = ((EntityPlayerMP) entity).getAdvancements().getProgress(universal);
+				if (!advancementprogress.isDone()) {
+					for(String s : advancementprogress.getRemaningCriteria()) {
+						((EntityPlayerMP) entity).getAdvancements().grantCriterion(universal, s);
+					}
+				}
+			}
+		}
 	}
 
 	/**

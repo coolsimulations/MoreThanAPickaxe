@@ -6,6 +6,7 @@ import java.util.List;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPicakxeAetherLegacyRecipes;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeFuelHandler;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeGobber;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeHammerTime;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeLumberjack;
@@ -76,6 +77,10 @@ public class MoreThanAPickaxe {
 		GameRegistry.registerFuelHandler(new MoreThanAPickaxeFuelHandler());
 		MoreThanAPickaxeSmeltingRecipes.register();
 		SPCompatRecipeManager.futureRecipeManager.addOreDictionarySmithingRecipe(new ItemStack(MoreThanAPickaxeItems.diamond_adze), "ingotNetherite", new ItemStack(MoreThanAPickaxeItems.netherite_adze));
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			MoreThanAPickaxeGobber.init();
+		}
 	}
 
 	@EventHandler

@@ -161,6 +161,12 @@ public class MoreThanAPicakxeAetherLegacyRecipes {
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.amethyst_adze, 3750));
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.quartz_adze, 3750));
 		}
+		
+		if(SPCompatibilityManager.isGobberLoaded()) {
+			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.gobber_adze, 4000));
+			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.nether_adze, 6000));
+			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.end_adze, 6000));
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
