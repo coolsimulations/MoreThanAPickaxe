@@ -1,5 +1,6 @@
 package net.coolsimulations.MoreThanAPickaxe.item;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
@@ -16,25 +17,18 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 public class ItemFireproofAdze extends ItemAdze {
@@ -59,6 +53,14 @@ public class ItemFireproofAdze extends ItemAdze {
 			}
 			else
 			{
+				Field ageField = ObfuscationReflectionHelper.findField(EntityItem.class, "field_70292_b");
+				int age = 0;
+				try {
+					age = ageField.getInt(entity);
+				} catch (Exception e) {
+					if(entity.world.isRemote)
+						age = entity.getAge();
+				}
 
 				entity.extinguish();
 				this.customOnEntityUpdate(entity);
@@ -136,10 +138,10 @@ public class ItemFireproofAdze extends ItemAdze {
 					entity.motionY *= -0.5D;
 				}
 
-				if (entity.getAge() != -32768) {
-					int tempAge = entity.getAge(); 
+				if (age != -32768) {
+					int tempAge = age; 
 					ObfuscationReflectionHelper.setPrivateValue(EntityItem.class, entity, ++tempAge, "field_70292_b");
-					var36 = entity.getAge();
+					var36 = age;
 				}
 
 				entity.handleWaterMovement();
@@ -159,7 +161,7 @@ public class ItemFireproofAdze extends ItemAdze {
 
 				ItemStack item = entity.getItem();
 
-				if (!entity.world.isRemote && entity.getAge() >= entity.lifespan)
+				if (!entity.world.isRemote && age >= entity.lifespan)
 				{
 					int hook = net.minecraftforge.event.ForgeEventFactory.onItemExpire(entity, item);
 					if (hook < 0) entity.setDead();

@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 def mcVersion = "1.12.2"
-def modVersion = "0.1.6b"
+def modVersion = "0.1.6c"
 version = "${mcVersion}-${modVersion}"
 group = "net.coolsimulations.MoreThanAPickaxe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "MoreThanAPickaxe"
