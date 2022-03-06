@@ -2,15 +2,16 @@ package net.coolsimulations.MoreThanAPickaxe.item;
 
 import java.util.function.Supplier;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public enum AdzeItemTier implements Tier {
     steelToolMaterial(2, 500, 7.0F, 2.5F, 9, () -> {
-    	return Ingredient.of(ItemTags.getAllTags().getTag(new ResourceLocation("c", "steel_ingots")));
+    	return Ingredient.of(TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("c", "steel_ingots")));
     });
 
     private final int harvestLevel;

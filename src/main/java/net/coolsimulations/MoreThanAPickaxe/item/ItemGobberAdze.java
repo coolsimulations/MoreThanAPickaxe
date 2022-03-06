@@ -26,7 +26,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -173,12 +173,13 @@ public class ItemGobberAdze extends ItemAdze {
 					return false;
 				}
 				BlockPos candidate = candidates.get(i);
-				Block block = level.getBlockState(candidate).getBlock();
-				if (BlockTags.LEAVES.contains(block) || block == Blocks.NETHER_WART_BLOCK || block == Blocks.WARPED_WART_BLOCK) {
+				BlockState state = level.getBlockState(candidate);
+				Block block = state.getBlock();
+				if (state.is(BlockTags.LEAVES) || block == Blocks.NETHER_WART_BLOCK || block == Blocks.WARPED_WART_BLOCK) {
 					++leaves;
 					continue;
 				}
-				if (logs.size() != 0 && !BlockTags.LOGS.contains(block)) continue;
+				if (logs.size() != 0 && !state.is(BlockTags.LOGS)) continue;
 				logs.add(candidate);
 				for (int x = -1; x <= 1; ++x) {
 					for (int y = 0; y <= 1; ++y) {
@@ -204,7 +205,7 @@ public class ItemGobberAdze extends ItemAdze {
 		return false;
 	}
 
-	public static void attemptBreakNeighbors(Level level, BlockPos blockPos, Player player, Tag<Block> tag, boolean checkHarvestLevel) {
+	public static void attemptBreakNeighbors(Level level, BlockPos blockPos, Player player, TagKey<Block> tag, boolean checkHarvestLevel) {
 		if (level.isClientSide) {
 			return;
 		}
@@ -248,9 +249,9 @@ public class ItemGobberAdze extends ItemAdze {
 		return level.clip(new ClipContext(vec3d, vec3d1, ClipContext.Block.OUTLINE, fluidMode, player));
 	}
 
-	public static void attemptBreak(Level level, BlockPos blockPos, Player player, Tag<Block> tag) {
+	public static void attemptBreak(Level level, BlockPos blockPos, Player player, TagKey<Block> tag) {
 		BlockState state = level.getBlockState(blockPos);
-		boolean isEffective = tag.contains(state.getBlock());;
+		boolean isEffective = state.is(tag);
 		if (player.hasCorrectToolForDrops(state) && isEffective) {
 			breakList.add(blockPos);
 		}

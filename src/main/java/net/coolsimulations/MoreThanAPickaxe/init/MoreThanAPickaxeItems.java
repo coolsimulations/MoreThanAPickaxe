@@ -162,32 +162,15 @@ public class MoreThanAPickaxeItems {
 		}
 		
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {
-			if(MoreGems.CONFIG.GENERAL.enableTopazSet)
-				topaz_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOPAZ_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableCitrineSet)
-				citrine_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CITRINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableTourmalineSet)
-				tourmaline_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOURMALINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableAlexandriteSet)
-				alexandrite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.ALEXANDRITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableCorundumSet)
-				corundum_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CORUNDUM_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableCarbonadoSet)
-				carbonado_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CARBONADO_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableKunziteSet)
-				kunzite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.KUNZITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableMoissaniteSet)
-				moissanite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.MOISSANITE_TOOL_MATERIAL, 9.0F, -2.40F, new FabricItemSettings(), true);
-			
-			if(MoreGems.CONFIG.GENERAL.enableSpinelSet)
-				spinel_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SPINEL_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+			topaz_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOPAZ_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+			citrine_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CITRINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+			tourmaline_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.TOURMALINE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+			alexandrite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.ALEXANDRITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+			corundum_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CORUNDUM_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+			carbonado_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.CARBONADO_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
+			kunzite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.KUNZITE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+			moissanite_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.MOISSANITE_TOOL_MATERIAL, 9.0F, -2.40F, new FabricItemSettings(), true);
+			spinel_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SPINEL_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isAetherRebornLoaded()) {
@@ -262,32 +245,15 @@ public class MoreThanAPickaxeItems {
 		}
 		
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {
-			if(MoreGems.CONFIG.GENERAL.enableTopazSet)
-				registerItem(topaz_adze, "topaz_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableCitrineSet)
-				registerItem(citrine_adze, "citrine_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableTourmalineSet)
-				registerItem(tourmaline_adze, "tourmaline_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableAlexandriteSet)
-				registerItem(alexandrite_adze, "alexandrite_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableCorundumSet)
-				registerItem(corundum_adze, "corundum_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableCarbonadoSet)
-				registerItem(carbonado_adze, "carbonado_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableKunziteSet)
-				registerItem(kunzite_adze, "kunzite_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableMoissaniteSet)
-				registerItem(moissanite_adze, "moissanite_adze");
-			
-			if(MoreGems.CONFIG.GENERAL.enableSpinelSet)
-				registerItem(spinel_adze, "spinel_adze");
+			registerItem(topaz_adze, "topaz_adze");
+			registerItem(citrine_adze, "citrine_adze");
+			registerItem(tourmaline_adze, "tourmaline_adze");
+			registerItem(alexandrite_adze, "alexandrite_adze");
+			registerItem(corundum_adze, "corundum_adze");
+			registerItem(carbonado_adze, "carbonado_adze");
+			registerItem(kunzite_adze, "kunzite_adze");
+			registerItem(moissanite_adze, "moissanite_adze");
+			registerItem(spinel_adze, "spinel_adze");
 		}
 		
 		if(SPCompatibilityManager.isAetherRebornLoaded()) {
