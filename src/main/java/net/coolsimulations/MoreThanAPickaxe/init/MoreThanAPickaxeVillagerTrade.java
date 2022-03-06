@@ -24,8 +24,8 @@ public class MoreThanAPickaxeVillagerTrade {
 		Random random = new Random();
 
 		if(event.getType() == VillagerProfession.TOOLSMITH) {
-			trades.get(1).add(new BasicItemListing(3, new ItemStack(MoreThanAPickaxeItems.bronze_adze), 12, 5));
-			trades.get(2).add(new BasicItemListing(random.nextInt(2) + 7, EnchantmentHelper.enchantItem(random, new ItemStack(MoreThanAPickaxeItems.titanium_adze), 5 + random.nextInt(15), false), 12, 5));
+			trades.get(1).add(new BasicItemListing(3, new ItemStack(MoreThanAPickaxeItems.bronze_adze.get()), 12, 5));
+			trades.get(2).add(new BasicItemListing(random.nextInt(2) + 7, EnchantmentHelper.enchantItem(random, new ItemStack(MoreThanAPickaxeItems.titanium_adze.get()), 5 + random.nextInt(15), false), 12, 5));
 		}
 	}
 

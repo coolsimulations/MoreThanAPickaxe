@@ -14,7 +14,7 @@ public class MoreThanAPickaxeFuelHandler {
     {
         ItemStack fuel = event.getItemStack();
         
-        if(fuel.getItem() == MoreThanAPickaxeItems.wooden_adze) {
+        if(fuel.getItem() == MoreThanAPickaxeItems.wooden_adze.get()) {
         	event.setBurnTime(200);
         }
     }
