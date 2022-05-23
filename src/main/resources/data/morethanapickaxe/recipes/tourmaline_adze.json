@@ -15,5 +15,13 @@
   },
   "result": {
     "item": "morethanapickaxe:tourmaline_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "more_gems"
+      ]
+    }
+  ]
 }

@@ -16,5 +16,13 @@
   },
   "result": {
     "item": "morethanapickaxe:steel_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "vanillaenhanced"
+      ]
+    }
+  ]
 }

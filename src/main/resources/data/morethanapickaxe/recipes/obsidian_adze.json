@@ -15,5 +15,15 @@
   },
   "result": {
     "item": "morethanapickaxe:obsidian_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:any_mods_loaded",
+      "values": [
+        "obsidianequipment",
+        "emerald_tools",
+        "vanillaenhanced"
+      ]
+    }
+  ]
 }

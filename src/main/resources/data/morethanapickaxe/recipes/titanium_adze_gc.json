@@ -15,5 +15,13 @@
   },
   "result": {
     "item": "morethanapickaxe:titanium_adze_gc"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "galacticraft"
+      ]
+    }
+  ]
 }

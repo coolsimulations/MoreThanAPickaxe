@@ -16,5 +16,13 @@
   },
   "result": {
     "item": "morethanapickaxe:steel_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:item_tags_populated",
+      "values": [
+        "c:steel_ingots"
+      ]
+    }
+  ]
 }

@@ -18,5 +18,13 @@
   },
   "result": {
     "item": "morethanapickaxe:end_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "gobber2"
+      ]
+    }
+  ]
 }

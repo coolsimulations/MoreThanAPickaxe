@@ -15,5 +15,14 @@
   },
   "result": {
     "item": "morethanapickaxe:sapphire_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:any_mods_loaded",
+      "values": [
+        "more_gems",
+        "vanillaenhanced"
+      ]
+    }
+  ]
 }

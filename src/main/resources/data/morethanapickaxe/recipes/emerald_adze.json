@@ -15,5 +15,17 @@
   },
   "result": {
     "item": "morethanapickaxe:emerald_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:any_mods_loaded",
+      "values": [
+        "emerald_mod",
+        "em",
+        "emerald_tools",
+        "vanillaenhanced",
+        "emeraldequipment"
+      ]
+    }
+  ]
 }

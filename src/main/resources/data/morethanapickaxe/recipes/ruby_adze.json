@@ -15,5 +15,15 @@
   },
   "result": {
     "item": "morethanapickaxe:ruby_adze"
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:any_mods_loaded",
+      "values": [
+        "ruby_mod",
+        "emerald_tools",
+        "vanillaenhanced"
+      ]
+    }
+  ]
 }
