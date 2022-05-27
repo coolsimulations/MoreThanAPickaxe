@@ -10,20 +10,17 @@
       "tag": "c:wood_sticks"
     },
     "X": {
-      "tag": "c:ruby_shards"
+      "item": "vanillaenhanced:obsidian_alloy_ingot"
     }
   },
   "result": {
-    "item": "morethanapickaxe:ruby_adze"
+    "item": "morethanapickaxe:obsidian_adze"
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:any_mod_loaded",
+      "condition": "fabric:all_mods_loaded",
       "values": [
-        "ruby_mod",
-        "emerald_tools",
-        "vanillaenhanced",
-        "enriched"
+        "vanillaenhanced"
       ]
     }
   ]

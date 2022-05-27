@@ -3,12 +3,7 @@ package net.coolsimulations.MoreThanAPickaxe.init;
 import com.brand.adabraniummod.content.stuff.materials.AdabraniumToolMaterials;
 import com.kwpugh.emerald_tools.init.ItemInit;
 import com.kwpugh.gobber2.Gobber2;
-import com.kwpugh.more_gems.MoreGems;
 import com.vanillaenhanced.materials.items.ToolMaterialAmethyst;
-import com.vanillaenhanced.materials.items.ToolMaterialObsidian;
-import com.vanillaenhanced.materials.items.ToolMaterialRuby;
-import com.vanillaenhanced.materials.items.ToolMaterialSapphire;
-import com.vanillaenhanced.materials.items.ToolMaterialSteel;
 
 import de.deeprobin.amethyst_mod.AmethystMod;
 import de.deeprobin.emeraldmod.EmeraldMod;
@@ -59,6 +54,8 @@ public class MoreThanAPickaxeItems {
 	public static Item spinel_adze;
 	public static Item quartz_adze;
 	
+	public static Item tanzanite_adze;
+	
 	public static Item citrine_adze;
 	public static Item tourmaline_adze;
 	public static Item alexandrite_adze;
@@ -96,7 +93,9 @@ public class MoreThanAPickaxeItems {
 		if(!SPCompatibilityManager.isGCLoaded()) {
 
 			if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-				steel_adze = new ItemAdze(new ToolMaterialSteel(), 8.0F, -2.40F, new FabricItemSettings());
+				steel_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialSteel(), 8.0F, -2.40F, new FabricItemSettings());
+			} else if(SPCompatibilityManager.isEnrichedLoaded()) {
+				steel_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialSteel(), 8.0F, -2.40F, new FabricItemSettings());
 			} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				steel_adze = new ItemAdze(ItemInit.STEEL_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings());
 			} else {
@@ -124,6 +123,8 @@ public class MoreThanAPickaxeItems {
 				emerald_adze = new ItemAdze(ItemInit.EMERALD_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
 				emerald_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialEmerald(), 7.5F, -2.40F, new FabricItemSettings(), true);
+			} else if(SPCompatibilityManager.isEnrichedLoaded()) {
+				emerald_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialEmerald(), 7.5F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEmeraldEquipmentLoaded()) {
 				emerald_adze = new ItemAdze(com.exline.emeraldequipment.item.EmeraldToolMaterial.INSTANCE, 7.5F, -2.40F, new FabricItemSettings(), true);	
 			}
@@ -135,7 +136,9 @@ public class MoreThanAPickaxeItems {
 			} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				obsidian_adze = new ItemAdze(ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.5F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-				obsidian_adze = new ItemAdze(new ToolMaterialObsidian(), 8.0F, -2.40F, new FabricItemSettings(), true);
+				obsidian_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialObsidian(), 8.0F, -2.40F, new FabricItemSettings(), true);
+			} else if(SPCompatibilityManager.isEnrichedLoaded()) {
+				obsidian_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialObsidian(), 8.0F, -2.40F, new FabricItemSettings(), true);
 			}
 		}
 		
@@ -144,13 +147,17 @@ public class MoreThanAPickaxeItems {
 		} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
 			ruby_adze = new ItemAdze(ItemInit.RUBY_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
 		} else if (SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-			ruby_adze = new ItemAdze(new ToolMaterialRuby(), 7.0F, -2.40F, new FabricItemSettings(), true);
+			ruby_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialRuby(), 7.0F, -2.40F, new FabricItemSettings(), true);
+		} else if (SPCompatibilityManager.isEnrichedLoaded()) {
+			ruby_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialRuby(), 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {
 			sapphire_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SAPPHIRE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
-			sapphire_adze = new ItemAdze(new ToolMaterialSapphire(), 7.0F, -2.40F, new FabricItemSettings(), true);
+			sapphire_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialSapphire(), 7.0F, -2.40F, new FabricItemSettings(), true);
+		} else if(SPCompatibilityManager.isEnrichedLoaded()) {
+			sapphire_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialSapphire(), 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
@@ -159,6 +166,12 @@ public class MoreThanAPickaxeItems {
 			amethyst_adze = new ItemAdze(AmethystMod.TOOL_MATERIAL, 9.0F, -1.80F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
 			amethyst_adze = new ItemAdze(new ToolMaterialAmethyst(), 7.0F, -2.40F, new FabricItemSettings(), true);
+		}
+		
+		if(SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+			tanzanite_adze = new ItemAdze(new com.vanillaenhanced.materials.items.ToolMaterialTanzanite(), 7.0F, -2.40F, new FabricItemSettings(), true);
+		} else if(SPCompatibilityManager.isEnrichedLoaded()) {
+			tanzanite_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialTanzanite(), 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
 		
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {
@@ -232,16 +245,20 @@ public class MoreThanAPickaxeItems {
 			registerItem(obsidian_adze, "obsidian_adze");
 		}
 		
-		if(SPCompatibilityManager.isRobinsRubyLoaded() || SPCompatibilityManager.isEasyEmeraldLoaded() || SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+		if(SPCompatibilityManager.isRobinsRubyLoaded() || SPCompatibilityManager.isEasyEmeraldLoaded() || SPCompatibilityManager.isVanillaEnhancedLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
 			registerItem(ruby_adze, "ruby_adze");
 		}
 		
-		if(SPCompatibilityManager.isMoreGemsLoaded() || SPCompatibilityManager.isVanillaEnhancedLoaded()) {
+		if(SPCompatibilityManager.isMoreGemsLoaded() || SPCompatibilityManager.isVanillaEnhancedLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
 			registerItem(sapphire_adze, "sapphire_adze");
 		}
 		
 		if(SPCompatibilityManager.isEasyEmeraldLoaded() || SPCompatibilityManager.isRobinsAmethystLoaded() || SPCompatibilityManager.isVanillaEnhancedLoaded()) {
 			registerItem(amethyst_adze, "amethyst_adze");
+		}
+		
+		if(SPCompatibilityManager.isVanillaEnhancedLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
+			registerItem(tanzanite_adze, "tanzanite_adze");
 		}
 		
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {

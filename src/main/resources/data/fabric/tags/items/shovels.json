@@ -40,6 +40,10 @@
 		  "required": false
 		},
 		{
+		  "id": "morethanapickaxe:tanzanite_adze",
+		  "required": false
+		},
+		{
 		  "id": "morethanapickaxe:citrine_adze",
 		  "required": false
 		},

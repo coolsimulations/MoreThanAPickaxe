@@ -18,11 +18,10 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:any_mods_loaded",
+      "condition": "fabric:any_mod_loaded",
       "values": [
         "obsidianequipment",
-        "emerald_tools",
-        "vanillaenhanced"
+        "emerald_tools"
       ]
     }
   ]
