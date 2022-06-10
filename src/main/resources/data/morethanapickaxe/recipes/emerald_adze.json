@@ -18,12 +18,12 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:any_mods_loaded",
+      "condition": "fabric:any_mod_loaded",
       "values": [
         "emerald_mod",
         "em",
         "emerald_tools",
-        "vanillaenhanced",
+        "enriched",
         "emeraldequipment"
       ]
     }

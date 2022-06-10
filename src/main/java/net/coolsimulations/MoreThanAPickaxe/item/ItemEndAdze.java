@@ -16,8 +16,6 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
 import net.minecraft.server.level.ServerPlayer;
@@ -195,7 +193,7 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 
 			if(player.isCrouching()) {
 				EnableUtil.changeEnabled(player, interactionHand);
-				player.displayClientMessage((new TextComponent("Status changed")), true);
+				player.displayClientMessage((Component.literal("Status changed")), true);
 			} else {
 				
 				ArrowItem itemarrow = (ArrowItem)Items.ARROW;
@@ -272,10 +270,10 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 
 	@Override
 	public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-		list.add(new TranslatableComponent("item.gobber2.gobber2_tree_axe.tip1").withStyle(ChatFormatting.GREEN));
-		list.add(new TranslatableComponent("item.gobber2.gobber2_staff_stars.tip1").withStyle(ChatFormatting.GREEN));
-		list.add(new TranslatableComponent("item.gobber2.sneak_right_click").withStyle(ChatFormatting.YELLOW));
-		list.add(new TranslatableComponent("item.gobber2.gobber2_staff_sniper.tip1").withStyle(ChatFormatting.GREEN));
-		list.add(new TranslatableComponent("item.gobber2.gobber2_paxel_stars.tip1", EnableUtil.isEnabled(itemStack)).withStyle(ChatFormatting.RED));
+		list.add(Component.translatable("item.gobber2.gobber2_tree_axe.tip1").withStyle(ChatFormatting.GREEN));
+		list.add(Component.translatable("item.gobber2.gobber2_staff_stars.tip1").withStyle(ChatFormatting.GREEN));
+		list.add(Component.translatable("item.gobber2.sneak_right_click").withStyle(ChatFormatting.YELLOW));
+		list.add(Component.translatable("item.gobber2.gobber2_staff_sniper.tip1").withStyle(ChatFormatting.GREEN));
+		list.add(Component.translatable("item.gobber2.gobber2_paxel_stars.tip1", EnableUtil.isEnabled(itemStack)).withStyle(ChatFormatting.RED));
 	}
 }

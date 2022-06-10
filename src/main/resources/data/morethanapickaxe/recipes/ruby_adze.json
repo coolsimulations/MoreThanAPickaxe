@@ -18,11 +18,11 @@
   },
   "fabric:load_conditions": [
     {
-      "condition": "fabric:any_mods_loaded",
+      "condition": "fabric:any_mod_loaded",
       "values": [
         "ruby_mod",
         "emerald_tools",
-        "vanillaenhanced"
+        "enriched"
       ]
     }
   ]

@@ -20,8 +20,6 @@ import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
 import net.minecraft.server.level.ServerPlayer;
@@ -123,7 +121,7 @@ public class ItemGobberAdze extends ItemAdze {
 	
 	@Override
 	public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        list.add(new TranslatableComponent("item.gobber2.gobber2_tree_axe.tip1").withStyle(ChatFormatting.GREEN));
+        list.add(Component.translatable("item.gobber2.gobber2_tree_axe.tip1").withStyle(ChatFormatting.GREEN));
     }
 
 	@Override
@@ -169,7 +167,7 @@ public class ItemGobberAdze extends ItemAdze {
 			int leaves = 0;
 			for (i = 0; i < candidates.size(); ++i) {
 				if (logs.size() > 200) {
-					player.displayClientMessage(new TextComponent("Tree too big!"), true);
+					player.displayClientMessage(Component.literal("Tree too big!"), true);
 					return false;
 				}
 				BlockPos candidate = candidates.get(i);

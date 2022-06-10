@@ -6,21 +6,21 @@ import java.util.Scanner;
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.minecraft.ChatFormatting;
 import net.minecraft.SharedConstants;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 
 public class MoreThanAPickaxeUpdateHandler {
 	
 	private static String latestVersion;
 	private static String latestVersionInfo;
 	public static boolean isOld = false;
-	public static TranslatableComponent updateInfo = null;
-	public static TextComponent updateVersionInfo = null;
+	public static MutableComponent updateInfo = null;
+	public static MutableComponent updateVersionInfo = null;
 	
 	public static void init() {
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/versionchecker118.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/versionchecker119.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
             s.close();
@@ -29,7 +29,7 @@ public class MoreThanAPickaxeUpdateHandler {
         }
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/updateinfo118.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe-fabric/updateinfo119.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersionInfo = s.nextLine();
             s.close();
@@ -43,16 +43,16 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableComponent morethanapickaxe = new TranslatableComponent("morethanapickaxe.name");
+				MutableComponent morethanapickaxe = Component.translatable("morethanapickaxe.name");
 				morethanapickaxe.withStyle(ChatFormatting.BLUE);
 				
-				TextComponent MCVersion = new TextComponent(SharedConstants.getCurrentVersion().getName());
+				MutableComponent MCVersion = Component.literal(SharedConstants.getCurrentVersion().getName());
 				MCVersion.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {morethanapickaxe, MCVersion});
+				updateInfo = Component.translatable("sp.update.display3", new Object[] {morethanapickaxe, MCVersion});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
+				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.update.display2")));
 				//updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"));
 				
 			}
@@ -61,24 +61,24 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableComponent morethanapickaxe = new TranslatableComponent("morethanapickaxe.name");
+				MutableComponent morethanapickaxe = Component.translatable("morethanapickaxe.name");
 				morethanapickaxe.withStyle(ChatFormatting.BLUE);
 				
-				TextComponent version = new TextComponent(latestVersion);
+				MutableComponent version = Component.literal(latestVersion);
 				version.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {morethanapickaxe, version});
+				updateInfo = Component.translatable("sp.update.display1", new Object[] {morethanapickaxe, version});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
-				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
+				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.update.display2")));
 				//updateInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"));
 				
 				if(latestVersionInfo != null) {
 					
-					updateVersionInfo = new TextComponent(latestVersionInfo);
+					updateVersionInfo = Component.literal(latestVersionInfo);
 					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA, ChatFormatting.BOLD);
 					
-					//updateVersionInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("sp.update.display2")));
+					//updateVersionInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("sp.update.display2")));
 					//updateVersionInfo.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://curseforge.com/minecraft/mc-mods/more-than-a-pickaxe-fabric"));
 					
 				}
