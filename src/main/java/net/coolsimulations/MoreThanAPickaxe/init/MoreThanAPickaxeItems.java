@@ -50,8 +50,8 @@ public class MoreThanAPickaxeItems {
 
 	//public static final TagKey<Item> STEEL_INGOT = new ItemTags.create(new ResourceLocation("forge", "ingots/steel"));
 	
-	public static final RegistryObject<Item> emerald_adze = RegistryObject.of(new ResourceLocation(Reference.MOD_ID, "emerald_adze"), ForgeRegistries.ITEMS);
-	public static final RegistryObject<Item> obsidian_adze = RegistryObject.of(new ResourceLocation(Reference.MOD_ID, "obsidian_adze"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> emerald_adze = RegistryObject.create(new ResourceLocation(Reference.MOD_ID, "emerald_adze"), ForgeRegistries.ITEMS);
+	public static final RegistryObject<Item> obsidian_adze = RegistryObject.create(new ResourceLocation(Reference.MOD_ID, "obsidian_adze"), ForgeRegistries.ITEMS);
 	
 	public static final RegistryObject<Item> emerald_adze_fancy = ITEMS_EMERALD_FANCY.register("emerald_adze", () -> new ItemAdze(FancyToolsMod.getInstance().getConfig().getEmerald(), 8.0F, -2.4F, new Item.Properties(), true));
 	public static final RegistryObject<Item> emerald_adze_simple = ITEMS_EMERALD_SIMPLE.register("emerald_adze", () -> new ItemAdze(com.technovision.emeraldmod.util.enums.ModItemTier.EMERALD, 8.0F, -2.4F, new Item.Properties(), true));

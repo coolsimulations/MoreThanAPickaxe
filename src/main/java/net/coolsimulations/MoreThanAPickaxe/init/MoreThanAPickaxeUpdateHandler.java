@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraftforge.versions.mcp.MCPVersion;
 
 public class MoreThanAPickaxeUpdateHandler {
@@ -14,13 +14,13 @@ public class MoreThanAPickaxeUpdateHandler {
 	private static String latestVersion;
 	private static String latestVersionInfo;
 	public static boolean isOld = false;
-	public static TranslatableComponent updateInfo = null;
-	public static TextComponent updateVersionInfo = null;
+	public static MutableComponent updateInfo = null;
+	public static MutableComponent updateVersionInfo = null;
 	
 	public static void init() {
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker118.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe/versionchecker119.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersion = s.next();
             s.close();
@@ -29,7 +29,7 @@ public class MoreThanAPickaxeUpdateHandler {
         }
 		
 		try {
-            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe/updateinfo118.txt");
+            URL url = new URL("https://coolsimulations.net/mcmods/morethanapickaxe/updateinfo119.txt");
             Scanner s = new Scanner(url.openStream());
             latestVersionInfo = s.nextLine();
             s.close();
@@ -43,13 +43,13 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableComponent morethanapickaxe = new TranslatableComponent("morethanapickaxe.name");
+				MutableComponent morethanapickaxe = Component.translatable("morethanapickaxe.name");
 				morethanapickaxe.withStyle(ChatFormatting.BLUE);
 				
-				TextComponent MCVersion = new TextComponent(MCPVersion.getMCVersion());
+				MutableComponent MCVersion = Component.literal(MCPVersion.getMCVersion());
 				MCVersion.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableComponent("sp.update.display3", new Object[] {morethanapickaxe, MCVersion});
+				updateInfo = Component.translatable("sp.update.display3", new Object[] {morethanapickaxe, MCVersion});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
 				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2")));
@@ -61,13 +61,13 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				isOld = true;
 				
-				TranslatableComponent morethanapickaxe = new TranslatableComponent("morethanapickaxe.name");
+				MutableComponent morethanapickaxe = Component.translatable("morethanapickaxe.name");
 				morethanapickaxe.withStyle(ChatFormatting.BLUE);
 				
-				TextComponent version = new TextComponent(latestVersion);
+				MutableComponent version = Component.literal(latestVersion);
 				version.withStyle(ChatFormatting.BLUE);
 				
-				updateInfo = new TranslatableComponent("sp.update.display1", new Object[] {morethanapickaxe, version});
+				updateInfo = Component.translatable("sp.update.display1", new Object[] {morethanapickaxe, version});
 				updateInfo.withStyle(ChatFormatting.YELLOW);
 				
 				//updateInfo.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslationTextComponent("sp.update.display2")));
@@ -75,7 +75,7 @@ public class MoreThanAPickaxeUpdateHandler {
 				
 				if(latestVersionInfo != null) {
 					
-					updateVersionInfo = new TextComponent(latestVersionInfo);
+					updateVersionInfo = Component.literal(latestVersionInfo);
 					updateVersionInfo.withStyle(ChatFormatting.DARK_AQUA);
 					updateVersionInfo.withStyle(ChatFormatting.BOLD);
 					

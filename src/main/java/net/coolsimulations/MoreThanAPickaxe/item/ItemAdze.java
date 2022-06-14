@@ -45,6 +45,7 @@ import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
@@ -142,9 +143,9 @@ public class ItemAdze extends DiggerItem{
 
 		BlockPos blockTwiceAboveBlockPos = blockpos.above(2);
 
-		Optional<BlockState> optional = Optional.ofNullable(blockstate.getToolModifiedState(world, blockpos, player, itemstack, net.minecraftforge.common.ToolActions.AXE_STRIP));
-		Optional<BlockState> optional1 = Optional.ofNullable(blockstate.getToolModifiedState(world, blockpos, player, itemstack, net.minecraftforge.common.ToolActions.AXE_SCRAPE));
-		Optional<BlockState> optional2 = Optional.ofNullable(blockstate.getToolModifiedState(world, blockpos, player, itemstack, net.minecraftforge.common.ToolActions.AXE_WAX_OFF));
+		Optional<BlockState> optional = Optional.ofNullable(blockstate.getToolModifiedState(context, net.minecraftforge.common.ToolActions.AXE_STRIP, false));
+		Optional<BlockState> optional1 = Optional.ofNullable(blockstate.getToolModifiedState(context, net.minecraftforge.common.ToolActions.AXE_SCRAPE, false));
+		Optional<BlockState> optional2 = Optional.ofNullable(blockstate.getToolModifiedState(context, net.minecraftforge.common.ToolActions.AXE_WAX_OFF, false));
 
 		Optional<BlockState> optional3 = Optional.empty();
 		if (optional.isPresent()) {
@@ -176,6 +177,7 @@ public class ItemAdze extends DiggerItem{
 			}
 
 			world.setBlock(blockpos, optional3.get(), 11);
+			world.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(player, optional3.get()));
 			if (!unbreakable && player != null) {
 				itemstack.hurtAndBreak(1, player, (p_150686_) -> {
 					p_150686_.broadcastBreakEvent(context.getHand());
@@ -202,9 +204,8 @@ public class ItemAdze extends DiggerItem{
 
 		if(!context.getPlayer().isCrouching()) {
 
-			int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(context);
+			BlockState toolModifiedState = world.getBlockState(blockpos).getToolModifiedState(context, ToolActions.HOE_TILL, false);
 			Player playerentity = context.getPlayer();
-			if (hook != 0) return hook > 0 ? InteractionResult.SUCCESS : InteractionResult.FAIL;
 			if(context.getClickedFace() != Direction.DOWN) {
 
 				if(block instanceof BushBlock) {
@@ -304,10 +305,8 @@ public class ItemAdze extends DiggerItem{
 			Player playerentity = context.getPlayer();
 			world.playSound(playerentity, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
 			if (!world.isClientSide) {
-				if(world.getBlockState(blockpos).getBlock() == Blocks.ROOTED_DIRT) {
-					Block.popResourceFromFace(context.getLevel(), context.getClickedPos(), context.getClickedFace(), new ItemStack(Items.HANGING_ROOTS));
-				}
 				world.setBlock(blockpos, iblockstate2, 11);
+				world.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(context.getPlayer(), iblockstate2));
 				if (!unbreakable && playerentity != null) {
 					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 				}
@@ -321,12 +320,13 @@ public class ItemAdze extends DiggerItem{
 
 	protected InteractionResult setBlockToPath(UseOnContext context, BlockPos blockpos, Level world) {
 
-		BlockState iblockstate1 = world.getBlockState(blockpos).getToolModifiedState(world, blockpos, context.getPlayer(), context.getItemInHand(), net.minecraftforge.common.ToolActions.SHOVEL_FLATTEN);
+		BlockState iblockstate1 = world.getBlockState(blockpos).getToolModifiedState(context, net.minecraftforge.common.ToolActions.SHOVEL_FLATTEN, false);
 		if (iblockstate1 != null) {
 			Player playerentity = context.getPlayer();
 			world.playSound(playerentity, blockpos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
 			if (!world.isClientSide) {
 				world.setBlock(blockpos, iblockstate1, 11);
+				world.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(playerentity, iblockstate1));
 				if (!unbreakable && playerentity != null) {
 					context.getItemInHand().hurtAndBreak(1, playerentity, (p_lambda$onItemUse$0_1_) -> {p_lambda$onItemUse$0_1_.broadcastBreakEvent(context.getHand());});
 				}

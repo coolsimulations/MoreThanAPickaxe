@@ -1,9 +1,9 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
 import java.util.List;
-import java.util.Random;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades.ItemListing;
 import net.minecraft.world.item.ItemStack;
@@ -21,7 +21,7 @@ public class MoreThanAPickaxeVillagerTrade {
 	}@SubscribeEvent
 	public void villagerTrades(VillagerTradesEvent event) {
 		Int2ObjectMap<List<ItemListing>> trades = event.getTrades();
-		Random random = new Random();
+		RandomSource random = RandomSource.create();
 
 		if(event.getType() == VillagerProfession.TOOLSMITH) {
 			trades.get(1).add(new BasicItemListing(3, new ItemStack(MoreThanAPickaxeItems.bronze_adze.get()), 12, 5));
