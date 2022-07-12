@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 
@@ -84,7 +84,7 @@ public class MoreThanAPickaxeLumberjack {
                     // Avoid doing the same block more then once
                     if (nextMap.containsEntry(uuid, newPoint) || pointMap.containsEntry(uuid, newPoint)) continue;
 
-                    BlockState newBlockState = event.getWorld().getBlockState(newPoint);
+                    BlockState newBlockState = event.getLevel().getBlockState(newPoint);
                     boolean isLeaves = LumberjackConfig.GENERAL.leaves.get() && newBlockState.getMaterial() == Material.LEAVES;
 
                     // Mode 0: leaves or same blocktype

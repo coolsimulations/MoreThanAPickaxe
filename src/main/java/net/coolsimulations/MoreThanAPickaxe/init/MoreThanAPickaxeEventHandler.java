@@ -23,7 +23,7 @@ public class MoreThanAPickaxeEventHandler {
 	@SubscribeEvent
 	public void onplayerLogin(PlayerEvent.PlayerLoggedInEvent event)
 	{
-		ServerPlayer player = (ServerPlayer) event.getPlayer();
+		ServerPlayer player = (ServerPlayer) event.getEntity();
 		CompoundTag entityData = player.getPersistentData();
 
 		ServerAdvancementManager manager = player.getServer().getAdvancements();
