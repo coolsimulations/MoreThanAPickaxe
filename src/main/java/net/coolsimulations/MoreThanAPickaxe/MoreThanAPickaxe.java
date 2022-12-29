@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import net.coolsimulations.MoreThanAPickaxe.init.AetherLootModifier;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeAether;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeLumberjack;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeUpdateHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeVillagerTrade;
@@ -73,7 +74,7 @@ public class MoreThanAPickaxe {
 		if(SPCompatibilityManager.isGobberLoaded())
 			MoreThanAPickaxeItems.ITEMS_GOBBER.register(FMLJavaModLoadingContext.get().getModEventBus());
 		if(SPCompatibilityManager.isAetherLoaded()) {
-			MoreThanAPickaxeItems.ITEMS_AETHER.register(FMLJavaModLoadingContext.get().getModEventBus());
+			MoreThanAPickaxeAether.ITEMS_AETHER.register(FMLJavaModLoadingContext.get().getModEventBus());
 			LOOT_MODIFIER_AETHER.register(FMLJavaModLoadingContext.get().getModEventBus());
 		}
 		MoreThanAPickaxeVillagerTrade.init();

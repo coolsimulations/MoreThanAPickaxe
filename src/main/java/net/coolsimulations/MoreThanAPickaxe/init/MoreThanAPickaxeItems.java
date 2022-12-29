@@ -1,6 +1,5 @@
 package net.coolsimulations.MoreThanAPickaxe.init;
 
-import com.gildedgames.aether.item.combat.AetherItemTiers;
 import com.kwpugh.gobber2.lists.tiers.ToolMaterialTiers;
 
 import at.xander.fancytools.FancyToolsMod;
@@ -9,11 +8,6 @@ import net.coolsimulations.MoreThanAPickaxe.item.AdzeItemTier;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemEndAdze;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemGobberAdze;
-import net.coolsimulations.MoreThanAPickaxe.item.ItemGravititeAdze;
-import net.coolsimulations.MoreThanAPickaxe.item.ItemHolystoneAdze;
-import net.coolsimulations.MoreThanAPickaxe.item.ItemSkyrootAdze;
-import net.coolsimulations.MoreThanAPickaxe.item.ItemValkyrieAdze;
-import net.coolsimulations.MoreThanAPickaxe.item.ItemZaniteAdze;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -75,12 +69,6 @@ public class MoreThanAPickaxeItems {
 	//public static final RegistryObject<Item> sapphire_adze;
 	//public static final RegistryObject<Item> topaz_adze;
 	//public static final RegistryObject<Item> quartz_adze;
-	
-	public static final RegistryObject<Item> gravitite_adze = ITEMS_AETHER.register("gravitite_adze", () -> new ItemGravititeAdze(AetherItemTiers.GRAVITITE, 8.0F, -1.5F, new Item.Properties()));
-	public static final RegistryObject<Item> holystone_adze = ITEMS_AETHER.register("holystone_adze", () -> new ItemHolystoneAdze(AetherItemTiers.HOLYSTONE, 8.0F, -1.5F, new Item.Properties()));
-	public static final RegistryObject<Item> skyroot_adze = ITEMS_AETHER.register("skyroot_adze", () -> new ItemSkyrootAdze(AetherItemTiers.SKYROOT, 6.0F, -1.5F, new Item.Properties()));
-	public static final RegistryObject<Item> zanite_adze = ITEMS_AETHER.register("zanite_adze", () -> new ItemZaniteAdze(AetherItemTiers.ZANITE, 8.0F, -1.0F, new Item.Properties()));
-	public static final RegistryObject<Item> valkyrie_adze = ITEMS_AETHER.register("valkyrie_adze", () -> new ItemValkyrieAdze(AetherItemTiers.VALKYRIE, 9.0F, -0.3F, new Item.Properties()));
 	
 	public static final RegistryObject<Item> gobber_adze = ITEMS_GOBBER.register("gobber_adze", () -> new ItemGobberAdze(ToolMaterialTiers.OVERWORLD_GOBBER, 10.0F, -2.0F, new Item.Properties()));
 	public static final RegistryObject<Item> nether_adze = ITEMS_GOBBER.register("nether_adze", () -> new ItemGobberAdze(ToolMaterialTiers.NETHER_GOBBER, 12.0F, -1.8F, new Item.Properties()));

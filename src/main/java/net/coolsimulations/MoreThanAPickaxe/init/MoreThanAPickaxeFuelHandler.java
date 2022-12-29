@@ -20,7 +20,7 @@ public class MoreThanAPickaxeFuelHandler {
 		}
 
 		if (SPCompatibilityManager.isAetherLoaded()) {
-			if(fuel.getItem() == MoreThanAPickaxeItems.skyroot_adze.get()) {
+			if(fuel.getItem() == MoreThanAPickaxeAether.skyroot_adze.get()) {
 				event.setBurnTime(200);
 			}
 		}
