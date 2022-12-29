@@ -1,7 +1,7 @@
 package net.coolsimulations.MoreThanAPickaxe.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.id.aether.items.tools.base_tools.GravititeTool;
+import net.id.paradiselost.items.tools.base_tools.GravititeTool;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;

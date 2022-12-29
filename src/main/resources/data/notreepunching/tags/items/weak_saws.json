@@ -1,0 +1,122 @@
+{
+	"replace": false,
+	"values": [
+		"morethanapickaxe:wooden_adze",
+		"morethanapickaxe:stone_adze",
+		"morethanapickaxe:iron_adze",
+		"morethanapickaxe:gold_adze",
+		"morethanapickaxe:diamond_adze",
+		"morethanapickaxe:netherite_adze",
+		"morethanapickaxe:bronze_adze",
+		"morethanapickaxe:titanium_adze",
+		"morethanapickaxe:steel_adze",
+		{
+		  "id": "morethanapickaxe:emerald_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:obsidian_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:amethyst_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:ruby_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:sapphire_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:topaz_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:quartz_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:tanzanite_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:citrine_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:tourmaline_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:alexandrite_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:corundum_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:carbonado_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:kunzite_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:gravitite_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:zanite_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:valkyrie_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:adamantium_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:vibranium_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:nether_brick_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:moissanite_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:spinel_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:gobber_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:nether_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:end_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:luxore_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:peridot_adze",
+		  "required": false
+		}
+	]
+}

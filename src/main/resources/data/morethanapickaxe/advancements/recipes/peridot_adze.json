@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:peridot_adze"
+    ]
+  },
+  "criteria": {
+    "has_peridot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "techreborn:peridot_gem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "morethanapickaxe:peridot_adze"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_peridot",
+      "has_the_recipe"
+    ]
+  ]
+}

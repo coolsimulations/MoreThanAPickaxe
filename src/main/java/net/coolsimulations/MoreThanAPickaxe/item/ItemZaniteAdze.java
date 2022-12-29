@@ -1,7 +1,7 @@
 package net.coolsimulations.MoreThanAPickaxe.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.id.aether.items.tools.base_tools.ZaniteTool;
+import net.id.paradiselost.items.tools.base_tools.ZaniteTool;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.block.state.BlockState;

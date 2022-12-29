@@ -49,6 +49,10 @@
   "item.morethanapickaxe.nether_adze": "Nether Adze",
   "item.morethanapickaxe.end_adze": "End Adze",
   
+  "item.morethanapickaxe.luxore_adze": "Luxore Adze",
+  
+  "item.morethanapickaxe.peridot_adze": "Peridot Adze",
+  
   "advancements.morethanapickaxe.install": "More Than A Pickaxe Installation",
   "advancements.morethanapickaxe.install.desc": "Download and Install More Than A Pickaxe",
   "advancements.morethanapickaxe.install.display1": "coolsim thanks you for downloading More Than A Pickaxe!",

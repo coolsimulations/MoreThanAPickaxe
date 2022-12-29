@@ -11,6 +11,7 @@ import com.kwpugh.gobber2.Gobber2;
 import de.deeprobin.amethyst_mod.AmethystMod;
 import de.deeprobin.emeraldmod.EmeraldMod;
 import de.deeprobin.ruby_mod.RubyMod;
+import dev.luxmiyu.luxore.LuxoreToolMaterial;
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.MoreThanAPickaxe.item.AdzeItemTier;
 import net.coolsimulations.MoreThanAPickaxe.item.ItemAdze;
@@ -22,11 +23,12 @@ import net.coolsimulations.MoreThanAPickaxe.item.ItemZaniteAdze;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.id.aether.items.tools.AetherToolMaterials;
+import net.id.paradiselost.items.tools.ParadiseLostToolMaterials;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
+import techreborn.init.TRToolTier;
 
 public class MoreThanAPickaxeItems {
 
@@ -78,6 +80,10 @@ public class MoreThanAPickaxeItems {
 	public static Item gobber_adze;
 	public static Item nether_adze;
 	public static Item end_adze;
+	
+	public static Item luxore_adze;
+	
+	public static Item peridot_adze;
 
 	public static void init() {
 
@@ -123,7 +129,7 @@ public class MoreThanAPickaxeItems {
 			} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				emerald_adze = new ItemAdze(ItemInit.EMERALD_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEnrichedLoaded()) {
-				emerald_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialEmerald(), 7.5F, -2.40F, new FabricItemSettings(), true);
+				emerald_adze = new ItemAdze(new com.enrichedmc.materials.items.ToolMaterialEmerald(), 7.0F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEmeraldEquipmentLoaded()) {
 				emerald_adze = new ItemAdze(com.exline.emeraldequipment.item.EmeraldToolMaterial.INSTANCE, 7.5F, -2.40F, new FabricItemSettings(), true);	
 			}
@@ -131,11 +137,11 @@ public class MoreThanAPickaxeItems {
 
 		if(SPCompatibilityManager.isObsidianMaterialModsLoaded()) {
 			if(SPCompatibilityManager.isObsidianEquipmentLoaded()) {
-				obsidian_adze = new ItemAdze(com.exline.obsidianequipment.ModToolMaterials.OBSIDIAN, 8.4F, -2.40F, new FabricItemSettings(), true);
+				obsidian_adze = new ItemAdze(com.exline.obsidianequipment.ModToolMaterials.OBSIDIAN, 8.5F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
 				obsidian_adze = new ItemAdze(ItemInit.OBSIDIAN_TOOL_MATERIAL, 7.5F, -2.40F, new FabricItemSettings(), true);
 			} else if(SPCompatibilityManager.isEnrichedLoaded()) {
-				obsidian_adze = new ItemAdze(new ToolMaterialObsidian(), 8.0F, -2.40F, new FabricItemSettings(), true);
+				obsidian_adze = new ItemAdze(new ToolMaterialObsidian(), 7.5F, -2.40F, new FabricItemSettings(), true);
 			}
 		}
 
@@ -143,12 +149,16 @@ public class MoreThanAPickaxeItems {
 			ruby_adze = new ItemAdze(RubyMod.TOOL_MATERIAL, 6.0F, -1.80F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
 			ruby_adze = new ItemAdze(ItemInit.RUBY_TOOL_MATERIAL, 8.0F, -2.40F, new FabricItemSettings(), true);
+		} else if (SPCompatibilityManager.isTechRebornLoaded()) {
+			ruby_adze = new ItemAdze(TRToolTier.RUBY, 4.5F, -2.40F, new FabricItemSettings(), true);
 		} else if (SPCompatibilityManager.isEnrichedLoaded()) {
-			ruby_adze = new ItemAdze(new ToolMaterialRuby(), 7.0F, -2.40F, new FabricItemSettings(), true);
+			ruby_adze = new ItemAdze(new ToolMaterialRuby(), 7.5F, -2.40F, new FabricItemSettings(), true);
 		}
 
 		if(SPCompatibilityManager.isMoreGemsLoaded()) {
 			sapphire_adze = new ItemAdze(com.kwpugh.more_gems.init.ItemInit.SAPPHIRE_TOOL_MATERIAL, 7.0F, -2.40F, new FabricItemSettings(), true);
+		} else if(SPCompatibilityManager.isTechRebornLoaded()) {
+			sapphire_adze = new ItemAdze(TRToolTier.SAPPHIRE, 4.5F, -2.40F, new FabricItemSettings(), true);
 		} else if(SPCompatibilityManager.isEnrichedLoaded()) {
 			sapphire_adze = new ItemAdze(new ToolMaterialSapphire(), 7.0F, -2.40F, new FabricItemSettings(), true);
 		}
@@ -176,9 +186,9 @@ public class MoreThanAPickaxeItems {
 		}
 
 		if(SPCompatibilityManager.isAetherRebornLoaded()) {
-			gravitite_adze = new ItemGravititeAdze(AetherToolMaterials.GRAVITITE, 8.0F, -2.40F, new FabricItemSettings());
-			zanite_adze = new ItemZaniteAdze(AetherToolMaterials.ZANITE, 8.0F, -2.40F, new FabricItemSettings());
-			valkyrie_adze = new ItemValkyrieAdze(AetherToolMaterials.VALKYRIE, 8.0F, -2.40F, new FabricItemSettings());
+			gravitite_adze = new ItemGravititeAdze(ParadiseLostToolMaterials.GRAVITITE, 8.0F, -2.40F, new FabricItemSettings());
+			zanite_adze = new ItemZaniteAdze(ParadiseLostToolMaterials.ZANITE, 8.0F, -2.40F, new FabricItemSettings());
+			valkyrie_adze = new ItemValkyrieAdze(ParadiseLostToolMaterials.VALKYRIE, 8.0F, -2.40F, new FabricItemSettings());
 		}
 
 		if(SPCompatibilityManager.isAdabraniumLoaded()) {
@@ -191,6 +201,14 @@ public class MoreThanAPickaxeItems {
 			gobber_adze = new ItemGobberAdze(com.kwpugh.gobber2.init.ItemInit.GOBBER_TOOL_MATERIAL, 10.0F, -4.0F + Gobber2.CONFIG.GENERAL.gobberSwordAttackSpeed, new FabricItemSettings());
 			nether_adze = new ItemGobberAdze(com.kwpugh.gobber2.init.ItemInit.GOBBER_NETHER_TOOL_MATERIAL, 12.0F, -4.0F + Gobber2.CONFIG.GENERAL.gobberNetherSwordAttackSpeed, new FabricItemSettings());
 			end_adze = new ItemEndAdze(com.kwpugh.gobber2.init.ItemInit.GOBBER_END_TOOL_MATERIAL, 15.0F, -4.0F + Gobber2.CONFIG.GENERAL.gobberEndSwordAttackSpeed, new FabricItemSettings());
+		}
+		
+		if (SPCompatibilityManager.isLuxoreLoaded()) {
+			luxore_adze = new ItemAdze(LuxoreToolMaterial.INSTANCE, 8.0F, -2.40F, new FabricItemSettings(), true);
+		}
+		
+		if (SPCompatibilityManager.isTechRebornLoaded()) {
+			peridot_adze = new ItemAdze(TRToolTier.PERIDOT, 4.5F, -2.40F, new FabricItemSettings(), true);
 		}
 	}
 
@@ -234,11 +252,11 @@ public class MoreThanAPickaxeItems {
 			registerItem(obsidian_adze, "obsidian_adze");
 		}
 
-		if(SPCompatibilityManager.isRobinsRubyLoaded() || SPCompatibilityManager.isEasyEmeraldLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
+		if(SPCompatibilityManager.isRobinsRubyLoaded() || SPCompatibilityManager.isEasyEmeraldLoaded() || SPCompatibilityManager.isTechRebornLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
 			registerItem(ruby_adze, "ruby_adze");
 		}
 
-		if(SPCompatibilityManager.isMoreGemsLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
+		if(SPCompatibilityManager.isMoreGemsLoaded() || SPCompatibilityManager.isTechRebornLoaded() || SPCompatibilityManager.isEnrichedLoaded()) {
 			registerItem(sapphire_adze, "sapphire_adze");
 		}
 
@@ -278,6 +296,14 @@ public class MoreThanAPickaxeItems {
 			registerItem(gobber_adze, "gobber_adze");
 			registerItem(nether_adze, "nether_adze");
 			registerItem(end_adze, "end_adze");
+		}
+		
+		if(SPCompatibilityManager.isLuxoreLoaded()) {
+			registerItem(luxore_adze, "luxore_adze");
+		}
+		
+		if(SPCompatibilityManager.isTechRebornLoaded()) {
+			registerItem(peridot_adze, "peridot_adze");
 		}
 	}
 

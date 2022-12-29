@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "c:wood_sticks"
+    },
+    "X": {
+      "item": "luxore:luxore_ingot"
+    }
+  },
+  "result": {
+    "item": "morethanapickaxe:luxore_adze"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "luxore"
+      ]
+    }
+  ]
+}

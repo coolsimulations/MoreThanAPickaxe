@@ -110,6 +110,14 @@
 		{
 		  "id": "morethanapickaxe:end_adze",
 		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:luxore_adze",
+		  "required": false
+		},
+		{
+		  "id": "morethanapickaxe:peridot_adze",
+		  "required": false
 		}
 	]
 }

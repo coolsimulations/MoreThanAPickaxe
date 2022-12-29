@@ -49,6 +49,10 @@
   "item.morethanapickaxe.nether_adze": "\u5730\u72f1\u963f\u6cfd",
   "item.morethanapickaxe.end_adze": "\u672b\u5f71\u963f\u6cfd",
   
+  "item.morethanapickaxe.luxore_adze": "\u5362\u514b\u7d22\u5c14\u963f\u6cfd",
+  
+  "item.morethanapickaxe.peridot_adze": "\u6a44\u6984\u77f3\u963f\u6cfd",
+  
   "advancements.morethanapickaxe.install": "\u4e0d\u53ea\u662f\u9550\u5b89\u88c5",
   "advancements.morethanapickaxe.install.desc": "\u4e0b\u8f7d\u5e76\u5b89\u88c5\u4e0d\u53ea\u662f\u9550",
   "advancements.morethanapickaxe.install.display1": "coolsim\u8c22\u8c22\u60a8\u7684\u4e0b\u8f7d\u4e0d\u53ea\u662f\u9550\uff01",

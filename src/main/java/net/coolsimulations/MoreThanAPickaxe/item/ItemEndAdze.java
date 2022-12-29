@@ -10,7 +10,7 @@ import com.kwpugh.gobber2.util.EnableUtil;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
 import net.coolsimulations.SurvivalPlus.api.compat.SPGobberEnchantments;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.id.aether.world.dimension.AetherDimension;
+import net.id.paradiselost.world.dimension.ParadiseLostDimension;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.core.BlockPos;
@@ -155,7 +155,7 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 					torch = Blocks.SOUL_TORCH.defaultBlockState();
 					wall_torch = Blocks.SOUL_WALL_TORCH.defaultBlockState();
 				} else if (SPCompatibilityManager.isAetherRebornLoaded()) {
-					if(context.getLevel().dimension() == AetherDimension.AETHER_WORLD_KEY) {
+					if(context.getLevel().dimension() == ParadiseLostDimension.PARADISE_LOST_WORLD_KEY) {
 						torch = Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_torch")).defaultBlockState();
 						wall_torch = Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_wall_torch")).defaultBlockState();
 					}

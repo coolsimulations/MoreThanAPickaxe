@@ -21,7 +21,8 @@
       "condition": "fabric:any_mod_loaded",
       "values": [
         "more_gems",
-        "enriched"
+        "enriched",
+        "techreborn"
       ]
     }
   ]
