@@ -167,6 +167,9 @@ public class MoreThanAPicakxeAetherLegacyRecipes {
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.nether_adze, 6000));
 			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.end_adze, 6000));
 		}
+		
+		if(SPCompatibilityManager.isSimplyPlatinumLoaded())
+			registry.register(new AetherEnchantment(MoreThanAPickaxeItems.platinum_adze, 2750));
 	}
 
 	@SideOnly(Side.CLIENT)

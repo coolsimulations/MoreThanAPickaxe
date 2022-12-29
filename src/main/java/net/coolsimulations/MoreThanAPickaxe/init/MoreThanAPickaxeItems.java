@@ -6,6 +6,7 @@ import com.mjr.extraplanets.Config;
 import com.xmods.tools.api.material.OTA_ToolMaterial;
 
 import at.xander.fancytools.handler.MaterialHandler;
+import intfox.simplyplatinum.init.ModTools;
 import micdoodle8.mods.galacticraft.core.GCItems;
 import micdoodle8.mods.galacticraft.planets.asteroids.items.AsteroidsItems;
 import micdoodle8.mods.galacticraft.planets.mars.items.MarsItems;
@@ -83,6 +84,8 @@ public class MoreThanAPickaxeItems {
 	public static Item gobber_adze;
 	public static Item nether_adze;
 	public static Item end_adze;
+	
+	public static Item platinum_adze;
 
 	public static ToolMaterial steelToolMaterial = EnumHelper.addToolMaterial("steel_adze", 2, 500, 7, 2.5F, 9);
 
@@ -250,6 +253,9 @@ public class MoreThanAPickaxeItems {
 			ToolMaterial MATERIAL_PICKAXE_GLOBOT3 = EnumHelper.addToolMaterial("material_pickaxe_globot3", 10, 6000, 48.0F, 2.0F, 25);
 			end_adze = new ItemEndAdze(MATERIAL_PICKAXE_GLOBOT3, 19.0F, -2.2F).setUnlocalizedName("end_adze").setRegistryName("end_adze").setCreativeTab(SPTabs.tabTools);
 		}
+		
+		if (SPCompatibilityManager.isSimplyPlatinumLoaded())
+			platinum_adze = new ItemAdze(ModTools.platinumMaterial, 3.0F, -2.4F, true).setUnlocalizedName("platinum_adze").setRegistryName("platinum_adze").setCreativeTab(SPTabs.tabTools);
 	}
 
 	public static void register()
@@ -382,6 +388,9 @@ public class MoreThanAPickaxeItems {
 			registerItem(nether_adze);
 			registerItem(end_adze);
 		}
+		
+		if (SPCompatibilityManager.isSimplyPlatinumLoaded())
+			registerItem(platinum_adze);
 	}
 
 	public static void registerRenders()
@@ -508,6 +517,9 @@ public class MoreThanAPickaxeItems {
 			registerRender(nether_adze);
 			registerRender(end_adze);
 		}
+		
+		if (SPCompatibilityManager.isSimplyPlatinumLoaded())
+			registerRender(platinum_adze);
 	}
 
 	public static void registerItem(Item item) {

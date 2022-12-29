@@ -54,6 +54,8 @@ item.gobber_adze.name=Adze de Gobber
 item.nether_adze.name=Adze de Infernal
 item.end_adze.name=Adze de Ender
 
+item.platinum_adze.name=Adze de Platino
+
 item.hammertime.itemdenseadzewood.name=Adze Densa de Madera
 item.hammertime.itemdenseadzestone.name=Adze Densa de Piedra
 item.hammertime.itemdenseadzeiron.name=Adze Densa de Hierro

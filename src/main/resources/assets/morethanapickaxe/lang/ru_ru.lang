@@ -54,6 +54,8 @@ item.gobber_adze.name=Гоббер Адзе
 item.nether_adze.name=Адский Адзе
 item.end_adze.name=Края Адзе
 
+item.platinum_adze.name=Платина Адзе
+
 item.hammertime.itemdenseadzewood.name=Деревянная Плотная Aдзе
 item.hammertime.itemdenseadzestone.name=Каменная Плотная Aдзе
 item.hammertime.itemdenseadzeiron.name=Железные Плотная Aдзе
