@@ -3,6 +3,7 @@ package net.coolsimulations.MoreThanAPickaxe;
 import com.mojang.serialization.Codec;
 
 import net.coolsimulations.MoreThanAPickaxe.init.AetherLootModifier;
+import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeAether;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeEventHandler;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeItems;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeAether;
@@ -12,9 +13,11 @@ import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeVillagerTrade;
 import net.coolsimulations.MoreThanAPickaxe.proxy.ClientProxy;
 import net.coolsimulations.MoreThanAPickaxe.proxy.CommonProxy;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
+import net.coolsimulations.SurvivalPlus.api.SPItems;
 import net.coolsimulations.SurvivalPlus.api.SPReference;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -85,6 +88,42 @@ public class MoreThanAPickaxe {
 			MinecraftForge.EVENT_BUS.register(new MoreThanAPickaxeLumberjack());
 		}
 
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::addToTabs);
+	}
+	
+	private void addToTabs(CreativeModeTabEvent.BuildContents event) {
+		if (event.getTab().getIconItem().getItem() == SPItems.bronze_axe.get()) {
+			event.accept(MoreThanAPickaxeItems.wooden_adze);
+			event.accept(MoreThanAPickaxeItems.stone_adze);
+			event.accept(MoreThanAPickaxeItems.iron_adze);
+			event.accept(MoreThanAPickaxeItems.gold_adze);
+			event.accept(MoreThanAPickaxeItems.diamond_adze);
+			event.accept(MoreThanAPickaxeItems.netherite_adze);
+			event.accept(MoreThanAPickaxeItems.bronze_adze);
+			event.accept(MoreThanAPickaxeItems.titanium_adze);
+			if(!SPCompatibilityManager.isGCLoaded())
+				event.accept(MoreThanAPickaxeItems.steel_adze);
+			if(SPCompatibilityManager.isEmeraldMaterialModsLoaded())
+				event.accept(MoreThanAPickaxeItems.emerald_adze);
+			if(SPCompatibilityManager.isObsidianMaterialModsLoaded())
+				event.accept(MoreThanAPickaxeItems.obsidian_adze);
+			if(SPCompatibilityManager.isEasyEmeraldLoaded()) {
+				event.accept(MoreThanAPickaxeItems.ruby_adze);
+				event.accept(MoreThanAPickaxeItems.amethyst_adze);
+			}
+			if(SPCompatibilityManager.isAetherLoaded()) {
+				event.accept(MoreThanAPickaxeAether.gravitite_adze);
+				event.accept(MoreThanAPickaxeAether.holystone_adze);
+				event.accept(MoreThanAPickaxeAether.skyroot_adze);
+				event.accept(MoreThanAPickaxeAether.zanite_adze);
+				event.accept(MoreThanAPickaxeAether.valkyrie_adze);
+			}
+			if(SPCompatibilityManager.isGobberLoaded()) {
+				event.accept(MoreThanAPickaxeItems.gobber_adze);
+				event.accept(MoreThanAPickaxeItems.nether_adze);
+				event.accept(MoreThanAPickaxeItems.end_adze);
+			}
+		}
 	}
 
 }

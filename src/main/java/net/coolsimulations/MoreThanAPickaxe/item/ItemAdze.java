@@ -11,7 +11,6 @@ import com.google.common.collect.Multimap;
 
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTags;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -33,7 +32,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -70,7 +68,7 @@ public class ItemAdze extends DiggerItem{
 	}
 
 	public ItemAdze(Tier material, float damage, float speed, Item.Properties builder, boolean isModded, boolean unbreakable) {
-		super(damage, speed, material, MoreThanAPickaxeTags.Blocks.MINEABLE_WITH_ADZE, builder.tab(SPTabs.tabTools).stacksTo(1));
+		super(damage, speed, material, MoreThanAPickaxeTags.Blocks.MINEABLE_WITH_ADZE, builder.stacksTo(1));
 		this.material = material;
 		this.attackSpeed = speed;
 		this.attackDamage = damage;
