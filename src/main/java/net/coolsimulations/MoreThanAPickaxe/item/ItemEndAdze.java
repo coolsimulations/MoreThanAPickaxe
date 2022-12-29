@@ -14,7 +14,7 @@ import net.id.paradiselost.world.dimension.ParadiseLostDimension;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
@@ -156,8 +156,8 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 					wall_torch = Blocks.SOUL_WALL_TORCH.defaultBlockState();
 				} else if (SPCompatibilityManager.isAetherRebornLoaded()) {
 					if(context.getLevel().dimension() == ParadiseLostDimension.PARADISE_LOST_WORLD_KEY) {
-						torch = Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_torch")).defaultBlockState();
-						wall_torch = Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_wall_torch")).defaultBlockState();
+						torch = BuiltInRegistries.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_torch")).defaultBlockState();
+						wall_torch = BuiltInRegistries.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "ambrosium_wall_torch")).defaultBlockState();
 					}
 				}
 

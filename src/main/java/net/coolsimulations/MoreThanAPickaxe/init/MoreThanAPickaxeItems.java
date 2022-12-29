@@ -25,6 +25,7 @@ import net.coolsimulations.SurvivalPlus.api.item.SPItemTier;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.id.paradiselost.items.tools.ParadiseLostToolMaterials;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
@@ -309,6 +310,6 @@ public class MoreThanAPickaxeItems {
 
 	public static void registerItem(Item item, String registryName) {
 
-		Registry.register(Registry.ITEM, new ResourceLocation(Reference.MOD_ID, registryName), item);
+		Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(Reference.MOD_ID, registryName), item);
 	}
 }

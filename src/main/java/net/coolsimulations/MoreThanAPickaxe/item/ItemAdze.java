@@ -16,7 +16,6 @@ import com.google.common.collect.Multimap;
 import net.coolsimulations.MoreThanAPickaxe.Reference;
 import net.coolsimulations.MoreThanAPickaxe.init.MoreThanAPickaxeTags;
 import net.coolsimulations.SurvivalPlus.api.SPCompatibilityManager;
-import net.coolsimulations.SurvivalPlus.api.SPTabs;
 import net.coolsimulations.SurvivalPlus.api.events.ItemAccessor;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.advancements.Advancement;
@@ -24,7 +23,7 @@ import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.ServerAdvancementManager;
 import net.minecraft.server.level.ServerLevel;
@@ -86,7 +85,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 	}
 
 	public ItemAdze(Tier material, float damage, float speed, FabricItemSettings builder, boolean isModded, boolean unbreakable) {
-		super(damage, speed, material, MoreThanAPickaxeTags.Blocks.MINEABLE_WITH_ADZE, builder.group(SPTabs.tabTools).maxCount(1));
+		super(damage, speed, material, MoreThanAPickaxeTags.Blocks.MINEABLE_WITH_ADZE, builder.maxCount(1));
 		this.material = material;
 		this.attackSpeed = speed;
 		this.attackDamage = damage;
@@ -209,7 +208,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 		}
 
 		if(SPCompatibilityManager.isAetherRebornLoaded()) {
-			if (world.getBlockState(blockpos).getBlock() == Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "golden_oak_log")) && !world.isClientSide) {
+			if (world.getBlockState(blockpos).getBlock() == BuiltInRegistries.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "golden_oak_log")) && !world.isClientSide) {
 				ServerLevel server = (ServerLevel) world;
 				LootTable supplier = server.getServer().getLootTables().get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "gameplay/golden_oak_log_strip"));
 				List<ItemStack> items = supplier.getRandomItems(new LootContext.Builder(server)
@@ -223,7 +222,7 @@ public class ItemAdze extends DiggerItem implements ItemAccessor {
 					ItemEntity itemEntity = new ItemEntity(context.getLevel(), offsetDirection.x, offsetDirection.y, offsetDirection.z, item);
 					world.addFreshEntity(itemEntity);
 				}
-				world.setBlock(blockpos, Registry.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "stripped_golden_oak_log")).defaultBlockState(), 11);
+				world.setBlock(blockpos, BuiltInRegistries.BLOCK.get(new ResourceLocation(SPCompatibilityManager.AETHER_REBORN_MODID, "stripped_golden_oak_log")).defaultBlockState(), 11);
 			}
 		}
 
