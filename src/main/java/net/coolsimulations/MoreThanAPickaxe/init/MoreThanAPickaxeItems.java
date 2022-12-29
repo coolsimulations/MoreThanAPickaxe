@@ -31,7 +31,6 @@ public class MoreThanAPickaxeItems {
 	public static final DeferredRegister<Item> ITEMS_OBSIDIAN_EASY = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
 	public static final DeferredRegister<Item> ITEMS_EASY = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
 	public static final DeferredRegister<Item> ITEMS_GOBBER = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
-	public static final DeferredRegister<Item> ITEMS_AETHER = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
 	
 	public static final RegistryObject<Item> wooden_adze = ITEMS.register("wooden_adze", () -> new ItemAdze(Tiers.WOOD, 6.0F, -2.40F, new Item.Properties()));
 	public static final RegistryObject<Item> stone_adze = ITEMS.register("stone_adze", () -> new ItemAdze(Tiers.STONE, 8.0F, -2.40F, new Item.Properties()));
