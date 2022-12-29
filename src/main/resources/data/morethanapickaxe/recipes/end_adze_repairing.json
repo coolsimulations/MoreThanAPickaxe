@@ -1,0 +1,18 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_adze_repair",
+  "ingredient": {
+    "item": "morethanapickaxe:end_adze"
+  },
+  "repairTime": 6000,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    },
+    {
+      "modid": "gobber2",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

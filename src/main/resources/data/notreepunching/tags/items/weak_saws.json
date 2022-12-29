@@ -51,6 +51,26 @@
     {
       "id": "morethanapickaxe:end_adze",
       "required": false
+    },
+    {
+      "id": "morethanapickaxe:gravitite_adze",
+      "required": false
+    },
+    {
+      "id": "morethanapickaxe:holystone_adze",
+      "required": false
+    },
+    {
+      "id": "morethanapickaxe:skyroot_adze",
+      "required": false
+    },
+    {
+      "id": "morethanapickaxe:zanite_adze",
+      "required": false
+    },
+    {
+      "id": "morethanapickaxe:valkyrie_adze",
+      "required": false
     }
   ]
 }

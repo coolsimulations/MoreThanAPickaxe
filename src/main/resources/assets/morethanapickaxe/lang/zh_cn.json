@@ -27,17 +27,15 @@
   "item.morethanapickaxe.topaz_adze": "\u9ec4\u7389\u963f\u6cfd",
   "item.morethanapickaxe.quartz_adze": "\u77f3\u82f1\u963f\u6cfd",
   
+  "item.morethanapickaxe.gravitite_adze": "\u91cd\u529b\u6676\u963f\u6cfd",
+  "item.morethanapickaxe.holystone_adze": "\u5723\u77f3\u963f\u6cfd",
+  "item.morethanapickaxe.skyroot_adze": "\u5929\u6839\u6728\u963f\u6cfd",
+  "item.morethanapickaxe.valkyrie_adze": "\u5973\u6b66\u795e\u963f\u6cfd",
+  "item.morethanapickaxe.zanite_adze": "\u7d2b\u6676\u963f\u6cfd",
+  
   "item.morethanapickaxe.gobber_adze": "\u6208\u4f2f\u963f\u6cfd",
   "item.morethanapickaxe.nether_adze": "\u5730\u72f1\u963f\u6cfd",
   "item.morethanapickaxe.end_adze": "\u672b\u5f71\u963f\u6cfd",
-  
-  "item.hammertime.itemdenseadzewood": "\u81f4\u5bc6\u6728\u963f\u6cfd",
-  "item.hammertime.itemdenseadzestone": "\u81f4\u5bc6\u77f3\u963f\u6cfd",
-  "item.hammertime.itemdenseadzeiron": "\u81f4\u5bc6\u94c1\u963f\u6cfd",
-  "item.hammertime.itemdenseadzegold": "\u81f4\u5bc6\u91d1\u963f\u6cfd",
-  "item.hammertime.itemdenseadzediamond": "\u81f4\u5bc6\u94bb\u77f3\u963f\u6cfd",
-  "item.hammertime.itemdenseadzebronze": "\u81f4\u5bc6\u9752\u94dc\u963f\u6cfd",
-  "item.hammertime.itemdenseadzetitanium": "\u81f4\u5bc6\u949b\u963f\u6cfd",
   
   "advancements.morethanapickaxe.install": "\u4e0d\u53ea\u662f\u9550\u5b89\u88c5",
   "advancements.morethanapickaxe.install.desc": "\u4e0b\u8f7d\u5e76\u5b89\u88c5\u4e0d\u53ea\u662f\u9550",

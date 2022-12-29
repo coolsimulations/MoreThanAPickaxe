@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "morethanapickaxe:zanite_adze",
+      "required": false
+    },
+    {
+      "id": "morethanapickaxe:gravitite_adze",
+      "required": false
+    },
+    {
+      "id": "morethanapickaxe:valkyrie_adze",
+      "required": false
+    }
+  ]
+}

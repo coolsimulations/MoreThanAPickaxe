@@ -27,17 +27,15 @@
   "item.morethanapickaxe.topaz_adze": "Adze de Topacio",
   "item.morethanapickaxe.quartz_adze": "Adze de Cuarzo",
   
+  "item.morethanapickaxe.gravitite_adze": "Adze de Gravitita",
+  "item.morethanapickaxe.holystone_adze": "Adze de Piedra Sacra",
+  "item.morethanapickaxe.skyroot_adze": "Adze de Raízcelestial",
+  "item.morethanapickaxe.valkyrie_adze": "Adze de Valquiria",
+  "item.morethanapickaxe.zanite_adze": "Adze de Zanite",
+  
   "item.morethanapickaxe.gobber_adze": "Adze de Gobber",
   "item.morethanapickaxe.nether_adze": "Adze de Infernal",
   "item.morethanapickaxe.end_adze": "Adze de Ender",
-  
-  "item.hammertime.itemdenseadzewood": "Adze Densa de Madera",
-  "item.hammertime.itemdenseadzestone": "Adze Densa de Piedra",
-  "item.hammertime.itemdenseadzeiron": "Adze Densa de Hierro",
-  "item.hammertime.itemdenseadzegold": "Adze Densa de Oro",
-  "item.hammertime.itemdenseadzediamond": "Adze Densa de Diamante",
-  "item.hammertime.itemdenseadzebronze": "Adze Densa de Bronce",
-  "item.hammertime.itemdenseadzetitanium": "Adze Densa de Titanio",
   
   "advancements.morethanapickaxe.install": "M\u00e1s Que un Pico Instalaci\u00f3n",
   "advancements.morethanapickaxe.install.desc": "Descargue e Instale M\u00e1s Que un Pico",

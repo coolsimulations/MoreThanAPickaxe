@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_zanite_adze": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "morethanapickaxe:zanite_adze"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "morethanapickaxe:zanite_adze_repairing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_zanite_adze",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "morethanapickaxe:zanite_adze_repairing"
+    ]
+  }
+}

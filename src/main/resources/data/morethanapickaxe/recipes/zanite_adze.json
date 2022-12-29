@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X# ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "aether:skyroot_stick"
+    },
+    "X": {
+      "item": "aether:zanite_gemstone"
+    }
+  },
+  "result": {
+    "item": "morethanapickaxe:zanite_adze"
+  },
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

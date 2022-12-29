@@ -27,17 +27,15 @@
   "item.morethanapickaxe.topaz_adze": "Topaz Adze",
   "item.morethanapickaxe.quartz_adze": "Quartz Adze",
   
+  "item.morethanapickaxe.gravitite_adze": "Gravitite Adze",
+  "item.morethanapickaxe.holystone_adze": "Holystone Adze",
+  "item.morethanapickaxe.skyroot_adze": "Skyroot Adze",
+  "item.morethanapickaxe.valkyrie_adze": "Valkyrie Adze",
+  "item.morethanapickaxe.zanite_adze": "Zanite Adze",
+  
   "item.morethanapickaxe.gobber_adze": "Gobber Adze",
   "item.morethanapickaxe.nether_adze": "Nether Adze",
   "item.morethanapickaxe.end_adze": "End Adze",
-  
-  "item.hammertime.itemdenseadzewood": "Wooden Dense Adze",
-  "item.hammertime.itemdenseadzestone": "Stone Dense Adze",
-  "item.hammertime.itemdenseadzeiron": "Iron Dense Adze",
-  "item.hammertime.itemdenseadzegold": "Gold Dense Adze",
-  "item.hammertime.itemdenseadzediamond": "Diamond Dense Adze",
-  "item.hammertime.itemdenseadzebronze": "Bronze Dense Adze",
-  "item.hammertime.itemdenseadzetitanium": "Titanium Dense Adze",
   
   "advancements.morethanapickaxe.install": "More Than A Pickaxe Installation",
   "advancements.morethanapickaxe.install.desc": "Download and Install More Than A Pickaxe",

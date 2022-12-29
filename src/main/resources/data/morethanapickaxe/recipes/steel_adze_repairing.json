@@ -1,0 +1,14 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_adze_repair",
+  "ingredient": {
+    "item": "morethanapickaxe:steel_adze"
+  },
+  "repairTime": 2050,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}

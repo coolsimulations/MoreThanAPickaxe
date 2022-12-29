@@ -1,0 +1,10 @@
+{
+  "type": "morethanapickaxe:valkyrie_adze",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "aether:chests/dungeon/silver/silver_dungeon_reward"
+    }
+  ],
+  "additional_reward": "morethanapickaxe:valkyrie_adze"
+}

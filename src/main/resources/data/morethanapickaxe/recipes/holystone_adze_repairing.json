@@ -1,0 +1,14 @@
+{
+  "type": "aether:repairing",
+  "group": "altar_adze_repair",
+  "ingredient": {
+    "item": "morethanapickaxe:holystone_adze"
+  },
+  "repairTime": 550,
+  "conditions": [
+    {
+      "modid": "aether",
+      "type": "forge:mod_loaded"
+    }
+  ]
+}
