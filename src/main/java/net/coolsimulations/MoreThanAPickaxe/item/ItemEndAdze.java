@@ -19,16 +19,17 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
 import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.Wearable;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -42,7 +43,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
-public class ItemEndAdze extends ItemGobberAdze implements Wearable {
+public class ItemEndAdze extends ItemGobberAdze implements Equipable {
 
 	public ItemEndAdze(Tier material, float damage, float speed, Item.Properties builder) {
 		super(material, damage, speed, builder, true);
@@ -175,7 +176,7 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 		ItemStack itemStack = player.getItemInHand(interactionHand);
 
 		boolean hasQuickUse = itemStack.getEnchantmentTags().toString().contains("quickuse");
-		
+
 		if(!hasQuickUse)
 		{
 			player.getCooldowns().addCooldown(this, GobberConfigBuilder.SNIPER_SWORD_COOLDOWN.get());
@@ -187,13 +188,13 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 				EnableUtil.changeEnabled(player, interactionHand);
 				player.displayClientMessage(Component.translatable("item.gobber2.gobber2_paxel_stars.line4", EnableUtil.isEnabled(itemStack)).withStyle(ChatFormatting.RED), true);
 			} else {
-				
+
 				ArrowItem itemarrow = (ArrowItem)Items.ARROW;
 				AbstractArrow persistentProjectileEntity = itemarrow.createArrow(level, new ItemStack(Items.ARROW), player);
-	            float arrowVelocity = 60.0F;
-	            persistentProjectileEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, arrowVelocity, 0.0F);
-	            persistentProjectileEntity.setBaseDamage(arrowVelocity);
-	            
+				float arrowVelocity = 60.0F;
+				persistentProjectileEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, arrowVelocity, 0.0F);
+				persistentProjectileEntity.setBaseDamage(arrowVelocity);
+
 				int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, itemStack);
 				if (k > 0) {
 					persistentProjectileEntity.setBaseDamage(persistentProjectileEntity.getBaseDamage() + (double) k * 0.5D + 0.5D);
@@ -207,15 +208,15 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 				if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, itemStack) > 0 || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FIRE_ASPECT, itemStack) > 0) {
 					persistentProjectileEntity.setSecondsOnFire(100);
 				}
-	            
-	            level.addFreshEntity(persistentProjectileEntity);
-	            persistentProjectileEntity.pickup = Pickup.DISALLOWED;
+
+				level.addFreshEntity(persistentProjectileEntity);
+				persistentProjectileEntity.pickup = Pickup.DISALLOWED;
 			}
 		}
 
 		return super.use(level, player, interactionHand);
 	}
-	
+
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.world.item.enchantment.Enchantment enchantment)
 	{
@@ -258,6 +259,11 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 			grantAdvancement(entity, sword_end);
 			grantAdvancement(entity, sword_sniper);
 		}
+	}
+
+	@Override
+	public EquipmentSlot getEquipmentSlot() {
+		return EquipmentSlot.MAINHAND;
 	}
 
 	@Override
