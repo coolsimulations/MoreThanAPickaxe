@@ -25,15 +25,16 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
 import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.Wearable;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -47,7 +48,7 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
-public class ItemEndAdze extends ItemGobberAdze implements Wearable {
+public class ItemEndAdze extends ItemGobberAdze implements Equipable {
 
 	public ItemEndAdze(Tier material, float damage, float speed, FabricItemSettings builder) {
 		super(material, damage, speed, builder, true);
@@ -266,6 +267,11 @@ public class ItemEndAdze extends ItemGobberAdze implements Wearable {
 			grantAdvancement(entity, sword_end);
 			grantAdvancement(entity, sword_sniper);
 		}
+	}
+	
+	@Override
+	public EquipmentSlot getEquipmentSlot() {
+		return EquipmentSlot.MAINHAND;
 	}
 
 	@Override
